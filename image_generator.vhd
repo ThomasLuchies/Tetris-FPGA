@@ -30,6 +30,7 @@ ENTITY image_generator IS
 		lastPixel : INTEGER := 0;   --column that first color will persist until
 		currentPixel : INTEGER := 0);
 	PORT(
+		frame			:  in 	std_logic_vector(40 downto 0);
 		disp_ena		:	IN		STD_LOGIC;	--display enable ('1' = display time, '0' = blanking time)
 		row			:	IN		INTEGER;		--row pixel coordinate
 		column		:	IN		INTEGER;		--column pixel coordinate
