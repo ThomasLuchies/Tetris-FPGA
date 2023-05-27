@@ -59,6 +59,7 @@ architecture tetris_arch of tetris is
 		 pixels_y :  INTEGER;   --row that first color will persist until
 		 pixels_x :  INTEGER);  --column that first color will persist until
 	  port(
+	    clk		 :  in 	std_logic;
 		 disp_ena :  IN   STD_LOGIC;  --display enable ('1' = display time, '0' = blanking time)
 		 row      :  IN   INTEGER;    --row pixel coordinate
 		 column   :  IN   INTEGER;    --column pixel coordinate
@@ -111,6 +112,7 @@ begin
 		pixels_y => 600
 	)
 	port map( 
+		clk => clk,
 		disp_ena => disp_ena,
 		row => row,
 		column => column,

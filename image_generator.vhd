@@ -30,7 +30,7 @@ ENTITY image_generator IS
 		lastPixel : INTEGER := 0;   --column that first color will persist until
 		currentPixel : INTEGER := 0);
 	PORT(
-		frame			:  in 	std_logic_vector(20 downto 0);
+		clk			:  in 	std_logic;
 		disp_ena		:	IN		STD_LOGIC;	--display enable ('1' = display time, '0' = blanking time)
 		row			:	IN		INTEGER;		--row pixel coordinate
 		column		:	IN		INTEGER;		--column pixel coordinate
@@ -40,8 +40,25 @@ ENTITY image_generator IS
 END image_generator;
 
 ARCHITECTURE behavior OF image_generator IS
-BEGIN
+	component prescaler is
+		port( clki: in std_logic;
+				factor: in integer;
+				clko: out std_logic
+			);
+	end component;
 	
+	signal frame_clk: std_logic;
+	signal prescale_factor: integer;
+BEGIN
+	-- 50 mhz clock convert to 60 hz
+	prescale_factor <= 50_000_000 / 60;
+	
+	ps: prescaler 
+	 port map( clki => clk,
+				  factor => prescale_factor,
+				  clko => frame_clk
+				 );
+					 
 	PROCESS(disp_ena, row, column)
 	BEGIN
 		IF(disp_ena = '1') THEN		--display time
