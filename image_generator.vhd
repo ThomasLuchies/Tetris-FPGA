@@ -22,6 +22,7 @@
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
+use IEEE.numeric_std.all;
 
 ENTITY image_generator IS
 	GENERIC(
@@ -47,31 +48,63 @@ ARCHITECTURE behavior OF image_generator IS
 			);
 	end component;
 	
+	component sram_controller is 
+		generic 
+		(
+			amount_of_adresses: unsigned(19 downto 0) := (others=>'1')
+		);
+		port
+		(
+			clk : in std_logic; -- assumes a speed of 50mHz
+
+			-- user side
+			read_n, write_n, clear_sram : in std_logic;
+			data_input : in std_logic_vector(15 downto 0);
+			addr_input : in std_logic_vector(19 downto 0);
+			data_output : out std_logic_vector(15 downto 0);
+			clear_done: out std_logic;
+			
+			-- SRAM side
+			data : inout std_logic_vector(15 downto 0);
+			address : out std_logic_vector(19 downto 0);
+			output_enable_n : out std_logic := '1';
+			write_enable_n : buffer std_logic := '1';
+			chip_select_n : out std_logic := '1';
+			ub_n : out std_logic := '0'; -- always active
+			lb_n : out std_logic := '0' -- always active
+		);
+	end component;
+	
 	signal frame_clk: std_logic;
 	signal prescale_factor: integer;
+	signal frame_data: std_logic_vector(15 downto 0);
+	signal clear_done: std_logic;
+	signal read_n: std_logic;
 BEGIN
-	-- 50 mhz clock convert to 60 hz
 	prescale_factor <= 50_000_000 / 60;
+	-- 50 mhz clock convert to 60 hz
+	clk60: prescaler port map(clk, prescale_factor, frame_clk);
+	--sr: sram_controller port map(read_n, '0', '0', "0000000000000000", "00000000000000001010", frame_data, clear_done);
+   
+	process(frame_clk)
+		variable read_np: std_logic;
+	begin
+		if(rising_edge(frame_clk)) then
+			read_np := '1';
+		else 
+			read_np := '0';
+		end if;
+		
+		read_n <= read_np;
+	end process;
 	
-	ps: prescaler 
-	 port map( clki => clk,
-				  factor => prescale_factor,
-				  clko => frame_clk
-				 );
-					 
 	PROCESS(disp_ena, row, column)
 	BEGIN
 		IF(disp_ena = '1') THEN		--display time
 			IF(row < pixels_y AND column < pixels_x) THEN
-				IF(column MOD 2) = 0 THEN	
-					red <= x"FF";
-					green	<= x"FF";
-					blue <= x"FF";
-				ELSE
-					red <= x"00";
-					green <= x"00";
-					blue <= x"00";
-				END IF;
+			--	red <= frame_data((pixels_x * row) + column + 8 downto (pixels_x * row) + column);
+			--	green <= frame_data((pixels_x * row) + column + 1);
+			--	blue <=  frame_data((pixels_x * row) + column + 2);
 			END IF;
 		ELSE								--blanking time
 			red <= (OTHERS => '0');
