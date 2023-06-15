@@ -103,4 +103,4 @@ int i_270[3][3] = {{1, 0, 0}, {1, 0, 0}, {1, 0, 0}};
 // Contains all i block rotations
 int i_rotations = {i_0, i_90, i_180, i_270};
 
-int blocks[7][4][3][3] = {t_rotations, l_rotations, j_rotations, z_rotations, s_rotations, o_rotations, i_rotations};
+//int blocks[7][4][3][3] = {t_rotations, l_rotations, j_rotations, z_rotations, s_rotations, o_rotations, i_rotations};

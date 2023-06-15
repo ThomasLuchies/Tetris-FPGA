@@ -6,6 +6,7 @@
 #include "SRAM.c"
 #include "blocks.h"
 #include "colors.h"
+#include "";
 
 #define pixels_x 640
 #define pixels_y 480
@@ -68,7 +69,7 @@ int main()
 	return running;
 }
 
-int addBlockToField(int block[3][3])
+/*int addBlockToField(int block[3][3])
 {
 	for(int y = 0; y < 3; y++)
 	{
@@ -93,13 +94,13 @@ int moveBlockDown()
 	int coords[2];
 	for(int y = 0; y < 3; y++)
 	{
-		for(int x = 0; x < 3; x++)
-		{
-			coords = movingBlockPosition[y][x];
-			if(playingField[movingBlockPosition[0]][movingBlockPosition[1]] == black)
-			{
+		//for(int x = 0; x < 3; x++)
+	//	{
+			//coords = movingBlockPosition[y][x];
+			//if(playingField[movingBlockPosition[0]][movingBlockPosition[1]] == black)
+			//{
 
-			}
+			//}
 		}
 	}
 }
@@ -136,10 +137,10 @@ int blocksEqual(block1, block2)
 	{
 		for(int x = 0; x < 3; x++)
 		{
-			if(block1[y][x] != block2[y][x])
-			{
-				return 0;
-			}
+			//if(block1[y][x] != block2[y][x])
+			//{
+				//return 0;
+			//}
 		}
 	}
 
@@ -167,11 +168,11 @@ int renderScreen()
 		{
 			if(x >= border_left && x <= border_left + 6 || x >= border_right && x <= border_right + 6 || y <= 5 || y >= 633)
 			{
-				beginScreen[y][x] = grey;
+				//beginScreen[y][x] = grey;
 			}
 			else
 			{
-				beginScreen[y][x] = black;
+				//beginScreen[y][x] = black;
 			}
 		}
 	}
@@ -189,10 +190,10 @@ int addPlayingFieldToScreen(int screen[480][640][3])
 			{
 				for(int blockX; blockX < block_width; blockX++)
 				{
-					screen[(blockY * y) + playingFieldStartY][(blockX * x) + playingFieldStartX] = playingField[blockY][blockX];
+					//screen[(blockY * y) + playingFieldStartY][(blockX * x) + playingFieldStartX] = playingField[blockY][blockX];
 				}
 			}
 
 		}
 	}
-}
+}*/
