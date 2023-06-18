@@ -49,7 +49,7 @@ architecture rtl of nios2 is
 			clk                                 : in  std_logic                     := 'X';             -- clk
 			reset_n                             : in  std_logic                     := 'X';             -- reset_n
 			reset_req                           : in  std_logic                     := 'X';             -- reset_req
-			d_address                           : out std_logic_vector(15 downto 0);                    -- address
+			d_address                           : out std_logic_vector(21 downto 0);                    -- address
 			d_byteenable                        : out std_logic_vector(3 downto 0);                     -- byteenable
 			d_read                              : out std_logic;                                        -- read
 			d_readdata                          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -57,7 +57,7 @@ architecture rtl of nios2 is
 			d_write                             : out std_logic;                                        -- write
 			d_writedata                         : out std_logic_vector(31 downto 0);                    -- writedata
 			debug_mem_slave_debugaccess_to_roms : out std_logic;                                        -- debugaccess
-			i_address                           : out std_logic_vector(15 downto 0);                    -- address
+			i_address                           : out std_logic_vector(21 downto 0);                    -- address
 			i_read                              : out std_logic;                                        -- read
 			i_readdata                          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			i_waitrequest                       : in  std_logic                     := 'X';             -- waitrequest
@@ -91,6 +91,27 @@ architecture rtl of nios2 is
 		);
 	end component nios2_onchip_memory2_0;
 
+	component nios2_sram is
+		port (
+			clk           : in    std_logic                     := 'X';             -- clk
+			reset         : in    std_logic                     := 'X';             -- reset
+			SRAM_DQ       : inout std_logic_vector(15 downto 0) := (others => 'X'); -- export
+			SRAM_ADDR     : out   std_logic_vector(19 downto 0);                    -- export
+			SRAM_LB_N     : out   std_logic;                                        -- export
+			SRAM_UB_N     : out   std_logic;                                        -- export
+			SRAM_CE_N     : out   std_logic;                                        -- export
+			SRAM_OE_N     : out   std_logic;                                        -- export
+			SRAM_WE_N     : out   std_logic;                                        -- export
+			address       : in    std_logic_vector(19 downto 0) := (others => 'X'); -- address
+			byteenable    : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- byteenable
+			read          : in    std_logic                     := 'X';             -- read
+			write         : in    std_logic                     := 'X';             -- write
+			writedata     : in    std_logic_vector(15 downto 0) := (others => 'X'); -- writedata
+			readdata      : out   std_logic_vector(15 downto 0);                    -- readdata
+			readdatavalid : out   std_logic                                         -- readdatavalid
+		);
+	end component nios2_sram;
+
 	component nios2_switches is
 		port (
 			clk      : in  std_logic                     := 'X';             -- clk
@@ -105,7 +126,7 @@ architecture rtl of nios2 is
 		port (
 			clk_0_clk_clk                                  : in  std_logic                     := 'X';             -- clk
 			nios2_gen2_0_reset_reset_bridge_in_reset_reset : in  std_logic                     := 'X';             -- reset
-			nios2_gen2_0_data_master_address               : in  std_logic_vector(15 downto 0) := (others => 'X'); -- address
+			nios2_gen2_0_data_master_address               : in  std_logic_vector(21 downto 0) := (others => 'X'); -- address
 			nios2_gen2_0_data_master_waitrequest           : out std_logic;                                        -- waitrequest
 			nios2_gen2_0_data_master_byteenable            : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- byteenable
 			nios2_gen2_0_data_master_read                  : in  std_logic                     := 'X';             -- read
@@ -113,7 +134,7 @@ architecture rtl of nios2 is
 			nios2_gen2_0_data_master_write                 : in  std_logic                     := 'X';             -- write
 			nios2_gen2_0_data_master_writedata             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
 			nios2_gen2_0_data_master_debugaccess           : in  std_logic                     := 'X';             -- debugaccess
-			nios2_gen2_0_instruction_master_address        : in  std_logic_vector(15 downto 0) := (others => 'X'); -- address
+			nios2_gen2_0_instruction_master_address        : in  std_logic_vector(21 downto 0) := (others => 'X'); -- address
 			nios2_gen2_0_instruction_master_waitrequest    : out std_logic;                                        -- waitrequest
 			nios2_gen2_0_instruction_master_read           : in  std_logic                     := 'X';             -- read
 			nios2_gen2_0_instruction_master_readdata       : out std_logic_vector(31 downto 0);                    -- readdata
@@ -144,6 +165,13 @@ architecture rtl of nios2 is
 			onchip_memory2_0_s1_byteenable                 : out std_logic_vector(3 downto 0);                     -- byteenable
 			onchip_memory2_0_s1_chipselect                 : out std_logic;                                        -- chipselect
 			onchip_memory2_0_s1_clken                      : out std_logic;                                        -- clken
+			sram_avalon_sram_slave_address                 : out std_logic_vector(19 downto 0);                    -- address
+			sram_avalon_sram_slave_write                   : out std_logic;                                        -- write
+			sram_avalon_sram_slave_read                    : out std_logic;                                        -- read
+			sram_avalon_sram_slave_readdata                : in  std_logic_vector(15 downto 0) := (others => 'X'); -- readdata
+			sram_avalon_sram_slave_writedata               : out std_logic_vector(15 downto 0);                    -- writedata
+			sram_avalon_sram_slave_byteenable              : out std_logic_vector(1 downto 0);                     -- byteenable
+			sram_avalon_sram_slave_readdatavalid           : in  std_logic                     := 'X';             -- readdatavalid
 			switches_s1_address                            : out std_logic_vector(1 downto 0);                     -- address
 			switches_s1_readdata                           : in  std_logic_vector(31 downto 0) := (others => 'X')  -- readdata
 		);
@@ -227,14 +255,14 @@ architecture rtl of nios2 is
 	signal nios2_gen2_0_data_master_readdata                               : std_logic_vector(31 downto 0); -- mm_interconnect_0:nios2_gen2_0_data_master_readdata -> nios2_gen2_0:d_readdata
 	signal nios2_gen2_0_data_master_waitrequest                            : std_logic;                     -- mm_interconnect_0:nios2_gen2_0_data_master_waitrequest -> nios2_gen2_0:d_waitrequest
 	signal nios2_gen2_0_data_master_debugaccess                            : std_logic;                     -- nios2_gen2_0:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:nios2_gen2_0_data_master_debugaccess
-	signal nios2_gen2_0_data_master_address                                : std_logic_vector(15 downto 0); -- nios2_gen2_0:d_address -> mm_interconnect_0:nios2_gen2_0_data_master_address
+	signal nios2_gen2_0_data_master_address                                : std_logic_vector(21 downto 0); -- nios2_gen2_0:d_address -> mm_interconnect_0:nios2_gen2_0_data_master_address
 	signal nios2_gen2_0_data_master_byteenable                             : std_logic_vector(3 downto 0);  -- nios2_gen2_0:d_byteenable -> mm_interconnect_0:nios2_gen2_0_data_master_byteenable
 	signal nios2_gen2_0_data_master_read                                   : std_logic;                     -- nios2_gen2_0:d_read -> mm_interconnect_0:nios2_gen2_0_data_master_read
 	signal nios2_gen2_0_data_master_write                                  : std_logic;                     -- nios2_gen2_0:d_write -> mm_interconnect_0:nios2_gen2_0_data_master_write
 	signal nios2_gen2_0_data_master_writedata                              : std_logic_vector(31 downto 0); -- nios2_gen2_0:d_writedata -> mm_interconnect_0:nios2_gen2_0_data_master_writedata
 	signal nios2_gen2_0_instruction_master_readdata                        : std_logic_vector(31 downto 0); -- mm_interconnect_0:nios2_gen2_0_instruction_master_readdata -> nios2_gen2_0:i_readdata
 	signal nios2_gen2_0_instruction_master_waitrequest                     : std_logic;                     -- mm_interconnect_0:nios2_gen2_0_instruction_master_waitrequest -> nios2_gen2_0:i_waitrequest
-	signal nios2_gen2_0_instruction_master_address                         : std_logic_vector(15 downto 0); -- nios2_gen2_0:i_address -> mm_interconnect_0:nios2_gen2_0_instruction_master_address
+	signal nios2_gen2_0_instruction_master_address                         : std_logic_vector(21 downto 0); -- nios2_gen2_0:i_address -> mm_interconnect_0:nios2_gen2_0_instruction_master_address
 	signal nios2_gen2_0_instruction_master_read                            : std_logic;                     -- nios2_gen2_0:i_read -> mm_interconnect_0:nios2_gen2_0_instruction_master_read
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect      : std_logic;                     -- mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_chipselect -> jtag_uart_0:av_chipselect
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_readdata        : std_logic_vector(31 downto 0); -- jtag_uart_0:av_readdata -> mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_readdata
@@ -243,6 +271,13 @@ architecture rtl of nios2 is
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read            : std_logic;                     -- mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_read -> mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read:in
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write           : std_logic;                     -- mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_write -> mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write:in
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata       : std_logic_vector(31 downto 0); -- mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_writedata -> jtag_uart_0:av_writedata
+	signal mm_interconnect_0_sram_avalon_sram_slave_readdata               : std_logic_vector(15 downto 0); -- sram:readdata -> mm_interconnect_0:sram_avalon_sram_slave_readdata
+	signal mm_interconnect_0_sram_avalon_sram_slave_address                : std_logic_vector(19 downto 0); -- mm_interconnect_0:sram_avalon_sram_slave_address -> sram:address
+	signal mm_interconnect_0_sram_avalon_sram_slave_read                   : std_logic;                     -- mm_interconnect_0:sram_avalon_sram_slave_read -> sram:read
+	signal mm_interconnect_0_sram_avalon_sram_slave_byteenable             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:sram_avalon_sram_slave_byteenable -> sram:byteenable
+	signal mm_interconnect_0_sram_avalon_sram_slave_readdatavalid          : std_logic;                     -- sram:readdatavalid -> mm_interconnect_0:sram_avalon_sram_slave_readdatavalid
+	signal mm_interconnect_0_sram_avalon_sram_slave_write                  : std_logic;                     -- mm_interconnect_0:sram_avalon_sram_slave_write -> sram:write
+	signal mm_interconnect_0_sram_avalon_sram_slave_writedata              : std_logic_vector(15 downto 0); -- mm_interconnect_0:sram_avalon_sram_slave_writedata -> sram:writedata
 	signal mm_interconnect_0_nios2_gen2_0_debug_mem_slave_readdata         : std_logic_vector(31 downto 0); -- nios2_gen2_0:debug_mem_slave_readdata -> mm_interconnect_0:nios2_gen2_0_debug_mem_slave_readdata
 	signal mm_interconnect_0_nios2_gen2_0_debug_mem_slave_waitrequest      : std_logic;                     -- nios2_gen2_0:debug_mem_slave_waitrequest -> mm_interconnect_0:nios2_gen2_0_debug_mem_slave_waitrequest
 	signal mm_interconnect_0_nios2_gen2_0_debug_mem_slave_debugaccess      : std_logic;                     -- mm_interconnect_0:nios2_gen2_0_debug_mem_slave_debugaccess -> nios2_gen2_0:debug_mem_slave_debugaccess
@@ -267,7 +302,7 @@ architecture rtl of nios2 is
 	signal mm_interconnect_0_switches_s1_address                           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:switches_s1_address -> switches:address
 	signal irq_mapper_receiver0_irq                                        : std_logic;                     -- jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	signal nios2_gen2_0_irq_irq                                            : std_logic_vector(31 downto 0); -- irq_mapper:sender_irq -> nios2_gen2_0:irq
-	signal rst_controller_reset_out_reset                                  : std_logic;                     -- rst_controller:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset]
+	signal rst_controller_reset_out_reset                                  : std_logic;                     -- rst_controller:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset, sram:reset]
 	signal rst_controller_reset_out_reset_req                              : std_logic;                     -- rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 	signal nios2_gen2_0_debug_reset_request_reset                          : std_logic;                     -- nios2_gen2_0:debug_reset_request -> rst_controller:reset_in1
 	signal reset_reset_n_ports_inv                                         : std_logic;                     -- reset_reset_n:inv -> rst_controller:reset_in0
@@ -349,6 +384,26 @@ begin
 			freeze     => '0'                                               -- (terminated)
 		);
 
+	sram : component nios2_sram
+		port map (
+			clk           => clk_clk,                                                --                clk.clk
+			reset         => rst_controller_reset_out_reset,                         --              reset.reset
+			SRAM_DQ       => open,                                                   -- external_interface.export
+			SRAM_ADDR     => open,                                                   --                   .export
+			SRAM_LB_N     => open,                                                   --                   .export
+			SRAM_UB_N     => open,                                                   --                   .export
+			SRAM_CE_N     => open,                                                   --                   .export
+			SRAM_OE_N     => open,                                                   --                   .export
+			SRAM_WE_N     => open,                                                   --                   .export
+			address       => mm_interconnect_0_sram_avalon_sram_slave_address,       --  avalon_sram_slave.address
+			byteenable    => mm_interconnect_0_sram_avalon_sram_slave_byteenable,    --                   .byteenable
+			read          => mm_interconnect_0_sram_avalon_sram_slave_read,          --                   .read
+			write         => mm_interconnect_0_sram_avalon_sram_slave_write,         --                   .write
+			writedata     => mm_interconnect_0_sram_avalon_sram_slave_writedata,     --                   .writedata
+			readdata      => mm_interconnect_0_sram_avalon_sram_slave_readdata,      --                   .readdata
+			readdatavalid => mm_interconnect_0_sram_avalon_sram_slave_readdatavalid  --                   .readdatavalid
+		);
+
 	switches : component nios2_switches
 		port map (
 			clk      => clk_clk,                                  --                 clk.clk
@@ -401,6 +456,13 @@ begin
 			onchip_memory2_0_s1_byteenable                 => mm_interconnect_0_onchip_memory2_0_s1_byteenable,            --                                         .byteenable
 			onchip_memory2_0_s1_chipselect                 => mm_interconnect_0_onchip_memory2_0_s1_chipselect,            --                                         .chipselect
 			onchip_memory2_0_s1_clken                      => mm_interconnect_0_onchip_memory2_0_s1_clken,                 --                                         .clken
+			sram_avalon_sram_slave_address                 => mm_interconnect_0_sram_avalon_sram_slave_address,            --                   sram_avalon_sram_slave.address
+			sram_avalon_sram_slave_write                   => mm_interconnect_0_sram_avalon_sram_slave_write,              --                                         .write
+			sram_avalon_sram_slave_read                    => mm_interconnect_0_sram_avalon_sram_slave_read,               --                                         .read
+			sram_avalon_sram_slave_readdata                => mm_interconnect_0_sram_avalon_sram_slave_readdata,           --                                         .readdata
+			sram_avalon_sram_slave_writedata               => mm_interconnect_0_sram_avalon_sram_slave_writedata,          --                                         .writedata
+			sram_avalon_sram_slave_byteenable              => mm_interconnect_0_sram_avalon_sram_slave_byteenable,         --                                         .byteenable
+			sram_avalon_sram_slave_readdatavalid           => mm_interconnect_0_sram_avalon_sram_slave_readdatavalid,      --                                         .readdatavalid
 			switches_s1_address                            => mm_interconnect_0_switches_s1_address,                       --                              switches_s1.address
 			switches_s1_readdata                           => mm_interconnect_0_switches_s1_readdata                       --                                         .readdata
 		);
