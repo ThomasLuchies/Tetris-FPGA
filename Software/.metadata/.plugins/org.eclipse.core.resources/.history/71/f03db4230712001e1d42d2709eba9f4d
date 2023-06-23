@@ -43,7 +43,7 @@ int main()
 	//int screen[480][640] = renderScreen();
 	int movingBlock[3][3];
 	int placingBlock = 0;
-
+/*
 	while(running == 1)
 	{
 		if(seconds == 1)
@@ -63,13 +63,12 @@ int main()
 			seconds = 0;
 		}
 		usleep(delay); // run again in 1 second
-	}
+	}*/
 
 	return running;
 }
 
-
-int addBlockToField(int block[3][3])
+/*int addBlockToField(int block[3][3])
 {
 	for(int y = 0; y < 3; y++)
 	{
@@ -196,5 +195,4 @@ int addPlayingFieldToScreen(int screen[480][640][3])
 
 		}
 	}
-}
-
+}*/
