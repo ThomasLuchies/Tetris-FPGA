@@ -1,0 +1,10 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "Hand_detection/test.hpp";
+
+
+#ifdef __cplusplus
+}
+#endif

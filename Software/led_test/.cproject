@@ -6,7 +6,7 @@
 		</buildSystem>
 		<cconfiguration id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.443868539">
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration buildProperties="" description="" id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.443868539" name="Nios II" parent="org.eclipse.cdt.build.core.prefbase.cfg">
+				<configuration artifactName="${ProjName}" buildProperties="" description="" id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.443868539" name="Nios II" parent="org.eclipse.cdt.build.core.prefbase.cfg">
 					<folderInfo id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.443868539." name="/" resourcePath="">
 						<toolChain id="altera.nios2.mingw.gcc4.1882874629" name="MinGW Nios II GCC4" superClass="altera.nios2.mingw.gcc4">
 							<targetPlatform id="altera.nios2.mingw.gcc4.640277461" name="Nios II" superClass="altera.nios2.mingw.gcc4"/>
@@ -15,6 +15,9 @@
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.524248688" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="altera.tool.gnu.cpp.compiler.mingw.413461384" name="Nios II GCC C++ Compiler" superClass="altera.tool.gnu.cpp.compiler.mingw">
+								<option id="gnu.cpp.compiler.option.include.paths.1121898609" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;C:\Github\Tetris-FPGA\Software\Hand_detection&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.417453013" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="altera.tool.gnu.archiver.mingw.2014857045" name="Nios II GCC Archiver" superClass="altera.tool.gnu.archiver.mingw"/>
@@ -24,6 +27,10 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="edge_detection|Hand_detection" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="Hand_detection"/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.443868539" moduleId="org.eclipse.cdt.core.settings" name="Nios II">
@@ -80,4 +87,6 @@
 			</target>
 		</buildTargets>
 	</storageModule>
+	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

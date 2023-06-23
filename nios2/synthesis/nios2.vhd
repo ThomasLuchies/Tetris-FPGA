@@ -8,10 +8,15 @@ use IEEE.numeric_std.all;
 
 entity nios2 is
 	port (
-		clk_clk         : in  std_logic                     := '0';             --      clk.clk
-		leds_export     : out std_logic_vector(17 downto 0);                    --     leds.export
-		reset_reset_n   : in  std_logic                     := '0';             --    reset.reset_n
-		switches_export : in  std_logic_vector(17 downto 0) := (others => '0')  -- switches.export
+		clk_clk       : in    std_logic                     := '0';             --   clk.clk
+		reset_reset_n : in    std_logic                     := '0';             -- reset.reset_n
+		sram_DQ       : inout std_logic_vector(15 downto 0) := (others => '0'); --  sram.DQ
+		sram_ADDR     : out   std_logic_vector(19 downto 0);                    --      .ADDR
+		sram_LB_N     : out   std_logic;                                        --      .LB_N
+		sram_UB_N     : out   std_logic;                                        --      .UB_N
+		sram_CE_N     : out   std_logic;                                        --      .CE_N
+		sram_OE_N     : out   std_logic;                                        --      .OE_N
+		sram_WE_N     : out   std_logic                                         --      .WE_N
 	);
 end entity nios2;
 
@@ -30,19 +35,6 @@ architecture rtl of nios2 is
 			av_irq         : out std_logic                                         -- irq
 		);
 	end component nios2_jtag_uart_0;
-
-	component nios2_leds is
-		port (
-			clk        : in  std_logic                     := 'X';             -- clk
-			reset_n    : in  std_logic                     := 'X';             -- reset_n
-			address    : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
-			write_n    : in  std_logic                     := 'X';             -- write_n
-			writedata  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
-			chipselect : in  std_logic                     := 'X';             -- chipselect
-			readdata   : out std_logic_vector(31 downto 0);                    -- readdata
-			out_port   : out std_logic_vector(17 downto 0)                     -- export
-		);
-	end component nios2_leds;
 
 	component nios2_nios2_gen2_0 is
 		port (
@@ -112,16 +104,6 @@ architecture rtl of nios2 is
 		);
 	end component nios2_sram;
 
-	component nios2_switches is
-		port (
-			clk      : in  std_logic                     := 'X';             -- clk
-			reset_n  : in  std_logic                     := 'X';             -- reset_n
-			address  : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
-			readdata : out std_logic_vector(31 downto 0);                    -- readdata
-			in_port  : in  std_logic_vector(17 downto 0) := (others => 'X')  -- export
-		);
-	end component nios2_switches;
-
 	component nios2_mm_interconnect_0 is
 		port (
 			clk_0_clk_clk                                  : in  std_logic                     := 'X';             -- clk
@@ -145,11 +127,6 @@ architecture rtl of nios2 is
 			jtag_uart_0_avalon_jtag_slave_writedata        : out std_logic_vector(31 downto 0);                    -- writedata
 			jtag_uart_0_avalon_jtag_slave_waitrequest      : in  std_logic                     := 'X';             -- waitrequest
 			jtag_uart_0_avalon_jtag_slave_chipselect       : out std_logic;                                        -- chipselect
-			leds_s1_address                                : out std_logic_vector(1 downto 0);                     -- address
-			leds_s1_write                                  : out std_logic;                                        -- write
-			leds_s1_readdata                               : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
-			leds_s1_writedata                              : out std_logic_vector(31 downto 0);                    -- writedata
-			leds_s1_chipselect                             : out std_logic;                                        -- chipselect
 			nios2_gen2_0_debug_mem_slave_address           : out std_logic_vector(8 downto 0);                     -- address
 			nios2_gen2_0_debug_mem_slave_write             : out std_logic;                                        -- write
 			nios2_gen2_0_debug_mem_slave_read              : out std_logic;                                        -- read
@@ -171,9 +148,7 @@ architecture rtl of nios2 is
 			sram_avalon_sram_slave_readdata                : in  std_logic_vector(15 downto 0) := (others => 'X'); -- readdata
 			sram_avalon_sram_slave_writedata               : out std_logic_vector(15 downto 0);                    -- writedata
 			sram_avalon_sram_slave_byteenable              : out std_logic_vector(1 downto 0);                     -- byteenable
-			sram_avalon_sram_slave_readdatavalid           : in  std_logic                     := 'X';             -- readdatavalid
-			switches_s1_address                            : out std_logic_vector(1 downto 0);                     -- address
-			switches_s1_readdata                           : in  std_logic_vector(31 downto 0) := (others => 'X')  -- readdata
+			sram_avalon_sram_slave_readdatavalid           : in  std_logic                     := 'X'              -- readdatavalid
 		);
 	end component nios2_mm_interconnect_0;
 
@@ -293,13 +268,6 @@ architecture rtl of nios2 is
 	signal mm_interconnect_0_onchip_memory2_0_s1_write                     : std_logic;                     -- mm_interconnect_0:onchip_memory2_0_s1_write -> onchip_memory2_0:write
 	signal mm_interconnect_0_onchip_memory2_0_s1_writedata                 : std_logic_vector(31 downto 0); -- mm_interconnect_0:onchip_memory2_0_s1_writedata -> onchip_memory2_0:writedata
 	signal mm_interconnect_0_onchip_memory2_0_s1_clken                     : std_logic;                     -- mm_interconnect_0:onchip_memory2_0_s1_clken -> onchip_memory2_0:clken
-	signal mm_interconnect_0_leds_s1_chipselect                            : std_logic;                     -- mm_interconnect_0:leds_s1_chipselect -> leds:chipselect
-	signal mm_interconnect_0_leds_s1_readdata                              : std_logic_vector(31 downto 0); -- leds:readdata -> mm_interconnect_0:leds_s1_readdata
-	signal mm_interconnect_0_leds_s1_address                               : std_logic_vector(1 downto 0);  -- mm_interconnect_0:leds_s1_address -> leds:address
-	signal mm_interconnect_0_leds_s1_write                                 : std_logic;                     -- mm_interconnect_0:leds_s1_write -> mm_interconnect_0_leds_s1_write:in
-	signal mm_interconnect_0_leds_s1_writedata                             : std_logic_vector(31 downto 0); -- mm_interconnect_0:leds_s1_writedata -> leds:writedata
-	signal mm_interconnect_0_switches_s1_readdata                          : std_logic_vector(31 downto 0); -- switches:readdata -> mm_interconnect_0:switches_s1_readdata
-	signal mm_interconnect_0_switches_s1_address                           : std_logic_vector(1 downto 0);  -- mm_interconnect_0:switches_s1_address -> switches:address
 	signal irq_mapper_receiver0_irq                                        : std_logic;                     -- jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	signal nios2_gen2_0_irq_irq                                            : std_logic_vector(31 downto 0); -- irq_mapper:sender_irq -> nios2_gen2_0:irq
 	signal rst_controller_reset_out_reset                                  : std_logic;                     -- rst_controller:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset, sram:reset]
@@ -308,8 +276,7 @@ architecture rtl of nios2 is
 	signal reset_reset_n_ports_inv                                         : std_logic;                     -- reset_reset_n:inv -> rst_controller:reset_in0
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read_ports_inv  : std_logic;                     -- mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read:inv -> jtag_uart_0:av_read_n
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write_ports_inv : std_logic;                     -- mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write:inv -> jtag_uart_0:av_write_n
-	signal mm_interconnect_0_leds_s1_write_ports_inv                       : std_logic;                     -- mm_interconnect_0_leds_s1_write:inv -> leds:write_n
-	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag_uart_0:rst_n, leds:reset_n, nios2_gen2_0:reset_n, switches:reset_n]
+	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag_uart_0:rst_n, nios2_gen2_0:reset_n]
 
 begin
 
@@ -325,18 +292,6 @@ begin
 			av_writedata   => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata,       --                  .writedata
 			av_waitrequest => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest,     --                  .waitrequest
 			av_irq         => irq_mapper_receiver0_irq                                         --               irq.irq
-		);
-
-	leds : component nios2_leds
-		port map (
-			clk        => clk_clk,                                   --                 clk.clk
-			reset_n    => rst_controller_reset_out_reset_ports_inv,  --               reset.reset_n
-			address    => mm_interconnect_0_leds_s1_address,         --                  s1.address
-			write_n    => mm_interconnect_0_leds_s1_write_ports_inv, --                    .write_n
-			writedata  => mm_interconnect_0_leds_s1_writedata,       --                    .writedata
-			chipselect => mm_interconnect_0_leds_s1_chipselect,      --                    .chipselect
-			readdata   => mm_interconnect_0_leds_s1_readdata,        --                    .readdata
-			out_port   => leds_export                                -- external_connection.export
 		);
 
 	nios2_gen2_0 : component nios2_nios2_gen2_0
@@ -388,13 +343,13 @@ begin
 		port map (
 			clk           => clk_clk,                                                --                clk.clk
 			reset         => rst_controller_reset_out_reset,                         --              reset.reset
-			SRAM_DQ       => open,                                                   -- external_interface.export
-			SRAM_ADDR     => open,                                                   --                   .export
-			SRAM_LB_N     => open,                                                   --                   .export
-			SRAM_UB_N     => open,                                                   --                   .export
-			SRAM_CE_N     => open,                                                   --                   .export
-			SRAM_OE_N     => open,                                                   --                   .export
-			SRAM_WE_N     => open,                                                   --                   .export
+			SRAM_DQ       => sram_DQ,                                                -- external_interface.export
+			SRAM_ADDR     => sram_ADDR,                                              --                   .export
+			SRAM_LB_N     => sram_LB_N,                                              --                   .export
+			SRAM_UB_N     => sram_UB_N,                                              --                   .export
+			SRAM_CE_N     => sram_CE_N,                                              --                   .export
+			SRAM_OE_N     => sram_OE_N,                                              --                   .export
+			SRAM_WE_N     => sram_WE_N,                                              --                   .export
 			address       => mm_interconnect_0_sram_avalon_sram_slave_address,       --  avalon_sram_slave.address
 			byteenable    => mm_interconnect_0_sram_avalon_sram_slave_byteenable,    --                   .byteenable
 			read          => mm_interconnect_0_sram_avalon_sram_slave_read,          --                   .read
@@ -402,15 +357,6 @@ begin
 			writedata     => mm_interconnect_0_sram_avalon_sram_slave_writedata,     --                   .writedata
 			readdata      => mm_interconnect_0_sram_avalon_sram_slave_readdata,      --                   .readdata
 			readdatavalid => mm_interconnect_0_sram_avalon_sram_slave_readdatavalid  --                   .readdatavalid
-		);
-
-	switches : component nios2_switches
-		port map (
-			clk      => clk_clk,                                  --                 clk.clk
-			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
-			address  => mm_interconnect_0_switches_s1_address,    --                  s1.address
-			readdata => mm_interconnect_0_switches_s1_readdata,   --                    .readdata
-			in_port  => switches_export                           -- external_connection.export
 		);
 
 	mm_interconnect_0 : component nios2_mm_interconnect_0
@@ -436,11 +382,6 @@ begin
 			jtag_uart_0_avalon_jtag_slave_writedata        => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata,   --                                         .writedata
 			jtag_uart_0_avalon_jtag_slave_waitrequest      => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_waitrequest, --                                         .waitrequest
 			jtag_uart_0_avalon_jtag_slave_chipselect       => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_chipselect,  --                                         .chipselect
-			leds_s1_address                                => mm_interconnect_0_leds_s1_address,                           --                                  leds_s1.address
-			leds_s1_write                                  => mm_interconnect_0_leds_s1_write,                             --                                         .write
-			leds_s1_readdata                               => mm_interconnect_0_leds_s1_readdata,                          --                                         .readdata
-			leds_s1_writedata                              => mm_interconnect_0_leds_s1_writedata,                         --                                         .writedata
-			leds_s1_chipselect                             => mm_interconnect_0_leds_s1_chipselect,                        --                                         .chipselect
 			nios2_gen2_0_debug_mem_slave_address           => mm_interconnect_0_nios2_gen2_0_debug_mem_slave_address,      --             nios2_gen2_0_debug_mem_slave.address
 			nios2_gen2_0_debug_mem_slave_write             => mm_interconnect_0_nios2_gen2_0_debug_mem_slave_write,        --                                         .write
 			nios2_gen2_0_debug_mem_slave_read              => mm_interconnect_0_nios2_gen2_0_debug_mem_slave_read,         --                                         .read
@@ -462,9 +403,7 @@ begin
 			sram_avalon_sram_slave_readdata                => mm_interconnect_0_sram_avalon_sram_slave_readdata,           --                                         .readdata
 			sram_avalon_sram_slave_writedata               => mm_interconnect_0_sram_avalon_sram_slave_writedata,          --                                         .writedata
 			sram_avalon_sram_slave_byteenable              => mm_interconnect_0_sram_avalon_sram_slave_byteenable,         --                                         .byteenable
-			sram_avalon_sram_slave_readdatavalid           => mm_interconnect_0_sram_avalon_sram_slave_readdatavalid,      --                                         .readdatavalid
-			switches_s1_address                            => mm_interconnect_0_switches_s1_address,                       --                              switches_s1.address
-			switches_s1_readdata                           => mm_interconnect_0_switches_s1_readdata                       --                                         .readdata
+			sram_avalon_sram_slave_readdatavalid           => mm_interconnect_0_sram_avalon_sram_slave_readdatavalid       --                                         .readdatavalid
 		);
 
 	irq_mapper : component nios2_irq_mapper
@@ -545,8 +484,6 @@ begin
 	mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read_ports_inv <= not mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read;
 
 	mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write_ports_inv <= not mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write;
-
-	mm_interconnect_0_leds_s1_write_ports_inv <= not mm_interconnect_0_leds_s1_write;
 
 	rst_controller_reset_out_reset_ports_inv <= not rst_controller_reset_out_reset;
 

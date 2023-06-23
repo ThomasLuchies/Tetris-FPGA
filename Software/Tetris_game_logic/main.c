@@ -6,7 +6,6 @@
 #include "SRAM.c"
 #include "blocks.h"
 #include "colors.h"
-#include "";
 
 #define pixels_x 640
 #define pixels_y 480
@@ -41,17 +40,17 @@ int main()
 	//IOWR_ALTERA_AVALON_TIMER_PERIODH(TIMER_BASE, (timerPeriod >> 16) & 0xFFFF);
 	//IOWR_ALTERA_AVALON_TIMER_CONTROL(TIMER_BASE, 0x7);
 
-	int screen[480][640] = renderScreen();
+	//int screen[480][640] = renderScreen();
 	int movingBlock[3][3];
 	int placingBlock = 0;
-
+/*
 	while(running == 1)
 	{
 		if(seconds == 1)
 		{
 			if(placingBlock == 0)
 			{
-				movingBlock = randomBlock();
+				//movingBlock = randomBlock();
 				placingBlock = 1;
 				addBlockToField(movingBlock);
 			}
@@ -64,7 +63,7 @@ int main()
 			seconds = 0;
 		}
 		usleep(delay); // run again in 1 second
-	}
+	}*/
 
 	return running;
 }

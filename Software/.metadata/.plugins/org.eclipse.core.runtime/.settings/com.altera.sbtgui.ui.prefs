@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
-newBspWizardPage.defaultLocation=C\:\\intelFPGA_lite\\18.1\\University_Program\\Computer_Systems\\DE2-115\\DE2-115_Computer\\verilog\\software\\nios2_bsp
-newBspWizardPage.sopcinfoFile=C\:\\intelFPGA_lite\\18.1\\University_Program\\Computer_Systems\\DE2-115\\DE2-115_Computer\\verilog\\Computer_System.sopcinfo
+newApplicationWizardPage.defaultLocation=C\:\\Github\\Tetris-FPGA\\Software\\sram
+newBspWizardPage.defaultLocation=C\:\\Github\\Tetris-FPGA\\software\\sram_bsp
+newBspWizardPage.sopcinfoFile=C\:\\Github\\Tetris-FPGA\\sram.sopcinfo
 newSoftwareExampleWizardPage.defaultLocation=C\:\\Github\\Tetris-FPGA\\software\\led_test
 newSoftwareExampleWizardPage.sopcinfoFile=C\:\\Github\\Tetris-FPGA\\nios2.sopcinfo
 newSoftwareExampleWizardPage2.newBspLocation=C\:\\Github\\Tetris-FPGA\\software\\led_test_bsp

@@ -3,6 +3,7 @@
 	<name>led_test</name>
 	<comment></comment>
 	<projects>
+		<project>Hand_detection</project>
 		<project>led_test_bsp</project>
 	</projects>
 	<buildSpec>

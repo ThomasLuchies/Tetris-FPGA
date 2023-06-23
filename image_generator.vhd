@@ -38,6 +38,7 @@ ENTITY image_generator IS
 		red			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');  --red magnitude output to DAC
 		green			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');  --green magnitude output to DAC
 		blue			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0'); --blue magnitude output to DAC
+		LEDG : out std_logic_vector(7 downto 0);
 		
 		-- SRAM
 		data : inout std_logic_vector(15 downto 0);
@@ -72,6 +73,7 @@ ARCHITECTURE behavior OF image_generator IS
 			addr_input : in std_logic_vector(19 downto 0);
 			data_output : out std_logic_vector(15 downto 0);
 			clear_done: out std_logic;
+
 			
 			-- SRAM side
 			data : inout std_logic_vector(15 downto 0);
@@ -88,17 +90,17 @@ ARCHITECTURE behavior OF image_generator IS
 	signal prescale_factor: integer;
 	signal frame_data: std_logic_vector(15 downto 0);
 	signal clear_done: std_logic;
-	signal read_n: std_logic;
+	signal read_n: std_logic := '0';
 BEGIN
-	prescale_factor <= 50_000_000 / 60;
+	prescale_factor <= 50_000_000 / 120;
 	-- 50 mhz clock convert to 60 hz
 	clk60: prescaler port map(clk, prescale_factor, frame_clk);
 	sr: sram_controller port map(clk => clk,
 										  read_n => read_n, 
-										  write_n => '0', 
-										  clear_sram =>'0', 
+										  write_n => '1', 
+										  clear_sram =>'1', 
 										  data_input =>"0000000000000000", 
-										  addr_input =>"00000000000000001010", 
+										  addr_input =>"00000000000000000000", 
 										  data_output => frame_data, 
 										  clear_done => clear_done,
 										  data => data,
@@ -113,9 +115,7 @@ BEGIN
 		variable read_np: std_logic;
 	begin
 		if(rising_edge(frame_clk)) then
-			read_np := '1';
-		else 
-			read_np := '0';
+			read_np := not read_np;
 		end if;
 		
 		read_n <= read_np;
@@ -123,11 +123,12 @@ BEGIN
 	
 	PROCESS(disp_ena, row, column)
 	BEGIN
+		LEDG <= data(7 downto 0);
 		IF(disp_ena = '1') THEN		--display time
 			IF(row < pixels_y AND column < pixels_x) THEN
-				--red <= frame_data((pixels_x * row) + column + 8 downto (pixels_x * row) + column);
-				--green <= frame_data((pixels_x * row) + column + 1);
-				--blue <=  frame_data((pixels_x * row) + column + 2);
+				red <= frame_data((pixels_x * row) + column + 7  downto (pixels_x * row) + column);
+				green <= frame_data((pixels_x * row) + column + 1 + 7 downto (pixels_x * row) + column + 1);
+				blue <=  frame_data((pixels_x * row) + column + 2 + 7 downto (pixels_x * row) + column + 2);
 			END IF;
 		ELSE								--blanking time
 			red <= (OTHERS => '0');

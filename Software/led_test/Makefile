@@ -142,7 +142,8 @@ ACDS_VERSION := 18.1
 ELF := led_test.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := hello_world_small.c
+C_SRCS += hello_world_small.c
+C_SRCS += hand_detection.c
 CXX_SRCS :=
 ASM_SRCS :=
 

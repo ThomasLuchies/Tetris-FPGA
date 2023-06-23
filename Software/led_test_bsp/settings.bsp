@@ -2,8 +2,6 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>18-jun-2023 23:42:18</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1687124538821</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Github\Tetris-FPGA\Software\led_test_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\nios2.sopcinfo</SopcDesignFile>
@@ -898,36 +896,45 @@
                 <Enabled>false</Enabled>
                 <Group xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </Setting>
+        <LinkerRegion>
+                <regionName>sram</regionName>
+                <memoryName>sram</memoryName>
+                <offset>0</offset>
+                <size>2097152</size>
+                <baseAddress>0x0</baseAddress>
+                <addressRange>0x00000000 - 0x001FFFFF</addressRange>
+        </LinkerRegion>
+        <LinkerRegion>
+                <regionName>onchip_memory2_0</regionName>
+                <memoryName>onchip_memory2_0</memoryName>
+                <offset>0</offset>
+                <size>20480</size>
+                <baseAddress>0x200000</baseAddress>
+                <addressRange>0x00200000 - 0x00204FFF</addressRange>
+        </LinkerRegion>
+        <MemoryMap>
+                <slaveDescriptor>sram</slaveDescriptor>
+                <addressRange>0x00000000 - 0x001FFFFF</addressRange>
+                <addressSpan>2097152</addressSpan>
+                <attributes/>
+        </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>onchip_memory2_0</slaveDescriptor>
-                <addressRange>0x00000000 - 0x00004FFF</addressRange>
+                <addressRange>0x00200000 - 0x00204FFF</addressRange>
                 <addressSpan>20480</addressSpan>
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>leds</slaveDescriptor>
-                <addressRange>0x00009000 - 0x0000900F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
-                <slaveDescriptor>switches</slaveDescriptor>
-                <addressRange>0x00009010 - 0x0000901F</addressRange>
-                <addressSpan>16</addressSpan>
-                <attributes/>
-        </MemoryMap>
-        <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x00009020 - 0x00009027</addressRange>
+                <addressRange>0x00209088 - 0x0020908F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
-        <MemoryMap>
+        <MemoryDevice>
                 <slaveDescriptor>sram</slaveDescriptor>
-                <addressRange>0x00200000 - 0x003FFFFF</addressRange>
+                <baseAddress>0x0</baseAddress>
                 <addressSpan>2097152</addressSpan>
-                <attributes/>
-        </MemoryMap>
+        </MemoryDevice>
         <LinkerSection>
                 <sectionName>.text</sectionName>
                 <regionName>onchip_memory2_0</regionName>

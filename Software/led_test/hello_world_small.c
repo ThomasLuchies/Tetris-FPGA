@@ -82,6 +82,7 @@
 #include "system.h"
 #include "altera_avalon_pio_regs.h"
 #include "io.h"
+#include "detection.cpp";
 
 #define switches (volatile int *) SWITCHES_BASE
   #define leds     (int *)          LEDS_BASE
@@ -94,17 +95,19 @@ int main()
   volatile alt_u16 click = IORD(SRAM_BASE, 0);
 
 
-  printf(" before (value: %d)\n\n", click);
-  IOWR(SRAM_BASE, 0, 0xff);
-   click =IORD(SRAM_BASE, 0);
-   printf(" switches (value: %d)\n\n", click);
+  //printf(" before (value: %d)\n\n", click);
+
+  //IOWR(SRAM_BASE, 0, 0x00);
+
+
 
 
   /* Event loop never exits. */
   while (1)
   {
-	  IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE));
-
+	  //IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE));
+	  click =IORD(SRAM_BASE, 0);
+	    printf(" switches (value: %d)\n\n", click);
   }
 
   return 0;

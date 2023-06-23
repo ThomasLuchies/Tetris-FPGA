@@ -180,7 +180,7 @@ CRT0 :=
 SYS_LIB :=
 
 # Define path to the root of the BSP.
-BSP_ROOT_DIR := ../Tetris_game_logic_bsp/
+BSP_ROOT_DIR := ../../../../intelFPGA_lite/18.1/University_Program/Computer_Systems/DE2-115/DE2-115_Computer/verilog/software/Tetris/
 
 # List of application specific include directories, library directories and library names
 APP_INCLUDE_DIRS :=
