@@ -135,14 +135,14 @@ module nios2_mm_interconnect_0_router_001
     // during address decoding
     // -------------------------------------------------------
     localparam PAD0 = log2ceil(64'h200000 - 64'h0); 
-    localparam PAD1 = log2ceil(64'h208000 - 64'h200000); 
-    localparam PAD2 = log2ceil(64'h209000 - 64'h208800); 
+    localparam PAD1 = log2ceil(64'h240000 - 64'h200000); 
+    localparam PAD2 = log2ceil(64'h241000 - 64'h240800); 
     // -------------------------------------------------------
     // Work out which address bits are significant based on the
     // address range of the slaves. If the required width is too
     // large or too small, we use the address field width instead.
     // -------------------------------------------------------
-    localparam ADDR_RANGE = 64'h209000;
+    localparam ADDR_RANGE = 64'h241000;
     localparam RANGE_ADDR_WIDTH = log2ceil(ADDR_RANGE);
     localparam OPTIMIZED_ADDR_H = (RANGE_ADDR_WIDTH > PKT_ADDR_W) ||
                                   (RANGE_ADDR_WIDTH == 0) ?
@@ -196,14 +196,14 @@ module nios2_mm_interconnect_0_router_001
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 3;
     end
 
-    // ( 0x200000 .. 0x208000 )
+    // ( 0x200000 .. 0x240000 )
     if ( {address[RG:PAD1],{PAD1{1'b0}}} == 22'h200000   ) begin
             src_channel = 4'b100;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
     end
 
-    // ( 0x208800 .. 0x209000 )
-    if ( {address[RG:PAD2],{PAD2{1'b0}}} == 22'h208800   ) begin
+    // ( 0x240800 .. 0x241000 )
+    if ( {address[RG:PAD2],{PAD2{1'b0}}} == 22'h240800   ) begin
             src_channel = 4'b010;
             src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 1;
     end

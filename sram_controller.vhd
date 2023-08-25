@@ -30,6 +30,17 @@
 	end sram_controller;
 
 	architecture behavior of sram_controller is
+		COMPONENT sram
+			port (
+				clk_clk       : in    std_logic                     := '0';             --   clk.clk
+				reset_reset_n : in    std_logic                     := '0';
+				sram_DQ       : inout std_logic_vector(15 downto 0) := (others => '0'); 
+				sram_ADDR     : out   std_logic_vector(19 downto 0);
+				sram_CE_N     : out   std_logic;                                        --      .CE_N
+				sram_OE_N     : out   std_logic;                                        --      .OE_N
+				sram_WE_N     : out   std_logic				
+		);
+		END COMPONENT;
 
 		type execution is (init, clear);
 		type execution_clear is (init, clear, clearing);
@@ -39,6 +50,10 @@
 		
 		signal current_address_clear : unsigned(19 downto 0) := (others=>'0');
 		signal reset_sram_done: std_logic := '0';
+		signal nios_data : std_logic_vector(15 downto 0) := (others => '0');
+		signal nios_addr : std_logic_vector(19 downto 0) := (others => '0');
+		signal test: std_logic_vector(2879 downto 0);
+		signal nios_output_enable, nios_write_enable, nios_chip_select: std_logic;
 	begin
 		process (clk) begin
 				
@@ -68,22 +83,22 @@
 					
 					clear_done <= reset_sram_done;
 				elsif (write_n = '0' or is_writing = '1') and is_reading = '0' then -- write
-				
 					case execution_state is
-				
-						when init =>
 						
+						when init =>
 							-- signals
+							write_enable_n <= '1';
+							output_enable_n <= '1';
 							address <= addr_input;
+							data <= data_input;
 							chip_select_n <= '0';
 							write_enable_n <= '0';
-							data <= data_input;
+							
 							-- state
 							is_writing <= '1';
 							execution_state <= clear;
 							
 						when clear =>
-							
 							-- signals
 							chip_select_n <= '1';
 							write_enable_n <= '1';
@@ -104,6 +119,7 @@
 							chip_select_n <= '0';
 							output_enable_n <= '0';
 							data_output <= data;
+							write_enable_n <= '1';
 							-- state
 							is_reading <= '1';
 							execution_state <= clear;
@@ -118,14 +134,34 @@
 							execution_state <= init;
 						
 					end case;
-				else
-				
-					data <= (others => 'Z'); -- set signal to high impedance when not writing nor reading
+				elsif( read_n = '1' and write_n = '1'and is_writing = '0' and is_reading <= '0') then
+				   case execution_state is
+						when init => 
+							data <= nios_data;
+							address <= nios_addr;
+							chip_select_n <= nios_chip_select;
+							output_enable_n <= nios_output_enable;
+							write_enable_n <= nios_write_enable;
+							
+							
+						when clear =>
+							data <= (others => 'Z'); -- set signal to high impedance when not writing nor reading
+					end case;
 				
 				end if;
 				
 			end if;
 				
 		end process;
+		
+		 NiosII : sram PORT MAP(
+			 clk_clk => clk,
+			 reset_reset_n => '1',
+			 sram_DQ		=>	nios_data,
+			 sram_ADDR	=>	nios_addr, 
+			 sram_CE_N  => nios_chip_select,  
+			 sram_OE_N  => nios_output_enable,  
+			 sram_WE_N  => nios_write_enable   
+		 );
 		
 	end behavior;

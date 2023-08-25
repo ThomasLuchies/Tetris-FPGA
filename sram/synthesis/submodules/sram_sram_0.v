@@ -153,7 +153,7 @@ end
  *****************************************************************************/
 
 // Output Assignments
-assign SRAM_DQ	= (is_write) ? writedata_reg : 16'hzzzz;
+//assign SRAM_DQ	= (is_write) ? writedata_reg : 16'hzzzz;
 
 // Internal Assignments
 

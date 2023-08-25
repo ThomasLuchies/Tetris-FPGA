@@ -18,28 +18,11 @@ entity sram_tester is port
 end entity;
 
 architecture rtl of sram_tester is	
-
-	component  nios2 is
-		port (
-			clk_clk         : in  std_logic                     := '0';             --      clk.clk
-			leds_export     : out std_logic_vector(17 downto 0);                    --     leds.export
-			reset_reset_n   : in  std_logic                     := '0';             --    reset.reset_n
-			switches_export : in  std_logic_vector(17 downto 0) := (others => '0')  -- switches.export
-		);
-	end component;
 	signal target_address : std_logic_vector(19 downto 0) := (others => '0');
 	signal leds: std_logic_vector(17 downto 0);
 	signal switches: std_logic_vector(17 downto 0);
 
 begin
-
-	ni: nios2 port map
-	(
-		clk_clk => clk,
-		leds_export => leds,
-		reset_reset_n => KEY(3),
-		switches_export => switches
-	);
 	sram_controller : entity work.sram_controller port map
 	(
 		clk => clk,
@@ -60,7 +43,7 @@ begin
 		lb_n => SRAM_LB_N
 	);
 	
-	target_address <= x"0000F" when sw(17) = '1' else (others => '0');
+	target_address <= (others => '0');
 	ledr(17 downto 16) <= (others => '0');
 
 end architecture;

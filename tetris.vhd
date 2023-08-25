@@ -28,7 +28,7 @@ entity tetris is
 		SRAM_UB_N, SRAM_LB_N, SRAM_CE_N,	SRAM_OE_N, SRAM_WE_N: out std_logic;
 		SRAM_ADDR: out std_logic_vector(19 downto 0)
 	);
-end entity;
+end entity; 
 
 architecture tetris_arch of tetris is
 	component pixel_clock is
@@ -92,9 +92,7 @@ architecture tetris_arch of tetris is
 	COMPONENT nios2
 		port (
 			clk_clk : in std_logic := '0';
-			leds_export : out std_logic_vector(17 downto 0);
-			reset_reset_n : in std_logic := '0';
-			switches_export : in std_logic_vector(17 downto 0) := (others => '0')
+			reset_reset_n : in std_logic := '0'
 		);
 	END COMPONENT;
 	
@@ -107,9 +105,7 @@ begin
 	
 	 NiosII : nios2 PORT MAP(
 		 clk_clk => CLOCK_50,
-		 reset_reset_n => KEY(0),
-		 leds_export => LEDR(17 DOWNTO 0),
-		 switches_export => SW(17 DOWNTO 0) 
+		 reset_reset_n => KEY(0)
 	 );
 	
 	pc0: pixel_clock 

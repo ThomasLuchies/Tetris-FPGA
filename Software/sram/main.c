@@ -81,20 +81,18 @@
 #include "sys/alt_stdio.h"
 #include "system.h"
 #include "io.h"
-
-#define switches (volatile int *) SWITCHES_BASE
-  #define leds     (int *)          LEDS_BASE
+#include <unistd.h>
 
 int main()
 {
 	int i = 0;
   alt_putstr("Hello from Nios II!\n");
   //alt_putstr("sram before:" + IORD_ALTERA_AVALON_PIO_DATA(SRAM_BASE) + "\n");
-  IOWR(SRAM_0_BASE, 0, 0xf8);
-  volatile alt_u16 value = IORD(SRAM_0_BASE, 0);
+  IOWR_16DIRECT(SRAM_0_BASE, 0, 0x89);
+  volatile alt_u16 value = IORD_16DIRECT(SRAM_0_BASE, 0);
 
 
-  //printf(" before (value: %d)\n\n", click);
+  printf(" before (value: %d)\n\n", value);
 
   //IOWR(SRAM_BASE, 0, 0x00);
 
@@ -105,8 +103,10 @@ int main()
   while (1)
   {
 	  //IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE));
-	  value =IORD(SRAM_0_BASE, 0);
+	  IOWR(SRAM_0_BASE, 0, 0x89);
+	  value = IORD(SRAM_0_BASE, 1010);
 	    printf("value: %d\n", value);
+	    usleep(1000000);
   }
 
   return 0;

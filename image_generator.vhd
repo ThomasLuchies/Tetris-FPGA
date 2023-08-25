@@ -88,10 +88,12 @@ ARCHITECTURE behavior OF image_generator IS
 	
 	signal frame_clk: std_logic;
 	signal prescale_factor: integer;
-	signal frame_data: std_logic_vector(15 downto 0);
+	signal frame: std_logic_vector(19 downto 0);
 	signal clear_done: std_logic;
 	signal read_n: std_logic := '0';
+	signal sram_out: std_logic_vector(15 downto 0);
 BEGIN
+	
 	prescale_factor <= 50_000_000 / 120;
 	-- 50 mhz clock convert to 60 hz
 	clk60: prescaler port map(clk, prescale_factor, frame_clk);
@@ -101,7 +103,7 @@ BEGIN
 										  clear_sram =>'1', 
 										  data_input =>"0000000000000000", 
 										  addr_input =>"00000000000000000000", 
-										  data_output => frame_data, 
+										  data_output => sram_out, 
 										  clear_done => clear_done,
 										  data => data,
 										  address => address,
@@ -126,9 +128,15 @@ BEGIN
 		LEDG <= data(7 downto 0);
 		IF(disp_ena = '1') THEN		--display time
 			IF(row < pixels_y AND column < pixels_x) THEN
-				red <= frame_data((pixels_x * row) + column + 7  downto (pixels_x * row) + column);
-				green <= frame_data((pixels_x * row) + column + 1 + 7 downto (pixels_x * row) + column + 1);
-				blue <=  frame_data((pixels_x * row) + column + 2 + 7 downto (pixels_x * row) + column + 2);
+				if(row > 220 AND row < 440) then
+					red <= "01000101";
+					green <=  "01000100";
+					blue <=  "01000011";
+				else
+					red <= "00000000";
+					green <=  "00000000";
+					blue <=  "00000000";
+				end if;
 			END IF;
 		ELSE								--blanking time
 			red <= (OTHERS => '0');
