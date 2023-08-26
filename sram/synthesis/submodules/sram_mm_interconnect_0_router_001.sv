@@ -47,12 +47,12 @@ module sram_mm_interconnect_0_router_001_default_decode
      parameter DEFAULT_CHANNEL = 0,
                DEFAULT_WR_CHANNEL = -1,
                DEFAULT_RD_CHANNEL = -1,
-               DEFAULT_DESTID = 27 
+               DEFAULT_DESTID = 28 
    )
   (output [92 - 88 : 0] default_destination_id,
-   output [28-1 : 0] default_wr_channel,
-   output [28-1 : 0] default_rd_channel,
-   output [28-1 : 0] default_src_channel
+   output [29-1 : 0] default_wr_channel,
+   output [29-1 : 0] default_rd_channel,
+   output [29-1 : 0] default_src_channel
   );
 
   assign default_destination_id = 
@@ -63,7 +63,7 @@ module sram_mm_interconnect_0_router_001_default_decode
       assign default_src_channel = '0;
     end
     else begin : default_channel_assignment
-      assign default_src_channel = 28'b1 << DEFAULT_CHANNEL;
+      assign default_src_channel = 29'b1 << DEFAULT_CHANNEL;
     end
   endgenerate
 
@@ -73,8 +73,8 @@ module sram_mm_interconnect_0_router_001_default_decode
       assign default_rd_channel = '0;
     end
     else begin : default_rw_channel_assignment
-      assign default_wr_channel = 28'b1 << DEFAULT_WR_CHANNEL;
-      assign default_rd_channel = 28'b1 << DEFAULT_RD_CHANNEL;
+      assign default_wr_channel = 29'b1 << DEFAULT_WR_CHANNEL;
+      assign default_rd_channel = 29'b1 << DEFAULT_RD_CHANNEL;
     end
   endgenerate
 
@@ -103,7 +103,7 @@ module sram_mm_interconnect_0_router_001
     // -------------------
     output                          src_valid,
     output reg [106-1    : 0] src_data,
-    output reg [28-1 : 0] src_channel,
+    output reg [29-1 : 0] src_channel,
     output                          src_startofpacket,
     output                          src_endofpacket,
     input                           src_ready
@@ -119,7 +119,7 @@ module sram_mm_interconnect_0_router_001
     localparam PKT_PROTECTION_H = 96;
     localparam PKT_PROTECTION_L = 94;
     localparam ST_DATA_W = 106;
-    localparam ST_CHANNEL_W = 28;
+    localparam ST_CHANNEL_W = 29;
     localparam DECODER_TYPE = 0;
 
     localparam PKT_TRANS_WRITE = 64;
@@ -166,7 +166,7 @@ module sram_mm_interconnect_0_router_001
     assign src_startofpacket = sink_startofpacket;
     assign src_endofpacket   = sink_endofpacket;
     wire [PKT_DEST_ID_W-1:0] default_destid;
-    wire [28-1 : 0] default_src_channel;
+    wire [29-1 : 0] default_src_channel;
 
 
 
@@ -192,20 +192,20 @@ module sram_mm_interconnect_0_router_001
 
     // ( 0x0 .. 0x200000 )
     if ( {address[RG:PAD0],{PAD0{1'b0}}} == 22'h0   ) begin
-            src_channel = 28'b001;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 27;
+            src_channel = 29'b001;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 28;
     end
 
     // ( 0x200000 .. 0x240000 )
     if ( {address[RG:PAD1],{PAD1{1'b0}}} == 22'h200000   ) begin
-            src_channel = 28'b100;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
+            src_channel = 29'b100;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 3;
     end
 
     // ( 0x240800 .. 0x241000 )
     if ( {address[RG:PAD2],{PAD2{1'b0}}} == 22'h240800   ) begin
-            src_channel = 28'b010;
-            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 1;
+            src_channel = 29'b010;
+            src_data[PKT_DEST_ID_H:PKT_DEST_ID_L] = 2;
     end
 
 end

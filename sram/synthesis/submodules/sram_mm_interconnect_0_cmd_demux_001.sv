@@ -29,7 +29,7 @@
 // Generation parameters:
 //   output_name:         sram_mm_interconnect_0_cmd_demux_001
 //   ST_DATA_W:           106
-//   ST_CHANNEL_W:        28
+//   ST_CHANNEL_W:        29
 //   NUM_OUTPUTS:         3
 //   VALID_WIDTH:         1
 // ------------------------------------------
@@ -47,7 +47,7 @@ module sram_mm_interconnect_0_cmd_demux_001
     // -------------------
     input  [1-1      : 0]   sink_valid,
     input  [106-1    : 0]   sink_data, // ST_DATA_W=106
-    input  [28-1 : 0]   sink_channel, // ST_CHANNEL_W=28
+    input  [29-1 : 0]   sink_channel, // ST_CHANNEL_W=29
     input                         sink_startofpacket,
     input                         sink_endofpacket,
     output                        sink_ready,
@@ -57,21 +57,21 @@ module sram_mm_interconnect_0_cmd_demux_001
     // -------------------
     output reg                      src0_valid,
     output reg [106-1    : 0] src0_data, // ST_DATA_W=106
-    output reg [28-1 : 0] src0_channel, // ST_CHANNEL_W=28
+    output reg [29-1 : 0] src0_channel, // ST_CHANNEL_W=29
     output reg                      src0_startofpacket,
     output reg                      src0_endofpacket,
     input                           src0_ready,
 
     output reg                      src1_valid,
     output reg [106-1    : 0] src1_data, // ST_DATA_W=106
-    output reg [28-1 : 0] src1_channel, // ST_CHANNEL_W=28
+    output reg [29-1 : 0] src1_channel, // ST_CHANNEL_W=29
     output reg                      src1_startofpacket,
     output reg                      src1_endofpacket,
     input                           src1_ready,
 
     output reg                      src2_valid,
     output reg [106-1    : 0] src2_data, // ST_DATA_W=106
-    output reg [28-1 : 0] src2_channel, // ST_CHANNEL_W=28
+    output reg [29-1 : 0] src2_channel, // ST_CHANNEL_W=29
     output reg                      src2_startofpacket,
     output reg                      src2_endofpacket,
     input                           src2_ready,
@@ -124,7 +124,7 @@ module sram_mm_interconnect_0_cmd_demux_001
     assign ready_vector[1] = src1_ready;
     assign ready_vector[2] = src2_ready;
 
-    assign sink_ready = |(sink_channel & {{25{1'b0}},{ready_vector[NUM_OUTPUTS - 1 : 0]}});
+    assign sink_ready = |(sink_channel & {{26{1'b0}},{ready_vector[NUM_OUTPUTS - 1 : 0]}});
 
 endmodule
 

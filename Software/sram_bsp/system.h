@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'sram'
  * SOPC Builder design path: ../../sram.sopcinfo
  *
- * Generated: Fri Aug 25 23:00:40 CEST 2023
+ * Generated: Sun Aug 27 00:34:53 CEST 2023
  */
 
 /*
@@ -174,6 +174,33 @@
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "sram"
+
+
+/*
+ * buttons configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_buttons altera_avalon_pio
+#define BUTTONS_BASE 0x2500180
+#define BUTTONS_BIT_CLEARING_EDGE_REGISTER 0
+#define BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define BUTTONS_CAPTURE 1
+#define BUTTONS_DATA_WIDTH 4
+#define BUTTONS_DO_TEST_BENCH_WIRING 0
+#define BUTTONS_DRIVEN_SIM_VALUE 0
+#define BUTTONS_EDGE_TYPE "RISING"
+#define BUTTONS_FREQ 50000000
+#define BUTTONS_HAS_IN 1
+#define BUTTONS_HAS_OUT 0
+#define BUTTONS_HAS_TRI 0
+#define BUTTONS_IRQ -1
+#define BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define BUTTONS_IRQ_TYPE "EDGE"
+#define BUTTONS_NAME "/dev/buttons"
+#define BUTTONS_RESET_VALUE 0
+#define BUTTONS_SPAN 16
+#define BUTTONS_TYPE "altera_avalon_pio"
 
 
 /*

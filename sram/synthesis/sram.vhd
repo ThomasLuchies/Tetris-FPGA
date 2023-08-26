@@ -8,43 +8,58 @@ use IEEE.numeric_std.all;
 
 entity sram is
 	port (
-		clk_clk       : in    std_logic                     := '0';             --    clk.clk
-		reset_reset_n : in    std_logic                     := '0';             --  reset.reset_n
-		row_0_export  : out   std_logic_vector(29 downto 0);                    --  row_0.export
-		row_1_export  : out   std_logic_vector(29 downto 0);                    --  row_1.export
-		row_10_export : out   std_logic_vector(29 downto 0);                    -- row_10.export
-		row_11_export : out   std_logic_vector(29 downto 0);                    -- row_11.export
-		row_12_export : out   std_logic_vector(29 downto 0);                    -- row_12.export
-		row_13_export : out   std_logic_vector(29 downto 0);                    -- row_13.export
-		row_14_export : out   std_logic_vector(29 downto 0);                    -- row_14.export
-		row_15_export : out   std_logic_vector(29 downto 0);                    -- row_15.export
-		row_16_export : out   std_logic_vector(29 downto 0);                    -- row_16.export
-		row_17_export : out   std_logic_vector(29 downto 0);                    -- row_17.export
-		row_18_export : out   std_logic_vector(29 downto 0);                    -- row_18.export
-		row_19_export : out   std_logic_vector(29 downto 0);                    -- row_19.export
-		row_2_export  : out   std_logic_vector(29 downto 0);                    --  row_2.export
-		row_20_export : out   std_logic_vector(29 downto 0);                    -- row_20.export
-		row_21_export : out   std_logic_vector(29 downto 0);                    -- row_21.export
-		row_22_export : out   std_logic_vector(29 downto 0);                    -- row_22.export
-		row_23_export : out   std_logic_vector(29 downto 0);                    -- row_23.export
-		row_3_export  : out   std_logic_vector(29 downto 0);                    --  row_3.export
-		row_4_export  : out   std_logic_vector(29 downto 0);                    --  row_4.export
-		row_5_export  : out   std_logic_vector(29 downto 0);                    --  row_5.export
-		row_6_export  : out   std_logic_vector(29 downto 0);                    --  row_6.export
-		row_7_export  : out   std_logic_vector(29 downto 0);                    --  row_7.export
-		row_8_export  : out   std_logic_vector(29 downto 0);                    --  row_8.export
-		row_9_export  : out   std_logic_vector(29 downto 0);                    --  row_9.export
-		sram_DQ       : inout std_logic_vector(15 downto 0) := (others => '0'); --   sram.DQ
-		sram_ADDR     : out   std_logic_vector(19 downto 0);                    --       .ADDR
-		sram_LB_N     : out   std_logic;                                        --       .LB_N
-		sram_UB_N     : out   std_logic;                                        --       .UB_N
-		sram_CE_N     : out   std_logic;                                        --       .CE_N
-		sram_OE_N     : out   std_logic;                                        --       .OE_N
-		sram_WE_N     : out   std_logic                                         --       .WE_N
+		buttons_export : in    std_logic_vector(3 downto 0)  := (others => '0'); -- buttons.export
+		clk_clk        : in    std_logic                     := '0';             --     clk.clk
+		reset_reset_n  : in    std_logic                     := '0';             --   reset.reset_n
+		row_0_export   : out   std_logic_vector(29 downto 0);                    --   row_0.export
+		row_1_export   : out   std_logic_vector(29 downto 0);                    --   row_1.export
+		row_10_export  : out   std_logic_vector(29 downto 0);                    --  row_10.export
+		row_11_export  : out   std_logic_vector(29 downto 0);                    --  row_11.export
+		row_12_export  : out   std_logic_vector(29 downto 0);                    --  row_12.export
+		row_13_export  : out   std_logic_vector(29 downto 0);                    --  row_13.export
+		row_14_export  : out   std_logic_vector(29 downto 0);                    --  row_14.export
+		row_15_export  : out   std_logic_vector(29 downto 0);                    --  row_15.export
+		row_16_export  : out   std_logic_vector(29 downto 0);                    --  row_16.export
+		row_17_export  : out   std_logic_vector(29 downto 0);                    --  row_17.export
+		row_18_export  : out   std_logic_vector(29 downto 0);                    --  row_18.export
+		row_19_export  : out   std_logic_vector(29 downto 0);                    --  row_19.export
+		row_2_export   : out   std_logic_vector(29 downto 0);                    --   row_2.export
+		row_20_export  : out   std_logic_vector(29 downto 0);                    --  row_20.export
+		row_21_export  : out   std_logic_vector(29 downto 0);                    --  row_21.export
+		row_22_export  : out   std_logic_vector(29 downto 0);                    --  row_22.export
+		row_23_export  : out   std_logic_vector(29 downto 0);                    --  row_23.export
+		row_3_export   : out   std_logic_vector(29 downto 0);                    --   row_3.export
+		row_4_export   : out   std_logic_vector(29 downto 0);                    --   row_4.export
+		row_5_export   : out   std_logic_vector(29 downto 0);                    --   row_5.export
+		row_6_export   : out   std_logic_vector(29 downto 0);                    --   row_6.export
+		row_7_export   : out   std_logic_vector(29 downto 0);                    --   row_7.export
+		row_8_export   : out   std_logic_vector(29 downto 0);                    --   row_8.export
+		row_9_export   : out   std_logic_vector(29 downto 0);                    --   row_9.export
+		sram_DQ        : inout std_logic_vector(15 downto 0) := (others => '0'); --    sram.DQ
+		sram_ADDR      : out   std_logic_vector(19 downto 0);                    --        .ADDR
+		sram_LB_N      : out   std_logic;                                        --        .LB_N
+		sram_UB_N      : out   std_logic;                                        --        .UB_N
+		sram_CE_N      : out   std_logic;                                        --        .CE_N
+		sram_OE_N      : out   std_logic;                                        --        .OE_N
+		sram_WE_N      : out   std_logic                                         --        .WE_N
 	);
 end entity sram;
 
 architecture rtl of sram is
+	component sram_buttons is
+		port (
+			clk        : in  std_logic                     := 'X';             -- clk
+			reset_n    : in  std_logic                     := 'X';             -- reset_n
+			address    : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
+			write_n    : in  std_logic                     := 'X';             -- write_n
+			writedata  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+			chipselect : in  std_logic                     := 'X';             -- chipselect
+			readdata   : out std_logic_vector(31 downto 0);                    -- readdata
+			in_port    : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- export
+			irq        : out std_logic                                         -- irq
+		);
+	end component sram_buttons;
+
 	component sram_jtag_uart_0 is
 		port (
 			clk            : in  std_logic                     := 'X';             -- clk
@@ -157,6 +172,11 @@ architecture rtl of sram is
 			nios2_gen2_0_instruction_master_waitrequest    : out std_logic;                                        -- waitrequest
 			nios2_gen2_0_instruction_master_read           : in  std_logic                     := 'X';             -- read
 			nios2_gen2_0_instruction_master_readdata       : out std_logic_vector(31 downto 0);                    -- readdata
+			buttons_s1_address                             : out std_logic_vector(1 downto 0);                     -- address
+			buttons_s1_write                               : out std_logic;                                        -- write
+			buttons_s1_readdata                            : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			buttons_s1_writedata                           : out std_logic_vector(31 downto 0);                    -- writedata
+			buttons_s1_chipselect                          : out std_logic;                                        -- chipselect
 			jtag_uart_0_avalon_jtag_slave_address          : out std_logic_vector(0 downto 0);                     -- address
 			jtag_uart_0_avalon_jtag_slave_write            : out std_logic;                                        -- write
 			jtag_uart_0_avalon_jtag_slave_read             : out std_logic;                                        -- read
@@ -545,6 +565,11 @@ architecture rtl of sram is
 	signal mm_interconnect_0_row_10_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_10_s1_address -> row_10:address
 	signal mm_interconnect_0_row_10_s1_write                               : std_logic;                     -- mm_interconnect_0:row_10_s1_write -> mm_interconnect_0_row_10_s1_write:in
 	signal mm_interconnect_0_row_10_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_10_s1_writedata -> row_10:writedata
+	signal mm_interconnect_0_buttons_s1_chipselect                         : std_logic;                     -- mm_interconnect_0:buttons_s1_chipselect -> buttons:chipselect
+	signal mm_interconnect_0_buttons_s1_readdata                           : std_logic_vector(31 downto 0); -- buttons:readdata -> mm_interconnect_0:buttons_s1_readdata
+	signal mm_interconnect_0_buttons_s1_address                            : std_logic_vector(1 downto 0);  -- mm_interconnect_0:buttons_s1_address -> buttons:address
+	signal mm_interconnect_0_buttons_s1_write                              : std_logic;                     -- mm_interconnect_0:buttons_s1_write -> mm_interconnect_0_buttons_s1_write:in
+	signal mm_interconnect_0_buttons_s1_writedata                          : std_logic_vector(31 downto 0); -- mm_interconnect_0:buttons_s1_writedata -> buttons:writedata
 	signal irq_mapper_receiver0_irq                                        : std_logic;                     -- jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	signal nios2_gen2_0_irq_irq                                            : std_logic_vector(31 downto 0); -- irq_mapper:sender_irq -> nios2_gen2_0:irq
 	signal rst_controller_reset_out_reset                                  : std_logic;                     -- rst_controller:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset, sram_0:reset]
@@ -577,9 +602,23 @@ architecture rtl of sram is
 	signal mm_interconnect_0_row_22_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_22_s1_write:inv -> row_22:write_n
 	signal mm_interconnect_0_row_23_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_23_s1_write:inv -> row_23:write_n
 	signal mm_interconnect_0_row_10_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_10_s1_write:inv -> row_10:write_n
-	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag_uart_0:rst_n, nios2_gen2_0:reset_n, row_0:reset_n, row_10:reset_n, row_11:reset_n, row_12:reset_n, row_13:reset_n, row_14:reset_n, row_15:reset_n, row_16:reset_n, row_17:reset_n, row_18:reset_n, row_19:reset_n, row_1:reset_n, row_20:reset_n, row_21:reset_n, row_22:reset_n, row_23:reset_n, row_2:reset_n, row_3:reset_n, row_4:reset_n, row_5:reset_n, row_6:reset_n, row_7:reset_n, row_8:reset_n, row_9:reset_n]
+	signal mm_interconnect_0_buttons_s1_write_ports_inv                    : std_logic;                     -- mm_interconnect_0_buttons_s1_write:inv -> buttons:write_n
+	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [buttons:reset_n, jtag_uart_0:rst_n, nios2_gen2_0:reset_n, row_0:reset_n, row_10:reset_n, row_11:reset_n, row_12:reset_n, row_13:reset_n, row_14:reset_n, row_15:reset_n, row_16:reset_n, row_17:reset_n, row_18:reset_n, row_19:reset_n, row_1:reset_n, row_20:reset_n, row_21:reset_n, row_22:reset_n, row_23:reset_n, row_2:reset_n, row_3:reset_n, row_4:reset_n, row_5:reset_n, row_6:reset_n, row_7:reset_n, row_8:reset_n, row_9:reset_n]
 
 begin
+
+	buttons : component sram_buttons
+		port map (
+			clk        => clk_clk,                                      --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,     --               reset.reset_n
+			address    => mm_interconnect_0_buttons_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_buttons_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_buttons_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_buttons_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_buttons_s1_readdata,        --                    .readdata
+			in_port    => buttons_export,                               -- external_connection.export
+			irq        => open                                          --                 irq.irq
+		);
 
 	jtag_uart_0 : component sram_jtag_uart_0
 		port map (
@@ -964,6 +1003,11 @@ begin
 			nios2_gen2_0_instruction_master_waitrequest    => nios2_gen2_0_instruction_master_waitrequest,                 --                                         .waitrequest
 			nios2_gen2_0_instruction_master_read           => nios2_gen2_0_instruction_master_read,                        --                                         .read
 			nios2_gen2_0_instruction_master_readdata       => nios2_gen2_0_instruction_master_readdata,                    --                                         .readdata
+			buttons_s1_address                             => mm_interconnect_0_buttons_s1_address,                        --                               buttons_s1.address
+			buttons_s1_write                               => mm_interconnect_0_buttons_s1_write,                          --                                         .write
+			buttons_s1_readdata                            => mm_interconnect_0_buttons_s1_readdata,                       --                                         .readdata
+			buttons_s1_writedata                           => mm_interconnect_0_buttons_s1_writedata,                      --                                         .writedata
+			buttons_s1_chipselect                          => mm_interconnect_0_buttons_s1_chipselect,                     --                                         .chipselect
 			jtag_uart_0_avalon_jtag_slave_address          => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address,     --            jtag_uart_0_avalon_jtag_slave.address
 			jtag_uart_0_avalon_jtag_slave_write            => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write,       --                                         .write
 			jtag_uart_0_avalon_jtag_slave_read             => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read,        --                                         .read
@@ -1241,6 +1285,8 @@ begin
 	mm_interconnect_0_row_23_s1_write_ports_inv <= not mm_interconnect_0_row_23_s1_write;
 
 	mm_interconnect_0_row_10_s1_write_ports_inv <= not mm_interconnect_0_row_10_s1_write;
+
+	mm_interconnect_0_buttons_s1_write_ports_inv <= not mm_interconnect_0_buttons_s1_write;
 
 	rst_controller_reset_out_reset_ports_inv <= not rst_controller_reset_out_reset;
 

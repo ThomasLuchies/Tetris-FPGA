@@ -18,7 +18,7 @@ entity tetris is
 	   VGA_VS: out std_logic;
 		
 		-- NIOS inputs and outputs
-		KEY : in std_logic_vector (0 DOWNTO 0);
+		KEY : in std_logic_vector (3 DOWNTO 0);
 		SW : in std_logic_vector (17 DOWNTO 0);
 		LEDR : out std_logic_vector (17 DOWNTO 0);
 		LEDG : out std_logic_vector(7 downto 0);
@@ -94,6 +94,7 @@ architecture tetris_arch of tetris is
 		port (
 			clk_clk : in std_logic := '0';
 			reset_reset_n : in std_logic := '0';
+			buttons_export: in std_logic_vector(3 downto 0);
 			row_0_export  : out   std_logic_vector(29 downto 0);                    --  row_0.export
 			row_1_export  : out   std_logic_vector(29 downto 0);                    --  row_1.export
 			row_10_export : out   std_logic_vector(29 downto 0);                    -- row_10.export
@@ -134,7 +135,8 @@ begin
 	
 	 NiosII : sram PORT MAP(
 		 clk_clk => CLOCK_50,
-		 reset_reset_n => KEY(0),
+		 reset_reset_n => '1',
+		 buttons_export => KEY,
 		 row_0_export => grid(719 downto 690),
 		 row_1_export => grid(689 downto 660), 
 		 row_2_export => grid(659 downto 630),
