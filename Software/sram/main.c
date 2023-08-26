@@ -83,36 +83,110 @@
 #include "io.h"
 #include <unistd.h>
 #include "altera_avalon_pio_regs.h"
+#include <stdlib.h>
+#include <stdint.h>
 
 int grid[24][10];
 
 int main()
 {
-  unsigned char rowAdresses[24] = {ROW_0_BASE, ROW_1_BASE, ROW_2_BASE, ROW_3_BASE, ROW_4_BASE, ROW_5_BASE, ROW_6_BASE, ROW_7_BASE, ROW_8_BASE, ROW_9_BASE, ROW_10_BASE, ROW_11_BASE, ROW_12_BASE, ROW_13_BASE, ROW_14_BASE, ROW_15_BASE, ROW_16_BASE, ROW_17_BASE, ROW_18_BASE, ROW_19_BASE, ROW_20_BASE, ROW_21_BASE, ROW_22_BASE, ROW_23_BASE};
+  int rowAdresses[24] = {ROW_0_BASE, ROW_1_BASE, ROW_2_BASE, ROW_3_BASE, ROW_4_BASE, ROW_5_BASE, ROW_6_BASE, ROW_7_BASE, ROW_8_BASE, ROW_9_BASE, ROW_10_BASE, ROW_11_BASE, ROW_12_BASE, ROW_13_BASE, ROW_14_BASE, ROW_15_BASE, ROW_16_BASE, ROW_17_BASE, ROW_18_BASE, ROW_19_BASE, ROW_20_BASE, ROW_21_BASE, ROW_22_BASE, ROW_23_BASE};
   unsigned char rowArray[30];
+  char binString = "010000000000000000000000000000";
+  uint32_t row;
 
   clearGrid();
+  row = 0b00000000000000000000000000000000;
+  int cursor = 29;
   /* Event loop never exits. */
   while (1)
   {
-	  grid[0][5] = 2;
-
-	/*  for(int y = 0; y < 23; y++)
+	  grid[4][3] = 2;
+	  grid[23][3] = 4;
+	  for(int y = 0; y < 23; y++)
 	  {
-		  for(int x = 0; x < 9; x++)
+		  cursor = 29;
+		  for(int x = 0; x <= 9; x++)
 		  {
-			  rowArray[3 * x] = grid[y][x] & 0x07;
 			  if(grid[y][x] != 0)
 			  {
-				  printf("x: %d, y: %d, rowAdress %\n", x, y, rowAdresses[y]);
+				  printf("x: %d, y: %d, value: %d", x, y, grid[y][x]);
+				  switch(grid[y][x])
+				  {
+				  	  case 1:
+						  row |= (0 << cursor);
+						  cursor = cursor - 1;
+						  row |= (0 << cursor);
+						  cursor = cursor - 1;
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+				  		  break;
+				  	  case 2:
+				  		  row |= (0 << cursor);
+				  		  cursor = cursor - 1;
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  row |= (0 << cursor);
+						  cursor = cursor - 1;
+						  break;
+				  	 case 3:
+						  row |= (0 << cursor);
+						  cursor = cursor - 1;
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  break;
+				  	 case 4:
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  row |= (0 << cursor);
+						  cursor = cursor - 1;
+						  row |= (0 << cursor);
+						  cursor = cursor - 1;
+						  break;
+				  	 case 5:
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  row |= (0 << cursor);
+						  cursor = cursor - 1;
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  break;
+				  	 case 6:
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  row |= (0 << cursor);
+						  cursor = cursor - 1;
+						  break;
+				  	 case 7:
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  row |= (1 << cursor);
+						  cursor = cursor - 1;
+						  break;
+				  }
+			  }
+			  else
+			  {
+				  cursor = cursor - 3;
 			  }
 		  }
 
-		  IOWR_ALTERA_AVALON_PIO_DATA(rowAdresses[y], rowArray);
-	  }*/
+		  printf("Binary : ");
+		  printBinary(row);
+		  printf("\n");
+		  IOWR_ALTERA_AVALON_PIO_DATA(rowAdresses[y], row);
+		  row = 0b00000000000000000000000000000000;
+	  }
 	  //IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE));
-	  IOWR_ALTERA_AVALON_PIO_DATA(ROW_0_BASE, 0b011010000000000000000000000000);
-	  IOWR_ALTERA_AVALON_PIO_DATA(ROW_1_BASE, 0b11000100110011101111110001110);
+	  //IOWR_ALTERA_AVALON_PIO_DATA(rowAdresses[0], row);
+	  //IOWR_ALTERA_AVALON_PIO_DATA(rowAdresses[1], 0b010010000000000000000000000000);
+	  //IOWR_ALTERA_AVALON_PIO_DATA(ROW_2_BASE, 0b00010000000000000000000000000000);
 	    usleep(1000000);
   }
 
@@ -128,4 +202,11 @@ int clearGrid()
 		  grid[y][x] = 0;
 	  }
 	}
+}
+
+void printBinary(int num) {
+    for (int i = sizeof(num) * 8 - 1; i >= 0; i--) {
+        int bit = (num >> i) & 1;
+        printf("%d", bit);
+    }
 }
