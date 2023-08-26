@@ -74,6 +74,7 @@ architecture tetris_arch of tetris is
 		 disp_ena :  IN   STD_LOGIC;  --display enable ('1' = display time, '0' = blanking time)
 		 row      :  IN   INTEGER;    --row pixel coordinate
 		 column   :  IN   INTEGER;    --column pixel coordinate
+		 display  :  IN 	std_logic_vector(719 downto 0);
 		 red      :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0);  --red magnitude output to DAC
 		 green    :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0);  --green magnitude output to DAC
 		 blue     :  OUT  STD_LOGIC_VECTOR(7 DOWNTO 0); --blue magnitude output to DAC
@@ -89,10 +90,34 @@ architecture tetris_arch of tetris is
 		lb_n : out std_logic := '0'); -- always active
 	end component;
 	
-	COMPONENT nios2
+	COMPONENT sram
 		port (
 			clk_clk : in std_logic := '0';
-			reset_reset_n : in std_logic := '0'
+			reset_reset_n : in std_logic := '0';
+			row_0_export  : out   std_logic_vector(29 downto 0);                    --  row_0.export
+			row_1_export  : out   std_logic_vector(29 downto 0);                    --  row_1.export
+			row_10_export : out   std_logic_vector(29 downto 0);                    -- row_10.export
+			row_11_export : out   std_logic_vector(29 downto 0);                    -- row_11.export
+			row_12_export : out   std_logic_vector(29 downto 0);                    -- row_12.export
+			row_13_export : out   std_logic_vector(29 downto 0);                    -- row_13.export
+			row_14_export : out   std_logic_vector(29 downto 0);                    -- row_14.export
+			row_15_export : out   std_logic_vector(29 downto 0);                    -- row_15.export
+			row_16_export : out   std_logic_vector(29 downto 0);                    -- row_16.export
+			row_17_export : out   std_logic_vector(29 downto 0);                    -- row_17.export
+			row_18_export : out   std_logic_vector(29 downto 0);                    -- row_18.export
+			row_19_export : out   std_logic_vector(29 downto 0);                    -- row_19.export
+			row_2_export  : out   std_logic_vector(29 downto 0);                    --  row_2.export
+			row_20_export : out   std_logic_vector(29 downto 0);                    -- row_20.export
+			row_21_export : out   std_logic_vector(29 downto 0);                    -- row_21.export
+			row_22_export : out   std_logic_vector(29 downto 0);                    -- row_22.export
+			row_23_export : out   std_logic_vector(29 downto 0);                    -- row_23.export
+			row_3_export  : out   std_logic_vector(29 downto 0);                    --  row_3.export
+			row_4_export  : out   std_logic_vector(29 downto 0);                    --  row_4.export
+			row_5_export  : out   std_logic_vector(29 downto 0);                    --  row_5.export
+			row_6_export  : out   std_logic_vector(29 downto 0);                    --  row_6.export
+			row_7_export  : out   std_logic_vector(29 downto 0);                    --  row_7.export
+			row_8_export  : out   std_logic_vector(29 downto 0);                    --  row_8.export
+			row_9_export  : out   std_logic_vector(29 downto 0)
 		);
 	END COMPONENT;
 	
@@ -100,12 +125,40 @@ architecture tetris_arch of tetris is
 	signal column: integer;
 	signal pixel_clk: std_logic;
 	signal disp_ena: std_logic;
+	signal grid: std_logic_vector(719 downto 0);
+	signal test_grid: std_logic_vector(719 downto 0);
 begin 
+	test_grid(719 downto 717) <= "001";
+	LEDR <= grid(719 downto 702);
 	VGA_CLK <= pixel_clk;
 	
-	 NiosII : nios2 PORT MAP(
+	 NiosII : sram PORT MAP(
 		 clk_clk => CLOCK_50,
-		 reset_reset_n => KEY(0)
+		 reset_reset_n => KEY(0),
+		 row_0_export => grid(719 downto 690),
+		 row_1_export => grid(689 downto 660), 
+		 row_2_export => grid(659 downto 630),
+		 row_3_export => grid(629 downto 600),
+		 row_4_export => grid(599 downto 570),
+		 row_5_export => grid(569 downto 540),
+		 row_6_export => grid(539 downto 510), 
+		 row_7_export => grid(509 downto 480),
+		 row_8_export => grid(479 downto 450),
+		 row_9_export => grid(449 downto 420),
+		 row_10_export => grid(419 downto 390),
+		 row_11_export => grid(389 downto 360),
+		 row_12_export => grid(359 downto 330),
+		 row_13_export => grid(329 downto 300),
+		 row_14_export => grid(299 downto 270),
+		 row_15_export => grid(269 downto 240),
+		 row_16_export => grid(239 downto 210),
+		 row_17_export => grid(209 downto 180),
+		 row_18_export => grid(179 downto 150),
+		 row_19_export => grid(149 downto 120),
+		 row_20_export => grid(119 downto 90),
+		 row_21_export => grid(89 downto 60),
+		 row_22_export => grid(59 downto 30),
+		 row_23_export => grid(29 downto 0)
 	 );
 	
 	pc0: pixel_clock 
@@ -148,8 +201,9 @@ begin
 	port map( 
 		clk => CLOCK_50,
 		disp_ena => disp_ena,
-		row => row,
-		column => column,
+		row => column,
+		column => row,
+		display => grid,
 		red => VGA_R,
 		green => VGA_G,
 		blue => VGA_B,

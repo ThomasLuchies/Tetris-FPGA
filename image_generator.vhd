@@ -35,6 +35,7 @@ ENTITY image_generator IS
 		disp_ena		:	IN		STD_LOGIC;	--display enable ('1' = display time, '0' = blanking time)
 		row			:	IN		INTEGER;		--row pixel coordinate
 		column		:	IN		INTEGER;		--column pixel coordinate
+		display 		:  IN 	std_logic_vector(719 downto 0);
 		red			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');  --red magnitude output to DAC
 		green			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0');  --green magnitude output to DAC
 		blue			:	OUT	STD_LOGIC_VECTOR(7 DOWNTO 0) := (OTHERS => '0'); --blue magnitude output to DAC
@@ -124,19 +125,64 @@ BEGIN
 	end process;
 	
 	PROCESS(disp_ena, row, column)
+		variable red_p, green_p, blue_p: std_logic_vector(7 downto 0);
+		variable next_block: std_logic;
+		variable x, y, rows_written, columns_written, last_row, last_column: integer := 0;
+		
 	BEGIN
 		LEDG <= data(7 downto 0);
 		IF(disp_ena = '1') THEN		--display time
 			IF(row < pixels_y AND column < pixels_x) THEN
-				if(row > 220 AND row < 440) then
-					red <= "01000101";
-					green <=  "01000100";
-					blue <=  "01000011";
+				if(column > 220 AND column < 420) then
+				
+					case display((719 - to_integer((to_signed(((column - 220) / 20) + ((row / 20) * 10), 16) * 3))) downto (717 - to_integer((to_signed(((column - 220) / 20) + ((row / 20) * 10), 16) * 3)))) is
+						when "000" =>
+							red_p := "01111111"; --grey
+							green_p :=  "01111111";
+							blue_p :=  "01111111";
+						when "001" =>
+							red_p := "11111111"; --yellow
+							green_p :=  "11111111";
+							blue_p :=  "00000000";
+						when "010" =>
+							red_p := "01010000"; --purple
+							green_p :=  "00000000";
+							blue_p :=  "01010000";
+						when "011" =>
+							red_p := "00000000"; --green
+							green_p :=  "11111111";
+							blue_p :=  "00000000";
+						when "100" =>
+							red_p := "11111111"; --red 
+							green_p :=  "00000000";
+							blue_p :=  "00000000";
+						when "101" =>
+							red_p := "00000000"; --blue
+							green_p :=  "00000000";
+							blue_p :=  "11111111";
+						when "110" =>
+							red_p := "00000000"; --cyan
+							green_p :=  "11111111";
+							blue_p :=  "11111111";
+						when "111" =>
+							red_p := "11111111"; --orange
+							green_p :=  "01111111";
+							blue_p :=  "00000000";
+						when others =>
+							red_p := "01111111"; -- default to grey
+							green_p :=  "01111111";
+							blue_p :=  "01111111";
+				   end case;
+					
 				else
-					red <= "00000000";
-					green <=  "00000000";
-					blue <=  "00000000";
+					red_p := "00000000"; 
+					green_p :=  "00000000";
+					blue_p :=  "00000000";
 				end if;
+				
+				red <= red_p;
+				green <= green_p;
+				blue <= blue_p;
 			END IF;
 		ELSE								--blanking time
 			red <= (OTHERS => '0');

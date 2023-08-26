@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>23-jun-2023 20:09:06</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1687543746492</BspGeneratedUnixTimeStamp>
-        <BspGeneratedLocation>C:\Github\Tetris-FPGA\software\sram_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspGeneratedTimeStamp>25-aug-2023 23:00:40</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1692997240028</BspGeneratedUnixTimeStamp>
+        <BspGeneratedLocation>C:\github\Tetris-FPGA\Software\sram_bsp</BspGeneratedLocation>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\sram.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2_gen2_0</Cpu>
@@ -915,6 +915,150 @@
                 <addressRange>0x00240000 - 0x00240007</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_0</slaveDescriptor>
+                <addressRange>0x00250000 - 0x0025000F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_1</slaveDescriptor>
+                <addressRange>0x02500010 - 0x0250001F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_2</slaveDescriptor>
+                <addressRange>0x02500020 - 0x0250002F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_3</slaveDescriptor>
+                <addressRange>0x02500030 - 0x0250003F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_4</slaveDescriptor>
+                <addressRange>0x02500040 - 0x0250004F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_5</slaveDescriptor>
+                <addressRange>0x02500050 - 0x0250005F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_6</slaveDescriptor>
+                <addressRange>0x02500060 - 0x0250006F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_7</slaveDescriptor>
+                <addressRange>0x02500070 - 0x0250007F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_8</slaveDescriptor>
+                <addressRange>0x02500080 - 0x0250008F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_9</slaveDescriptor>
+                <addressRange>0x02500090 - 0x0250009F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_10</slaveDescriptor>
+                <addressRange>0x025000A0 - 0x025000AF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_11</slaveDescriptor>
+                <addressRange>0x025000B0 - 0x025000BF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_12</slaveDescriptor>
+                <addressRange>0x025000C0 - 0x025000CF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_13</slaveDescriptor>
+                <addressRange>0x025000D0 - 0x025000DF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_14</slaveDescriptor>
+                <addressRange>0x025000E0 - 0x025000EF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_15</slaveDescriptor>
+                <addressRange>0x025000F0 - 0x025000FF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_16</slaveDescriptor>
+                <addressRange>0x02500100 - 0x0250010F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_17</slaveDescriptor>
+                <addressRange>0x02500110 - 0x0250011F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_18</slaveDescriptor>
+                <addressRange>0x02500120 - 0x0250012F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_19</slaveDescriptor>
+                <addressRange>0x02500130 - 0x0250013F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_20</slaveDescriptor>
+                <addressRange>0x02500140 - 0x0250014F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_21</slaveDescriptor>
+                <addressRange>0x02500150 - 0x0250015F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_22</slaveDescriptor>
+                <addressRange>0x02500160 - 0x0250016F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>row_23</slaveDescriptor>
+                <addressRange>0x02500170 - 0x0250017F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
         </MemoryMap>
         <LinkerSection>
                 <sectionName>.text</sectionName>

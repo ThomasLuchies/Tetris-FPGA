@@ -3,7 +3,7 @@
 # Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'sram'
 # SOPC Builder design path: ../../sram.sopcinfo
 #
-# Generated: Fri Jun 23 20:09:07 CEST 2023
+# Generated: Fri Aug 25 23:00:40 CEST 2023
 
 # DO NOT MODIFY THIS FILE
 #

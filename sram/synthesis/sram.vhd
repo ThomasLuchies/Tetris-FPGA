@@ -8,15 +8,39 @@ use IEEE.numeric_std.all;
 
 entity sram is
 	port (
-		clk_clk       : in    std_logic                     := '0';             --   clk.clk
-		reset_reset_n : in    std_logic                     := '0';             -- reset.reset_n
-		sram_DQ       : inout std_logic_vector(15 downto 0) := (others => '0'); --  sram.DQ
-		sram_ADDR     : out   std_logic_vector(19 downto 0);                    --      .ADDR
-		sram_LB_N     : out   std_logic;                                        --      .LB_N
-		sram_UB_N     : out   std_logic;                                        --      .UB_N
-		sram_CE_N     : out   std_logic;                                        --      .CE_N
-		sram_OE_N     : out   std_logic;                                        --      .OE_N
-		sram_WE_N     : out   std_logic                                         --      .WE_N
+		clk_clk       : in    std_logic                     := '0';             --    clk.clk
+		reset_reset_n : in    std_logic                     := '0';             --  reset.reset_n
+		row_0_export  : out   std_logic_vector(29 downto 0);                    --  row_0.export
+		row_1_export  : out   std_logic_vector(29 downto 0);                    --  row_1.export
+		row_10_export : out   std_logic_vector(29 downto 0);                    -- row_10.export
+		row_11_export : out   std_logic_vector(29 downto 0);                    -- row_11.export
+		row_12_export : out   std_logic_vector(29 downto 0);                    -- row_12.export
+		row_13_export : out   std_logic_vector(29 downto 0);                    -- row_13.export
+		row_14_export : out   std_logic_vector(29 downto 0);                    -- row_14.export
+		row_15_export : out   std_logic_vector(29 downto 0);                    -- row_15.export
+		row_16_export : out   std_logic_vector(29 downto 0);                    -- row_16.export
+		row_17_export : out   std_logic_vector(29 downto 0);                    -- row_17.export
+		row_18_export : out   std_logic_vector(29 downto 0);                    -- row_18.export
+		row_19_export : out   std_logic_vector(29 downto 0);                    -- row_19.export
+		row_2_export  : out   std_logic_vector(29 downto 0);                    --  row_2.export
+		row_20_export : out   std_logic_vector(29 downto 0);                    -- row_20.export
+		row_21_export : out   std_logic_vector(29 downto 0);                    -- row_21.export
+		row_22_export : out   std_logic_vector(29 downto 0);                    -- row_22.export
+		row_23_export : out   std_logic_vector(29 downto 0);                    -- row_23.export
+		row_3_export  : out   std_logic_vector(29 downto 0);                    --  row_3.export
+		row_4_export  : out   std_logic_vector(29 downto 0);                    --  row_4.export
+		row_5_export  : out   std_logic_vector(29 downto 0);                    --  row_5.export
+		row_6_export  : out   std_logic_vector(29 downto 0);                    --  row_6.export
+		row_7_export  : out   std_logic_vector(29 downto 0);                    --  row_7.export
+		row_8_export  : out   std_logic_vector(29 downto 0);                    --  row_8.export
+		row_9_export  : out   std_logic_vector(29 downto 0);                    --  row_9.export
+		sram_DQ       : inout std_logic_vector(15 downto 0) := (others => '0'); --   sram.DQ
+		sram_ADDR     : out   std_logic_vector(19 downto 0);                    --       .ADDR
+		sram_LB_N     : out   std_logic;                                        --       .LB_N
+		sram_UB_N     : out   std_logic;                                        --       .UB_N
+		sram_CE_N     : out   std_logic;                                        --       .CE_N
+		sram_OE_N     : out   std_logic;                                        --       .OE_N
+		sram_WE_N     : out   std_logic                                         --       .WE_N
 	);
 end entity sram;
 
@@ -41,7 +65,7 @@ architecture rtl of sram is
 			clk                                 : in  std_logic                     := 'X';             -- clk
 			reset_n                             : in  std_logic                     := 'X';             -- reset_n
 			reset_req                           : in  std_logic                     := 'X';             -- reset_req
-			d_address                           : out std_logic_vector(21 downto 0);                    -- address
+			d_address                           : out std_logic_vector(25 downto 0);                    -- address
 			d_byteenable                        : out std_logic_vector(3 downto 0);                     -- byteenable
 			d_read                              : out std_logic;                                        -- read
 			d_readdata                          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -83,6 +107,19 @@ architecture rtl of sram is
 		);
 	end component sram_onchip_memory2_0;
 
+	component sram_row_0 is
+		port (
+			clk        : in  std_logic                     := 'X';             -- clk
+			reset_n    : in  std_logic                     := 'X';             -- reset_n
+			address    : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
+			write_n    : in  std_logic                     := 'X';             -- write_n
+			writedata  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+			chipselect : in  std_logic                     := 'X';             -- chipselect
+			readdata   : out std_logic_vector(31 downto 0);                    -- readdata
+			out_port   : out std_logic_vector(29 downto 0)                     -- export
+		);
+	end component sram_row_0;
+
 	component sram_sram_0 is
 		port (
 			clk           : in    std_logic                     := 'X';             -- clk
@@ -108,7 +145,7 @@ architecture rtl of sram is
 		port (
 			clk_0_clk_clk                                  : in  std_logic                     := 'X';             -- clk
 			nios2_gen2_0_reset_reset_bridge_in_reset_reset : in  std_logic                     := 'X';             -- reset
-			nios2_gen2_0_data_master_address               : in  std_logic_vector(21 downto 0) := (others => 'X'); -- address
+			nios2_gen2_0_data_master_address               : in  std_logic_vector(25 downto 0) := (others => 'X'); -- address
 			nios2_gen2_0_data_master_waitrequest           : out std_logic;                                        -- waitrequest
 			nios2_gen2_0_data_master_byteenable            : in  std_logic_vector(3 downto 0)  := (others => 'X'); -- byteenable
 			nios2_gen2_0_data_master_read                  : in  std_logic                     := 'X';             -- read
@@ -142,6 +179,126 @@ architecture rtl of sram is
 			onchip_memory2_0_s1_byteenable                 : out std_logic_vector(1 downto 0);                     -- byteenable
 			onchip_memory2_0_s1_chipselect                 : out std_logic;                                        -- chipselect
 			onchip_memory2_0_s1_clken                      : out std_logic;                                        -- clken
+			row_0_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_0_s1_write                                 : out std_logic;                                        -- write
+			row_0_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_0_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_0_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_1_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_1_s1_write                                 : out std_logic;                                        -- write
+			row_1_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_1_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_1_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_10_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_10_s1_write                                : out std_logic;                                        -- write
+			row_10_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_10_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_10_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_11_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_11_s1_write                                : out std_logic;                                        -- write
+			row_11_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_11_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_11_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_12_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_12_s1_write                                : out std_logic;                                        -- write
+			row_12_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_12_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_12_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_13_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_13_s1_write                                : out std_logic;                                        -- write
+			row_13_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_13_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_13_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_14_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_14_s1_write                                : out std_logic;                                        -- write
+			row_14_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_14_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_14_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_15_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_15_s1_write                                : out std_logic;                                        -- write
+			row_15_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_15_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_15_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_16_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_16_s1_write                                : out std_logic;                                        -- write
+			row_16_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_16_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_16_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_17_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_17_s1_write                                : out std_logic;                                        -- write
+			row_17_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_17_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_17_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_18_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_18_s1_write                                : out std_logic;                                        -- write
+			row_18_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_18_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_18_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_19_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_19_s1_write                                : out std_logic;                                        -- write
+			row_19_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_19_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_19_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_2_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_2_s1_write                                 : out std_logic;                                        -- write
+			row_2_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_2_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_2_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_20_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_20_s1_write                                : out std_logic;                                        -- write
+			row_20_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_20_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_20_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_21_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_21_s1_write                                : out std_logic;                                        -- write
+			row_21_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_21_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_21_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_22_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_22_s1_write                                : out std_logic;                                        -- write
+			row_22_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_22_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_22_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_23_s1_address                              : out std_logic_vector(1 downto 0);                     -- address
+			row_23_s1_write                                : out std_logic;                                        -- write
+			row_23_s1_readdata                             : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_23_s1_writedata                            : out std_logic_vector(31 downto 0);                    -- writedata
+			row_23_s1_chipselect                           : out std_logic;                                        -- chipselect
+			row_3_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_3_s1_write                                 : out std_logic;                                        -- write
+			row_3_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_3_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_3_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_4_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_4_s1_write                                 : out std_logic;                                        -- write
+			row_4_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_4_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_4_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_5_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_5_s1_write                                 : out std_logic;                                        -- write
+			row_5_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_5_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_5_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_6_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_6_s1_write                                 : out std_logic;                                        -- write
+			row_6_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_6_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_6_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_7_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_7_s1_write                                 : out std_logic;                                        -- write
+			row_7_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_7_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_7_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_8_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_8_s1_write                                 : out std_logic;                                        -- write
+			row_8_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_8_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_8_s1_chipselect                            : out std_logic;                                        -- chipselect
+			row_9_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			row_9_s1_write                                 : out std_logic;                                        -- write
+			row_9_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			row_9_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			row_9_s1_chipselect                            : out std_logic;                                        -- chipselect
 			sram_0_avalon_sram_slave_address               : out std_logic_vector(19 downto 0);                    -- address
 			sram_0_avalon_sram_slave_write                 : out std_logic;                                        -- write
 			sram_0_avalon_sram_slave_read                  : out std_logic;                                        -- read
@@ -230,7 +387,7 @@ architecture rtl of sram is
 	signal nios2_gen2_0_data_master_readdata                               : std_logic_vector(31 downto 0); -- mm_interconnect_0:nios2_gen2_0_data_master_readdata -> nios2_gen2_0:d_readdata
 	signal nios2_gen2_0_data_master_waitrequest                            : std_logic;                     -- mm_interconnect_0:nios2_gen2_0_data_master_waitrequest -> nios2_gen2_0:d_waitrequest
 	signal nios2_gen2_0_data_master_debugaccess                            : std_logic;                     -- nios2_gen2_0:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:nios2_gen2_0_data_master_debugaccess
-	signal nios2_gen2_0_data_master_address                                : std_logic_vector(21 downto 0); -- nios2_gen2_0:d_address -> mm_interconnect_0:nios2_gen2_0_data_master_address
+	signal nios2_gen2_0_data_master_address                                : std_logic_vector(25 downto 0); -- nios2_gen2_0:d_address -> mm_interconnect_0:nios2_gen2_0_data_master_address
 	signal nios2_gen2_0_data_master_byteenable                             : std_logic_vector(3 downto 0);  -- nios2_gen2_0:d_byteenable -> mm_interconnect_0:nios2_gen2_0_data_master_byteenable
 	signal nios2_gen2_0_data_master_read                                   : std_logic;                     -- nios2_gen2_0:d_read -> mm_interconnect_0:nios2_gen2_0_data_master_read
 	signal nios2_gen2_0_data_master_write                                  : std_logic;                     -- nios2_gen2_0:d_write -> mm_interconnect_0:nios2_gen2_0_data_master_write
@@ -268,6 +425,126 @@ architecture rtl of sram is
 	signal mm_interconnect_0_onchip_memory2_0_s1_write                     : std_logic;                     -- mm_interconnect_0:onchip_memory2_0_s1_write -> onchip_memory2_0:write
 	signal mm_interconnect_0_onchip_memory2_0_s1_writedata                 : std_logic_vector(15 downto 0); -- mm_interconnect_0:onchip_memory2_0_s1_writedata -> onchip_memory2_0:writedata
 	signal mm_interconnect_0_onchip_memory2_0_s1_clken                     : std_logic;                     -- mm_interconnect_0:onchip_memory2_0_s1_clken -> onchip_memory2_0:clken
+	signal mm_interconnect_0_row_0_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_0_s1_chipselect -> row_0:chipselect
+	signal mm_interconnect_0_row_0_s1_readdata                             : std_logic_vector(31 downto 0); -- row_0:readdata -> mm_interconnect_0:row_0_s1_readdata
+	signal mm_interconnect_0_row_0_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_0_s1_address -> row_0:address
+	signal mm_interconnect_0_row_0_s1_write                                : std_logic;                     -- mm_interconnect_0:row_0_s1_write -> mm_interconnect_0_row_0_s1_write:in
+	signal mm_interconnect_0_row_0_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_0_s1_writedata -> row_0:writedata
+	signal mm_interconnect_0_row_1_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_1_s1_chipselect -> row_1:chipselect
+	signal mm_interconnect_0_row_1_s1_readdata                             : std_logic_vector(31 downto 0); -- row_1:readdata -> mm_interconnect_0:row_1_s1_readdata
+	signal mm_interconnect_0_row_1_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_1_s1_address -> row_1:address
+	signal mm_interconnect_0_row_1_s1_write                                : std_logic;                     -- mm_interconnect_0:row_1_s1_write -> mm_interconnect_0_row_1_s1_write:in
+	signal mm_interconnect_0_row_1_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_1_s1_writedata -> row_1:writedata
+	signal mm_interconnect_0_row_2_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_2_s1_chipselect -> row_2:chipselect
+	signal mm_interconnect_0_row_2_s1_readdata                             : std_logic_vector(31 downto 0); -- row_2:readdata -> mm_interconnect_0:row_2_s1_readdata
+	signal mm_interconnect_0_row_2_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_2_s1_address -> row_2:address
+	signal mm_interconnect_0_row_2_s1_write                                : std_logic;                     -- mm_interconnect_0:row_2_s1_write -> mm_interconnect_0_row_2_s1_write:in
+	signal mm_interconnect_0_row_2_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_2_s1_writedata -> row_2:writedata
+	signal mm_interconnect_0_row_3_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_3_s1_chipselect -> row_3:chipselect
+	signal mm_interconnect_0_row_3_s1_readdata                             : std_logic_vector(31 downto 0); -- row_3:readdata -> mm_interconnect_0:row_3_s1_readdata
+	signal mm_interconnect_0_row_3_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_3_s1_address -> row_3:address
+	signal mm_interconnect_0_row_3_s1_write                                : std_logic;                     -- mm_interconnect_0:row_3_s1_write -> mm_interconnect_0_row_3_s1_write:in
+	signal mm_interconnect_0_row_3_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_3_s1_writedata -> row_3:writedata
+	signal mm_interconnect_0_row_4_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_4_s1_chipselect -> row_4:chipselect
+	signal mm_interconnect_0_row_4_s1_readdata                             : std_logic_vector(31 downto 0); -- row_4:readdata -> mm_interconnect_0:row_4_s1_readdata
+	signal mm_interconnect_0_row_4_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_4_s1_address -> row_4:address
+	signal mm_interconnect_0_row_4_s1_write                                : std_logic;                     -- mm_interconnect_0:row_4_s1_write -> mm_interconnect_0_row_4_s1_write:in
+	signal mm_interconnect_0_row_4_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_4_s1_writedata -> row_4:writedata
+	signal mm_interconnect_0_row_5_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_5_s1_chipselect -> row_5:chipselect
+	signal mm_interconnect_0_row_5_s1_readdata                             : std_logic_vector(31 downto 0); -- row_5:readdata -> mm_interconnect_0:row_5_s1_readdata
+	signal mm_interconnect_0_row_5_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_5_s1_address -> row_5:address
+	signal mm_interconnect_0_row_5_s1_write                                : std_logic;                     -- mm_interconnect_0:row_5_s1_write -> mm_interconnect_0_row_5_s1_write:in
+	signal mm_interconnect_0_row_5_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_5_s1_writedata -> row_5:writedata
+	signal mm_interconnect_0_row_6_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_6_s1_chipselect -> row_6:chipselect
+	signal mm_interconnect_0_row_6_s1_readdata                             : std_logic_vector(31 downto 0); -- row_6:readdata -> mm_interconnect_0:row_6_s1_readdata
+	signal mm_interconnect_0_row_6_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_6_s1_address -> row_6:address
+	signal mm_interconnect_0_row_6_s1_write                                : std_logic;                     -- mm_interconnect_0:row_6_s1_write -> mm_interconnect_0_row_6_s1_write:in
+	signal mm_interconnect_0_row_6_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_6_s1_writedata -> row_6:writedata
+	signal mm_interconnect_0_row_7_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_7_s1_chipselect -> row_7:chipselect
+	signal mm_interconnect_0_row_7_s1_readdata                             : std_logic_vector(31 downto 0); -- row_7:readdata -> mm_interconnect_0:row_7_s1_readdata
+	signal mm_interconnect_0_row_7_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_7_s1_address -> row_7:address
+	signal mm_interconnect_0_row_7_s1_write                                : std_logic;                     -- mm_interconnect_0:row_7_s1_write -> mm_interconnect_0_row_7_s1_write:in
+	signal mm_interconnect_0_row_7_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_7_s1_writedata -> row_7:writedata
+	signal mm_interconnect_0_row_8_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_8_s1_chipselect -> row_8:chipselect
+	signal mm_interconnect_0_row_8_s1_readdata                             : std_logic_vector(31 downto 0); -- row_8:readdata -> mm_interconnect_0:row_8_s1_readdata
+	signal mm_interconnect_0_row_8_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_8_s1_address -> row_8:address
+	signal mm_interconnect_0_row_8_s1_write                                : std_logic;                     -- mm_interconnect_0:row_8_s1_write -> mm_interconnect_0_row_8_s1_write:in
+	signal mm_interconnect_0_row_8_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_8_s1_writedata -> row_8:writedata
+	signal mm_interconnect_0_row_9_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:row_9_s1_chipselect -> row_9:chipselect
+	signal mm_interconnect_0_row_9_s1_readdata                             : std_logic_vector(31 downto 0); -- row_9:readdata -> mm_interconnect_0:row_9_s1_readdata
+	signal mm_interconnect_0_row_9_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_9_s1_address -> row_9:address
+	signal mm_interconnect_0_row_9_s1_write                                : std_logic;                     -- mm_interconnect_0:row_9_s1_write -> mm_interconnect_0_row_9_s1_write:in
+	signal mm_interconnect_0_row_9_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_9_s1_writedata -> row_9:writedata
+	signal mm_interconnect_0_row_11_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_11_s1_chipselect -> row_11:chipselect
+	signal mm_interconnect_0_row_11_s1_readdata                            : std_logic_vector(31 downto 0); -- row_11:readdata -> mm_interconnect_0:row_11_s1_readdata
+	signal mm_interconnect_0_row_11_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_11_s1_address -> row_11:address
+	signal mm_interconnect_0_row_11_s1_write                               : std_logic;                     -- mm_interconnect_0:row_11_s1_write -> mm_interconnect_0_row_11_s1_write:in
+	signal mm_interconnect_0_row_11_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_11_s1_writedata -> row_11:writedata
+	signal mm_interconnect_0_row_12_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_12_s1_chipselect -> row_12:chipselect
+	signal mm_interconnect_0_row_12_s1_readdata                            : std_logic_vector(31 downto 0); -- row_12:readdata -> mm_interconnect_0:row_12_s1_readdata
+	signal mm_interconnect_0_row_12_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_12_s1_address -> row_12:address
+	signal mm_interconnect_0_row_12_s1_write                               : std_logic;                     -- mm_interconnect_0:row_12_s1_write -> mm_interconnect_0_row_12_s1_write:in
+	signal mm_interconnect_0_row_12_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_12_s1_writedata -> row_12:writedata
+	signal mm_interconnect_0_row_13_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_13_s1_chipselect -> row_13:chipselect
+	signal mm_interconnect_0_row_13_s1_readdata                            : std_logic_vector(31 downto 0); -- row_13:readdata -> mm_interconnect_0:row_13_s1_readdata
+	signal mm_interconnect_0_row_13_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_13_s1_address -> row_13:address
+	signal mm_interconnect_0_row_13_s1_write                               : std_logic;                     -- mm_interconnect_0:row_13_s1_write -> mm_interconnect_0_row_13_s1_write:in
+	signal mm_interconnect_0_row_13_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_13_s1_writedata -> row_13:writedata
+	signal mm_interconnect_0_row_14_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_14_s1_chipselect -> row_14:chipselect
+	signal mm_interconnect_0_row_14_s1_readdata                            : std_logic_vector(31 downto 0); -- row_14:readdata -> mm_interconnect_0:row_14_s1_readdata
+	signal mm_interconnect_0_row_14_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_14_s1_address -> row_14:address
+	signal mm_interconnect_0_row_14_s1_write                               : std_logic;                     -- mm_interconnect_0:row_14_s1_write -> mm_interconnect_0_row_14_s1_write:in
+	signal mm_interconnect_0_row_14_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_14_s1_writedata -> row_14:writedata
+	signal mm_interconnect_0_row_15_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_15_s1_chipselect -> row_15:chipselect
+	signal mm_interconnect_0_row_15_s1_readdata                            : std_logic_vector(31 downto 0); -- row_15:readdata -> mm_interconnect_0:row_15_s1_readdata
+	signal mm_interconnect_0_row_15_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_15_s1_address -> row_15:address
+	signal mm_interconnect_0_row_15_s1_write                               : std_logic;                     -- mm_interconnect_0:row_15_s1_write -> mm_interconnect_0_row_15_s1_write:in
+	signal mm_interconnect_0_row_15_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_15_s1_writedata -> row_15:writedata
+	signal mm_interconnect_0_row_16_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_16_s1_chipselect -> row_16:chipselect
+	signal mm_interconnect_0_row_16_s1_readdata                            : std_logic_vector(31 downto 0); -- row_16:readdata -> mm_interconnect_0:row_16_s1_readdata
+	signal mm_interconnect_0_row_16_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_16_s1_address -> row_16:address
+	signal mm_interconnect_0_row_16_s1_write                               : std_logic;                     -- mm_interconnect_0:row_16_s1_write -> mm_interconnect_0_row_16_s1_write:in
+	signal mm_interconnect_0_row_16_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_16_s1_writedata -> row_16:writedata
+	signal mm_interconnect_0_row_17_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_17_s1_chipselect -> row_17:chipselect
+	signal mm_interconnect_0_row_17_s1_readdata                            : std_logic_vector(31 downto 0); -- row_17:readdata -> mm_interconnect_0:row_17_s1_readdata
+	signal mm_interconnect_0_row_17_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_17_s1_address -> row_17:address
+	signal mm_interconnect_0_row_17_s1_write                               : std_logic;                     -- mm_interconnect_0:row_17_s1_write -> mm_interconnect_0_row_17_s1_write:in
+	signal mm_interconnect_0_row_17_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_17_s1_writedata -> row_17:writedata
+	signal mm_interconnect_0_row_18_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_18_s1_chipselect -> row_18:chipselect
+	signal mm_interconnect_0_row_18_s1_readdata                            : std_logic_vector(31 downto 0); -- row_18:readdata -> mm_interconnect_0:row_18_s1_readdata
+	signal mm_interconnect_0_row_18_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_18_s1_address -> row_18:address
+	signal mm_interconnect_0_row_18_s1_write                               : std_logic;                     -- mm_interconnect_0:row_18_s1_write -> mm_interconnect_0_row_18_s1_write:in
+	signal mm_interconnect_0_row_18_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_18_s1_writedata -> row_18:writedata
+	signal mm_interconnect_0_row_19_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_19_s1_chipselect -> row_19:chipselect
+	signal mm_interconnect_0_row_19_s1_readdata                            : std_logic_vector(31 downto 0); -- row_19:readdata -> mm_interconnect_0:row_19_s1_readdata
+	signal mm_interconnect_0_row_19_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_19_s1_address -> row_19:address
+	signal mm_interconnect_0_row_19_s1_write                               : std_logic;                     -- mm_interconnect_0:row_19_s1_write -> mm_interconnect_0_row_19_s1_write:in
+	signal mm_interconnect_0_row_19_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_19_s1_writedata -> row_19:writedata
+	signal mm_interconnect_0_row_20_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_20_s1_chipselect -> row_20:chipselect
+	signal mm_interconnect_0_row_20_s1_readdata                            : std_logic_vector(31 downto 0); -- row_20:readdata -> mm_interconnect_0:row_20_s1_readdata
+	signal mm_interconnect_0_row_20_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_20_s1_address -> row_20:address
+	signal mm_interconnect_0_row_20_s1_write                               : std_logic;                     -- mm_interconnect_0:row_20_s1_write -> mm_interconnect_0_row_20_s1_write:in
+	signal mm_interconnect_0_row_20_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_20_s1_writedata -> row_20:writedata
+	signal mm_interconnect_0_row_21_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_21_s1_chipselect -> row_21:chipselect
+	signal mm_interconnect_0_row_21_s1_readdata                            : std_logic_vector(31 downto 0); -- row_21:readdata -> mm_interconnect_0:row_21_s1_readdata
+	signal mm_interconnect_0_row_21_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_21_s1_address -> row_21:address
+	signal mm_interconnect_0_row_21_s1_write                               : std_logic;                     -- mm_interconnect_0:row_21_s1_write -> mm_interconnect_0_row_21_s1_write:in
+	signal mm_interconnect_0_row_21_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_21_s1_writedata -> row_21:writedata
+	signal mm_interconnect_0_row_22_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_22_s1_chipselect -> row_22:chipselect
+	signal mm_interconnect_0_row_22_s1_readdata                            : std_logic_vector(31 downto 0); -- row_22:readdata -> mm_interconnect_0:row_22_s1_readdata
+	signal mm_interconnect_0_row_22_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_22_s1_address -> row_22:address
+	signal mm_interconnect_0_row_22_s1_write                               : std_logic;                     -- mm_interconnect_0:row_22_s1_write -> mm_interconnect_0_row_22_s1_write:in
+	signal mm_interconnect_0_row_22_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_22_s1_writedata -> row_22:writedata
+	signal mm_interconnect_0_row_23_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_23_s1_chipselect -> row_23:chipselect
+	signal mm_interconnect_0_row_23_s1_readdata                            : std_logic_vector(31 downto 0); -- row_23:readdata -> mm_interconnect_0:row_23_s1_readdata
+	signal mm_interconnect_0_row_23_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_23_s1_address -> row_23:address
+	signal mm_interconnect_0_row_23_s1_write                               : std_logic;                     -- mm_interconnect_0:row_23_s1_write -> mm_interconnect_0_row_23_s1_write:in
+	signal mm_interconnect_0_row_23_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_23_s1_writedata -> row_23:writedata
+	signal mm_interconnect_0_row_10_s1_chipselect                          : std_logic;                     -- mm_interconnect_0:row_10_s1_chipselect -> row_10:chipselect
+	signal mm_interconnect_0_row_10_s1_readdata                            : std_logic_vector(31 downto 0); -- row_10:readdata -> mm_interconnect_0:row_10_s1_readdata
+	signal mm_interconnect_0_row_10_s1_address                             : std_logic_vector(1 downto 0);  -- mm_interconnect_0:row_10_s1_address -> row_10:address
+	signal mm_interconnect_0_row_10_s1_write                               : std_logic;                     -- mm_interconnect_0:row_10_s1_write -> mm_interconnect_0_row_10_s1_write:in
+	signal mm_interconnect_0_row_10_s1_writedata                           : std_logic_vector(31 downto 0); -- mm_interconnect_0:row_10_s1_writedata -> row_10:writedata
 	signal irq_mapper_receiver0_irq                                        : std_logic;                     -- jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	signal nios2_gen2_0_irq_irq                                            : std_logic_vector(31 downto 0); -- irq_mapper:sender_irq -> nios2_gen2_0:irq
 	signal rst_controller_reset_out_reset                                  : std_logic;                     -- rst_controller:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_controller_reset_out_reset:in, rst_translator:in_reset, sram_0:reset]
@@ -276,7 +553,31 @@ architecture rtl of sram is
 	signal reset_reset_n_ports_inv                                         : std_logic;                     -- reset_reset_n:inv -> rst_controller:reset_in0
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read_ports_inv  : std_logic;                     -- mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read:inv -> jtag_uart_0:av_read_n
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write_ports_inv : std_logic;                     -- mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write:inv -> jtag_uart_0:av_write_n
-	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag_uart_0:rst_n, nios2_gen2_0:reset_n]
+	signal mm_interconnect_0_row_0_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_0_s1_write:inv -> row_0:write_n
+	signal mm_interconnect_0_row_1_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_1_s1_write:inv -> row_1:write_n
+	signal mm_interconnect_0_row_2_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_2_s1_write:inv -> row_2:write_n
+	signal mm_interconnect_0_row_3_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_3_s1_write:inv -> row_3:write_n
+	signal mm_interconnect_0_row_4_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_4_s1_write:inv -> row_4:write_n
+	signal mm_interconnect_0_row_5_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_5_s1_write:inv -> row_5:write_n
+	signal mm_interconnect_0_row_6_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_6_s1_write:inv -> row_6:write_n
+	signal mm_interconnect_0_row_7_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_7_s1_write:inv -> row_7:write_n
+	signal mm_interconnect_0_row_8_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_8_s1_write:inv -> row_8:write_n
+	signal mm_interconnect_0_row_9_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_row_9_s1_write:inv -> row_9:write_n
+	signal mm_interconnect_0_row_11_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_11_s1_write:inv -> row_11:write_n
+	signal mm_interconnect_0_row_12_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_12_s1_write:inv -> row_12:write_n
+	signal mm_interconnect_0_row_13_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_13_s1_write:inv -> row_13:write_n
+	signal mm_interconnect_0_row_14_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_14_s1_write:inv -> row_14:write_n
+	signal mm_interconnect_0_row_15_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_15_s1_write:inv -> row_15:write_n
+	signal mm_interconnect_0_row_16_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_16_s1_write:inv -> row_16:write_n
+	signal mm_interconnect_0_row_17_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_17_s1_write:inv -> row_17:write_n
+	signal mm_interconnect_0_row_18_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_18_s1_write:inv -> row_18:write_n
+	signal mm_interconnect_0_row_19_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_19_s1_write:inv -> row_19:write_n
+	signal mm_interconnect_0_row_20_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_20_s1_write:inv -> row_20:write_n
+	signal mm_interconnect_0_row_21_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_21_s1_write:inv -> row_21:write_n
+	signal mm_interconnect_0_row_22_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_22_s1_write:inv -> row_22:write_n
+	signal mm_interconnect_0_row_23_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_23_s1_write:inv -> row_23:write_n
+	signal mm_interconnect_0_row_10_s1_write_ports_inv                     : std_logic;                     -- mm_interconnect_0_row_10_s1_write:inv -> row_10:write_n
+	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag_uart_0:rst_n, nios2_gen2_0:reset_n, row_0:reset_n, row_10:reset_n, row_11:reset_n, row_12:reset_n, row_13:reset_n, row_14:reset_n, row_15:reset_n, row_16:reset_n, row_17:reset_n, row_18:reset_n, row_19:reset_n, row_1:reset_n, row_20:reset_n, row_21:reset_n, row_22:reset_n, row_23:reset_n, row_2:reset_n, row_3:reset_n, row_4:reset_n, row_5:reset_n, row_6:reset_n, row_7:reset_n, row_8:reset_n, row_9:reset_n]
 
 begin
 
@@ -339,6 +640,294 @@ begin
 			freeze     => '0'                                               -- (terminated)
 		);
 
+	row_0 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_0_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_0_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_0_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_0_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_0_s1_readdata,        --                    .readdata
+			out_port   => row_0_export                                -- external_connection.export
+		);
+
+	row_1 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_1_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_1_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_1_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_1_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_1_s1_readdata,        --                    .readdata
+			out_port   => row_1_export                                -- external_connection.export
+		);
+
+	row_10 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_10_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_10_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_10_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_10_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_10_s1_readdata,        --                    .readdata
+			out_port   => row_10_export                                -- external_connection.export
+		);
+
+	row_11 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_11_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_11_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_11_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_11_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_11_s1_readdata,        --                    .readdata
+			out_port   => row_11_export                                -- external_connection.export
+		);
+
+	row_12 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_12_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_12_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_12_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_12_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_12_s1_readdata,        --                    .readdata
+			out_port   => row_12_export                                -- external_connection.export
+		);
+
+	row_13 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_13_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_13_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_13_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_13_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_13_s1_readdata,        --                    .readdata
+			out_port   => row_13_export                                -- external_connection.export
+		);
+
+	row_14 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_14_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_14_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_14_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_14_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_14_s1_readdata,        --                    .readdata
+			out_port   => row_14_export                                -- external_connection.export
+		);
+
+	row_15 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_15_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_15_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_15_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_15_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_15_s1_readdata,        --                    .readdata
+			out_port   => row_15_export                                -- external_connection.export
+		);
+
+	row_16 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_16_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_16_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_16_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_16_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_16_s1_readdata,        --                    .readdata
+			out_port   => row_16_export                                -- external_connection.export
+		);
+
+	row_17 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_17_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_17_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_17_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_17_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_17_s1_readdata,        --                    .readdata
+			out_port   => row_17_export                                -- external_connection.export
+		);
+
+	row_18 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_18_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_18_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_18_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_18_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_18_s1_readdata,        --                    .readdata
+			out_port   => row_18_export                                -- external_connection.export
+		);
+
+	row_19 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_19_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_19_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_19_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_19_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_19_s1_readdata,        --                    .readdata
+			out_port   => row_19_export                                -- external_connection.export
+		);
+
+	row_2 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_2_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_2_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_2_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_2_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_2_s1_readdata,        --                    .readdata
+			out_port   => row_2_export                                -- external_connection.export
+		);
+
+	row_20 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_20_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_20_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_20_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_20_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_20_s1_readdata,        --                    .readdata
+			out_port   => row_20_export                                -- external_connection.export
+		);
+
+	row_21 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_21_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_21_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_21_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_21_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_21_s1_readdata,        --                    .readdata
+			out_port   => row_21_export                                -- external_connection.export
+		);
+
+	row_22 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_22_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_22_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_22_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_22_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_22_s1_readdata,        --                    .readdata
+			out_port   => row_22_export                                -- external_connection.export
+		);
+
+	row_23 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                     --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,    --               reset.reset_n
+			address    => mm_interconnect_0_row_23_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_23_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_23_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_23_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_23_s1_readdata,        --                    .readdata
+			out_port   => row_23_export                                -- external_connection.export
+		);
+
+	row_3 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_3_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_3_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_3_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_3_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_3_s1_readdata,        --                    .readdata
+			out_port   => row_3_export                                -- external_connection.export
+		);
+
+	row_4 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_4_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_4_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_4_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_4_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_4_s1_readdata,        --                    .readdata
+			out_port   => row_4_export                                -- external_connection.export
+		);
+
+	row_5 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_5_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_5_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_5_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_5_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_5_s1_readdata,        --                    .readdata
+			out_port   => row_5_export                                -- external_connection.export
+		);
+
+	row_6 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_6_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_6_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_6_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_6_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_6_s1_readdata,        --                    .readdata
+			out_port   => row_6_export                                -- external_connection.export
+		);
+
+	row_7 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_7_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_7_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_7_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_7_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_7_s1_readdata,        --                    .readdata
+			out_port   => row_7_export                                -- external_connection.export
+		);
+
+	row_8 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_8_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_8_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_8_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_8_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_8_s1_readdata,        --                    .readdata
+			out_port   => row_8_export                                -- external_connection.export
+		);
+
+	row_9 : component sram_row_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_row_9_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_row_9_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_row_9_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_row_9_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_row_9_s1_readdata,        --                    .readdata
+			out_port   => row_9_export                                -- external_connection.export
+		);
+
 	sram_0 : component sram_sram_0
 		port map (
 			clk           => clk_clk,                                                  --                clk.clk
@@ -397,6 +986,126 @@ begin
 			onchip_memory2_0_s1_byteenable                 => mm_interconnect_0_onchip_memory2_0_s1_byteenable,            --                                         .byteenable
 			onchip_memory2_0_s1_chipselect                 => mm_interconnect_0_onchip_memory2_0_s1_chipselect,            --                                         .chipselect
 			onchip_memory2_0_s1_clken                      => mm_interconnect_0_onchip_memory2_0_s1_clken,                 --                                         .clken
+			row_0_s1_address                               => mm_interconnect_0_row_0_s1_address,                          --                                 row_0_s1.address
+			row_0_s1_write                                 => mm_interconnect_0_row_0_s1_write,                            --                                         .write
+			row_0_s1_readdata                              => mm_interconnect_0_row_0_s1_readdata,                         --                                         .readdata
+			row_0_s1_writedata                             => mm_interconnect_0_row_0_s1_writedata,                        --                                         .writedata
+			row_0_s1_chipselect                            => mm_interconnect_0_row_0_s1_chipselect,                       --                                         .chipselect
+			row_1_s1_address                               => mm_interconnect_0_row_1_s1_address,                          --                                 row_1_s1.address
+			row_1_s1_write                                 => mm_interconnect_0_row_1_s1_write,                            --                                         .write
+			row_1_s1_readdata                              => mm_interconnect_0_row_1_s1_readdata,                         --                                         .readdata
+			row_1_s1_writedata                             => mm_interconnect_0_row_1_s1_writedata,                        --                                         .writedata
+			row_1_s1_chipselect                            => mm_interconnect_0_row_1_s1_chipselect,                       --                                         .chipselect
+			row_10_s1_address                              => mm_interconnect_0_row_10_s1_address,                         --                                row_10_s1.address
+			row_10_s1_write                                => mm_interconnect_0_row_10_s1_write,                           --                                         .write
+			row_10_s1_readdata                             => mm_interconnect_0_row_10_s1_readdata,                        --                                         .readdata
+			row_10_s1_writedata                            => mm_interconnect_0_row_10_s1_writedata,                       --                                         .writedata
+			row_10_s1_chipselect                           => mm_interconnect_0_row_10_s1_chipselect,                      --                                         .chipselect
+			row_11_s1_address                              => mm_interconnect_0_row_11_s1_address,                         --                                row_11_s1.address
+			row_11_s1_write                                => mm_interconnect_0_row_11_s1_write,                           --                                         .write
+			row_11_s1_readdata                             => mm_interconnect_0_row_11_s1_readdata,                        --                                         .readdata
+			row_11_s1_writedata                            => mm_interconnect_0_row_11_s1_writedata,                       --                                         .writedata
+			row_11_s1_chipselect                           => mm_interconnect_0_row_11_s1_chipselect,                      --                                         .chipselect
+			row_12_s1_address                              => mm_interconnect_0_row_12_s1_address,                         --                                row_12_s1.address
+			row_12_s1_write                                => mm_interconnect_0_row_12_s1_write,                           --                                         .write
+			row_12_s1_readdata                             => mm_interconnect_0_row_12_s1_readdata,                        --                                         .readdata
+			row_12_s1_writedata                            => mm_interconnect_0_row_12_s1_writedata,                       --                                         .writedata
+			row_12_s1_chipselect                           => mm_interconnect_0_row_12_s1_chipselect,                      --                                         .chipselect
+			row_13_s1_address                              => mm_interconnect_0_row_13_s1_address,                         --                                row_13_s1.address
+			row_13_s1_write                                => mm_interconnect_0_row_13_s1_write,                           --                                         .write
+			row_13_s1_readdata                             => mm_interconnect_0_row_13_s1_readdata,                        --                                         .readdata
+			row_13_s1_writedata                            => mm_interconnect_0_row_13_s1_writedata,                       --                                         .writedata
+			row_13_s1_chipselect                           => mm_interconnect_0_row_13_s1_chipselect,                      --                                         .chipselect
+			row_14_s1_address                              => mm_interconnect_0_row_14_s1_address,                         --                                row_14_s1.address
+			row_14_s1_write                                => mm_interconnect_0_row_14_s1_write,                           --                                         .write
+			row_14_s1_readdata                             => mm_interconnect_0_row_14_s1_readdata,                        --                                         .readdata
+			row_14_s1_writedata                            => mm_interconnect_0_row_14_s1_writedata,                       --                                         .writedata
+			row_14_s1_chipselect                           => mm_interconnect_0_row_14_s1_chipselect,                      --                                         .chipselect
+			row_15_s1_address                              => mm_interconnect_0_row_15_s1_address,                         --                                row_15_s1.address
+			row_15_s1_write                                => mm_interconnect_0_row_15_s1_write,                           --                                         .write
+			row_15_s1_readdata                             => mm_interconnect_0_row_15_s1_readdata,                        --                                         .readdata
+			row_15_s1_writedata                            => mm_interconnect_0_row_15_s1_writedata,                       --                                         .writedata
+			row_15_s1_chipselect                           => mm_interconnect_0_row_15_s1_chipselect,                      --                                         .chipselect
+			row_16_s1_address                              => mm_interconnect_0_row_16_s1_address,                         --                                row_16_s1.address
+			row_16_s1_write                                => mm_interconnect_0_row_16_s1_write,                           --                                         .write
+			row_16_s1_readdata                             => mm_interconnect_0_row_16_s1_readdata,                        --                                         .readdata
+			row_16_s1_writedata                            => mm_interconnect_0_row_16_s1_writedata,                       --                                         .writedata
+			row_16_s1_chipselect                           => mm_interconnect_0_row_16_s1_chipselect,                      --                                         .chipselect
+			row_17_s1_address                              => mm_interconnect_0_row_17_s1_address,                         --                                row_17_s1.address
+			row_17_s1_write                                => mm_interconnect_0_row_17_s1_write,                           --                                         .write
+			row_17_s1_readdata                             => mm_interconnect_0_row_17_s1_readdata,                        --                                         .readdata
+			row_17_s1_writedata                            => mm_interconnect_0_row_17_s1_writedata,                       --                                         .writedata
+			row_17_s1_chipselect                           => mm_interconnect_0_row_17_s1_chipselect,                      --                                         .chipselect
+			row_18_s1_address                              => mm_interconnect_0_row_18_s1_address,                         --                                row_18_s1.address
+			row_18_s1_write                                => mm_interconnect_0_row_18_s1_write,                           --                                         .write
+			row_18_s1_readdata                             => mm_interconnect_0_row_18_s1_readdata,                        --                                         .readdata
+			row_18_s1_writedata                            => mm_interconnect_0_row_18_s1_writedata,                       --                                         .writedata
+			row_18_s1_chipselect                           => mm_interconnect_0_row_18_s1_chipselect,                      --                                         .chipselect
+			row_19_s1_address                              => mm_interconnect_0_row_19_s1_address,                         --                                row_19_s1.address
+			row_19_s1_write                                => mm_interconnect_0_row_19_s1_write,                           --                                         .write
+			row_19_s1_readdata                             => mm_interconnect_0_row_19_s1_readdata,                        --                                         .readdata
+			row_19_s1_writedata                            => mm_interconnect_0_row_19_s1_writedata,                       --                                         .writedata
+			row_19_s1_chipselect                           => mm_interconnect_0_row_19_s1_chipselect,                      --                                         .chipselect
+			row_2_s1_address                               => mm_interconnect_0_row_2_s1_address,                          --                                 row_2_s1.address
+			row_2_s1_write                                 => mm_interconnect_0_row_2_s1_write,                            --                                         .write
+			row_2_s1_readdata                              => mm_interconnect_0_row_2_s1_readdata,                         --                                         .readdata
+			row_2_s1_writedata                             => mm_interconnect_0_row_2_s1_writedata,                        --                                         .writedata
+			row_2_s1_chipselect                            => mm_interconnect_0_row_2_s1_chipselect,                       --                                         .chipselect
+			row_20_s1_address                              => mm_interconnect_0_row_20_s1_address,                         --                                row_20_s1.address
+			row_20_s1_write                                => mm_interconnect_0_row_20_s1_write,                           --                                         .write
+			row_20_s1_readdata                             => mm_interconnect_0_row_20_s1_readdata,                        --                                         .readdata
+			row_20_s1_writedata                            => mm_interconnect_0_row_20_s1_writedata,                       --                                         .writedata
+			row_20_s1_chipselect                           => mm_interconnect_0_row_20_s1_chipselect,                      --                                         .chipselect
+			row_21_s1_address                              => mm_interconnect_0_row_21_s1_address,                         --                                row_21_s1.address
+			row_21_s1_write                                => mm_interconnect_0_row_21_s1_write,                           --                                         .write
+			row_21_s1_readdata                             => mm_interconnect_0_row_21_s1_readdata,                        --                                         .readdata
+			row_21_s1_writedata                            => mm_interconnect_0_row_21_s1_writedata,                       --                                         .writedata
+			row_21_s1_chipselect                           => mm_interconnect_0_row_21_s1_chipselect,                      --                                         .chipselect
+			row_22_s1_address                              => mm_interconnect_0_row_22_s1_address,                         --                                row_22_s1.address
+			row_22_s1_write                                => mm_interconnect_0_row_22_s1_write,                           --                                         .write
+			row_22_s1_readdata                             => mm_interconnect_0_row_22_s1_readdata,                        --                                         .readdata
+			row_22_s1_writedata                            => mm_interconnect_0_row_22_s1_writedata,                       --                                         .writedata
+			row_22_s1_chipselect                           => mm_interconnect_0_row_22_s1_chipselect,                      --                                         .chipselect
+			row_23_s1_address                              => mm_interconnect_0_row_23_s1_address,                         --                                row_23_s1.address
+			row_23_s1_write                                => mm_interconnect_0_row_23_s1_write,                           --                                         .write
+			row_23_s1_readdata                             => mm_interconnect_0_row_23_s1_readdata,                        --                                         .readdata
+			row_23_s1_writedata                            => mm_interconnect_0_row_23_s1_writedata,                       --                                         .writedata
+			row_23_s1_chipselect                           => mm_interconnect_0_row_23_s1_chipselect,                      --                                         .chipselect
+			row_3_s1_address                               => mm_interconnect_0_row_3_s1_address,                          --                                 row_3_s1.address
+			row_3_s1_write                                 => mm_interconnect_0_row_3_s1_write,                            --                                         .write
+			row_3_s1_readdata                              => mm_interconnect_0_row_3_s1_readdata,                         --                                         .readdata
+			row_3_s1_writedata                             => mm_interconnect_0_row_3_s1_writedata,                        --                                         .writedata
+			row_3_s1_chipselect                            => mm_interconnect_0_row_3_s1_chipselect,                       --                                         .chipselect
+			row_4_s1_address                               => mm_interconnect_0_row_4_s1_address,                          --                                 row_4_s1.address
+			row_4_s1_write                                 => mm_interconnect_0_row_4_s1_write,                            --                                         .write
+			row_4_s1_readdata                              => mm_interconnect_0_row_4_s1_readdata,                         --                                         .readdata
+			row_4_s1_writedata                             => mm_interconnect_0_row_4_s1_writedata,                        --                                         .writedata
+			row_4_s1_chipselect                            => mm_interconnect_0_row_4_s1_chipselect,                       --                                         .chipselect
+			row_5_s1_address                               => mm_interconnect_0_row_5_s1_address,                          --                                 row_5_s1.address
+			row_5_s1_write                                 => mm_interconnect_0_row_5_s1_write,                            --                                         .write
+			row_5_s1_readdata                              => mm_interconnect_0_row_5_s1_readdata,                         --                                         .readdata
+			row_5_s1_writedata                             => mm_interconnect_0_row_5_s1_writedata,                        --                                         .writedata
+			row_5_s1_chipselect                            => mm_interconnect_0_row_5_s1_chipselect,                       --                                         .chipselect
+			row_6_s1_address                               => mm_interconnect_0_row_6_s1_address,                          --                                 row_6_s1.address
+			row_6_s1_write                                 => mm_interconnect_0_row_6_s1_write,                            --                                         .write
+			row_6_s1_readdata                              => mm_interconnect_0_row_6_s1_readdata,                         --                                         .readdata
+			row_6_s1_writedata                             => mm_interconnect_0_row_6_s1_writedata,                        --                                         .writedata
+			row_6_s1_chipselect                            => mm_interconnect_0_row_6_s1_chipselect,                       --                                         .chipselect
+			row_7_s1_address                               => mm_interconnect_0_row_7_s1_address,                          --                                 row_7_s1.address
+			row_7_s1_write                                 => mm_interconnect_0_row_7_s1_write,                            --                                         .write
+			row_7_s1_readdata                              => mm_interconnect_0_row_7_s1_readdata,                         --                                         .readdata
+			row_7_s1_writedata                             => mm_interconnect_0_row_7_s1_writedata,                        --                                         .writedata
+			row_7_s1_chipselect                            => mm_interconnect_0_row_7_s1_chipselect,                       --                                         .chipselect
+			row_8_s1_address                               => mm_interconnect_0_row_8_s1_address,                          --                                 row_8_s1.address
+			row_8_s1_write                                 => mm_interconnect_0_row_8_s1_write,                            --                                         .write
+			row_8_s1_readdata                              => mm_interconnect_0_row_8_s1_readdata,                         --                                         .readdata
+			row_8_s1_writedata                             => mm_interconnect_0_row_8_s1_writedata,                        --                                         .writedata
+			row_8_s1_chipselect                            => mm_interconnect_0_row_8_s1_chipselect,                       --                                         .chipselect
+			row_9_s1_address                               => mm_interconnect_0_row_9_s1_address,                          --                                 row_9_s1.address
+			row_9_s1_write                                 => mm_interconnect_0_row_9_s1_write,                            --                                         .write
+			row_9_s1_readdata                              => mm_interconnect_0_row_9_s1_readdata,                         --                                         .readdata
+			row_9_s1_writedata                             => mm_interconnect_0_row_9_s1_writedata,                        --                                         .writedata
+			row_9_s1_chipselect                            => mm_interconnect_0_row_9_s1_chipselect,                       --                                         .chipselect
 			sram_0_avalon_sram_slave_address               => mm_interconnect_0_sram_0_avalon_sram_slave_address,          --                 sram_0_avalon_sram_slave.address
 			sram_0_avalon_sram_slave_write                 => mm_interconnect_0_sram_0_avalon_sram_slave_write,            --                                         .write
 			sram_0_avalon_sram_slave_read                  => mm_interconnect_0_sram_0_avalon_sram_slave_read,             --                                         .read
@@ -484,6 +1193,54 @@ begin
 	mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read_ports_inv <= not mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read;
 
 	mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write_ports_inv <= not mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write;
+
+	mm_interconnect_0_row_0_s1_write_ports_inv <= not mm_interconnect_0_row_0_s1_write;
+
+	mm_interconnect_0_row_1_s1_write_ports_inv <= not mm_interconnect_0_row_1_s1_write;
+
+	mm_interconnect_0_row_2_s1_write_ports_inv <= not mm_interconnect_0_row_2_s1_write;
+
+	mm_interconnect_0_row_3_s1_write_ports_inv <= not mm_interconnect_0_row_3_s1_write;
+
+	mm_interconnect_0_row_4_s1_write_ports_inv <= not mm_interconnect_0_row_4_s1_write;
+
+	mm_interconnect_0_row_5_s1_write_ports_inv <= not mm_interconnect_0_row_5_s1_write;
+
+	mm_interconnect_0_row_6_s1_write_ports_inv <= not mm_interconnect_0_row_6_s1_write;
+
+	mm_interconnect_0_row_7_s1_write_ports_inv <= not mm_interconnect_0_row_7_s1_write;
+
+	mm_interconnect_0_row_8_s1_write_ports_inv <= not mm_interconnect_0_row_8_s1_write;
+
+	mm_interconnect_0_row_9_s1_write_ports_inv <= not mm_interconnect_0_row_9_s1_write;
+
+	mm_interconnect_0_row_11_s1_write_ports_inv <= not mm_interconnect_0_row_11_s1_write;
+
+	mm_interconnect_0_row_12_s1_write_ports_inv <= not mm_interconnect_0_row_12_s1_write;
+
+	mm_interconnect_0_row_13_s1_write_ports_inv <= not mm_interconnect_0_row_13_s1_write;
+
+	mm_interconnect_0_row_14_s1_write_ports_inv <= not mm_interconnect_0_row_14_s1_write;
+
+	mm_interconnect_0_row_15_s1_write_ports_inv <= not mm_interconnect_0_row_15_s1_write;
+
+	mm_interconnect_0_row_16_s1_write_ports_inv <= not mm_interconnect_0_row_16_s1_write;
+
+	mm_interconnect_0_row_17_s1_write_ports_inv <= not mm_interconnect_0_row_17_s1_write;
+
+	mm_interconnect_0_row_18_s1_write_ports_inv <= not mm_interconnect_0_row_18_s1_write;
+
+	mm_interconnect_0_row_19_s1_write_ports_inv <= not mm_interconnect_0_row_19_s1_write;
+
+	mm_interconnect_0_row_20_s1_write_ports_inv <= not mm_interconnect_0_row_20_s1_write;
+
+	mm_interconnect_0_row_21_s1_write_ports_inv <= not mm_interconnect_0_row_21_s1_write;
+
+	mm_interconnect_0_row_22_s1_write_ports_inv <= not mm_interconnect_0_row_22_s1_write;
+
+	mm_interconnect_0_row_23_s1_write_ports_inv <= not mm_interconnect_0_row_23_s1_write;
+
+	mm_interconnect_0_row_10_s1_write_ports_inv <= not mm_interconnect_0_row_10_s1_write;
 
 	rst_controller_reset_out_reset_ports_inv <= not rst_controller_reset_out_reset;
 

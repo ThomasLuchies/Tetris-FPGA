@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'sram'
  * SOPC Builder design path: ../../sram.sopcinfo
  *
- * Generated: Fri Jun 23 20:09:07 CEST 2023
+ * Generated: Fri Aug 25 23:00:40 CEST 2023
  */
 
 /*
@@ -68,7 +68,7 @@
 #define ALT_CPU_CPU_ID_SIZE 1
 #define ALT_CPU_CPU_ID_VALUE 0x00000000
 #define ALT_CPU_CPU_IMPLEMENTATION "tiny"
-#define ALT_CPU_DATA_ADDR_WIDTH 0x16
+#define ALT_CPU_DATA_ADDR_WIDTH 0x1a
 #define ALT_CPU_DCACHE_LINE_SIZE 0
 #define ALT_CPU_DCACHE_LINE_SIZE_LOG2 0
 #define ALT_CPU_DCACHE_SIZE 0
@@ -105,7 +105,7 @@
 #define NIOS2_CPU_ID_SIZE 1
 #define NIOS2_CPU_ID_VALUE 0x00000000
 #define NIOS2_CPU_IMPLEMENTATION "tiny"
-#define NIOS2_DATA_ADDR_WIDTH 0x16
+#define NIOS2_DATA_ADDR_WIDTH 0x1a
 #define NIOS2_DCACHE_LINE_SIZE 0
 #define NIOS2_DCACHE_LINE_SIZE_LOG2 0
 #define NIOS2_DCACHE_SIZE 0
@@ -135,6 +135,7 @@
 
 #define __ALTERA_AVALON_JTAG_UART
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
+#define __ALTERA_AVALON_PIO
 #define __ALTERA_NIOS2_GEN2
 #define __ALTERA_UP_AVALON_SRAM
 
@@ -231,6 +232,654 @@
 #define ONCHIP_MEMORY2_0_SPAN 200096
 #define ONCHIP_MEMORY2_0_TYPE "altera_avalon_onchip_memory2"
 #define ONCHIP_MEMORY2_0_WRITABLE 1
+
+
+/*
+ * row_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_0 altera_avalon_pio
+#define ROW_0_BASE 0x250000
+#define ROW_0_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_0_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_0_CAPTURE 0
+#define ROW_0_DATA_WIDTH 30
+#define ROW_0_DO_TEST_BENCH_WIRING 0
+#define ROW_0_DRIVEN_SIM_VALUE 0
+#define ROW_0_EDGE_TYPE "NONE"
+#define ROW_0_FREQ 50000000
+#define ROW_0_HAS_IN 0
+#define ROW_0_HAS_OUT 1
+#define ROW_0_HAS_TRI 0
+#define ROW_0_IRQ -1
+#define ROW_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_0_IRQ_TYPE "NONE"
+#define ROW_0_NAME "/dev/row_0"
+#define ROW_0_RESET_VALUE 0
+#define ROW_0_SPAN 16
+#define ROW_0_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_1 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_1 altera_avalon_pio
+#define ROW_1_BASE 0x2500010
+#define ROW_1_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_1_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_1_CAPTURE 0
+#define ROW_1_DATA_WIDTH 30
+#define ROW_1_DO_TEST_BENCH_WIRING 0
+#define ROW_1_DRIVEN_SIM_VALUE 0
+#define ROW_1_EDGE_TYPE "NONE"
+#define ROW_1_FREQ 50000000
+#define ROW_1_HAS_IN 0
+#define ROW_1_HAS_OUT 1
+#define ROW_1_HAS_TRI 0
+#define ROW_1_IRQ -1
+#define ROW_1_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_1_IRQ_TYPE "NONE"
+#define ROW_1_NAME "/dev/row_1"
+#define ROW_1_RESET_VALUE 0
+#define ROW_1_SPAN 16
+#define ROW_1_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_10 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_10 altera_avalon_pio
+#define ROW_10_BASE 0x25000a0
+#define ROW_10_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_10_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_10_CAPTURE 0
+#define ROW_10_DATA_WIDTH 30
+#define ROW_10_DO_TEST_BENCH_WIRING 0
+#define ROW_10_DRIVEN_SIM_VALUE 0
+#define ROW_10_EDGE_TYPE "NONE"
+#define ROW_10_FREQ 50000000
+#define ROW_10_HAS_IN 0
+#define ROW_10_HAS_OUT 1
+#define ROW_10_HAS_TRI 0
+#define ROW_10_IRQ -1
+#define ROW_10_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_10_IRQ_TYPE "NONE"
+#define ROW_10_NAME "/dev/row_10"
+#define ROW_10_RESET_VALUE 0
+#define ROW_10_SPAN 16
+#define ROW_10_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_11 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_11 altera_avalon_pio
+#define ROW_11_BASE 0x25000b0
+#define ROW_11_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_11_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_11_CAPTURE 0
+#define ROW_11_DATA_WIDTH 30
+#define ROW_11_DO_TEST_BENCH_WIRING 0
+#define ROW_11_DRIVEN_SIM_VALUE 0
+#define ROW_11_EDGE_TYPE "NONE"
+#define ROW_11_FREQ 50000000
+#define ROW_11_HAS_IN 0
+#define ROW_11_HAS_OUT 1
+#define ROW_11_HAS_TRI 0
+#define ROW_11_IRQ -1
+#define ROW_11_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_11_IRQ_TYPE "NONE"
+#define ROW_11_NAME "/dev/row_11"
+#define ROW_11_RESET_VALUE 0
+#define ROW_11_SPAN 16
+#define ROW_11_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_12 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_12 altera_avalon_pio
+#define ROW_12_BASE 0x25000c0
+#define ROW_12_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_12_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_12_CAPTURE 0
+#define ROW_12_DATA_WIDTH 30
+#define ROW_12_DO_TEST_BENCH_WIRING 0
+#define ROW_12_DRIVEN_SIM_VALUE 0
+#define ROW_12_EDGE_TYPE "NONE"
+#define ROW_12_FREQ 50000000
+#define ROW_12_HAS_IN 0
+#define ROW_12_HAS_OUT 1
+#define ROW_12_HAS_TRI 0
+#define ROW_12_IRQ -1
+#define ROW_12_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_12_IRQ_TYPE "NONE"
+#define ROW_12_NAME "/dev/row_12"
+#define ROW_12_RESET_VALUE 0
+#define ROW_12_SPAN 16
+#define ROW_12_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_13 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_13 altera_avalon_pio
+#define ROW_13_BASE 0x25000d0
+#define ROW_13_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_13_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_13_CAPTURE 0
+#define ROW_13_DATA_WIDTH 30
+#define ROW_13_DO_TEST_BENCH_WIRING 0
+#define ROW_13_DRIVEN_SIM_VALUE 0
+#define ROW_13_EDGE_TYPE "NONE"
+#define ROW_13_FREQ 50000000
+#define ROW_13_HAS_IN 0
+#define ROW_13_HAS_OUT 1
+#define ROW_13_HAS_TRI 0
+#define ROW_13_IRQ -1
+#define ROW_13_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_13_IRQ_TYPE "NONE"
+#define ROW_13_NAME "/dev/row_13"
+#define ROW_13_RESET_VALUE 0
+#define ROW_13_SPAN 16
+#define ROW_13_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_14 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_14 altera_avalon_pio
+#define ROW_14_BASE 0x25000e0
+#define ROW_14_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_14_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_14_CAPTURE 0
+#define ROW_14_DATA_WIDTH 30
+#define ROW_14_DO_TEST_BENCH_WIRING 0
+#define ROW_14_DRIVEN_SIM_VALUE 0
+#define ROW_14_EDGE_TYPE "NONE"
+#define ROW_14_FREQ 50000000
+#define ROW_14_HAS_IN 0
+#define ROW_14_HAS_OUT 1
+#define ROW_14_HAS_TRI 0
+#define ROW_14_IRQ -1
+#define ROW_14_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_14_IRQ_TYPE "NONE"
+#define ROW_14_NAME "/dev/row_14"
+#define ROW_14_RESET_VALUE 0
+#define ROW_14_SPAN 16
+#define ROW_14_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_15 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_15 altera_avalon_pio
+#define ROW_15_BASE 0x25000f0
+#define ROW_15_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_15_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_15_CAPTURE 0
+#define ROW_15_DATA_WIDTH 30
+#define ROW_15_DO_TEST_BENCH_WIRING 0
+#define ROW_15_DRIVEN_SIM_VALUE 0
+#define ROW_15_EDGE_TYPE "NONE"
+#define ROW_15_FREQ 50000000
+#define ROW_15_HAS_IN 0
+#define ROW_15_HAS_OUT 1
+#define ROW_15_HAS_TRI 0
+#define ROW_15_IRQ -1
+#define ROW_15_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_15_IRQ_TYPE "NONE"
+#define ROW_15_NAME "/dev/row_15"
+#define ROW_15_RESET_VALUE 0
+#define ROW_15_SPAN 16
+#define ROW_15_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_16 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_16 altera_avalon_pio
+#define ROW_16_BASE 0x2500100
+#define ROW_16_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_16_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_16_CAPTURE 0
+#define ROW_16_DATA_WIDTH 30
+#define ROW_16_DO_TEST_BENCH_WIRING 0
+#define ROW_16_DRIVEN_SIM_VALUE 0
+#define ROW_16_EDGE_TYPE "NONE"
+#define ROW_16_FREQ 50000000
+#define ROW_16_HAS_IN 0
+#define ROW_16_HAS_OUT 1
+#define ROW_16_HAS_TRI 0
+#define ROW_16_IRQ -1
+#define ROW_16_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_16_IRQ_TYPE "NONE"
+#define ROW_16_NAME "/dev/row_16"
+#define ROW_16_RESET_VALUE 0
+#define ROW_16_SPAN 16
+#define ROW_16_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_17 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_17 altera_avalon_pio
+#define ROW_17_BASE 0x2500110
+#define ROW_17_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_17_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_17_CAPTURE 0
+#define ROW_17_DATA_WIDTH 30
+#define ROW_17_DO_TEST_BENCH_WIRING 0
+#define ROW_17_DRIVEN_SIM_VALUE 0
+#define ROW_17_EDGE_TYPE "NONE"
+#define ROW_17_FREQ 50000000
+#define ROW_17_HAS_IN 0
+#define ROW_17_HAS_OUT 1
+#define ROW_17_HAS_TRI 0
+#define ROW_17_IRQ -1
+#define ROW_17_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_17_IRQ_TYPE "NONE"
+#define ROW_17_NAME "/dev/row_17"
+#define ROW_17_RESET_VALUE 0
+#define ROW_17_SPAN 16
+#define ROW_17_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_18 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_18 altera_avalon_pio
+#define ROW_18_BASE 0x2500120
+#define ROW_18_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_18_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_18_CAPTURE 0
+#define ROW_18_DATA_WIDTH 30
+#define ROW_18_DO_TEST_BENCH_WIRING 0
+#define ROW_18_DRIVEN_SIM_VALUE 0
+#define ROW_18_EDGE_TYPE "NONE"
+#define ROW_18_FREQ 50000000
+#define ROW_18_HAS_IN 0
+#define ROW_18_HAS_OUT 1
+#define ROW_18_HAS_TRI 0
+#define ROW_18_IRQ -1
+#define ROW_18_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_18_IRQ_TYPE "NONE"
+#define ROW_18_NAME "/dev/row_18"
+#define ROW_18_RESET_VALUE 0
+#define ROW_18_SPAN 16
+#define ROW_18_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_19 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_19 altera_avalon_pio
+#define ROW_19_BASE 0x2500130
+#define ROW_19_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_19_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_19_CAPTURE 0
+#define ROW_19_DATA_WIDTH 30
+#define ROW_19_DO_TEST_BENCH_WIRING 0
+#define ROW_19_DRIVEN_SIM_VALUE 0
+#define ROW_19_EDGE_TYPE "NONE"
+#define ROW_19_FREQ 50000000
+#define ROW_19_HAS_IN 0
+#define ROW_19_HAS_OUT 1
+#define ROW_19_HAS_TRI 0
+#define ROW_19_IRQ -1
+#define ROW_19_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_19_IRQ_TYPE "NONE"
+#define ROW_19_NAME "/dev/row_19"
+#define ROW_19_RESET_VALUE 0
+#define ROW_19_SPAN 16
+#define ROW_19_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_2 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_2 altera_avalon_pio
+#define ROW_2_BASE 0x2500020
+#define ROW_2_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_2_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_2_CAPTURE 0
+#define ROW_2_DATA_WIDTH 30
+#define ROW_2_DO_TEST_BENCH_WIRING 0
+#define ROW_2_DRIVEN_SIM_VALUE 0
+#define ROW_2_EDGE_TYPE "NONE"
+#define ROW_2_FREQ 50000000
+#define ROW_2_HAS_IN 0
+#define ROW_2_HAS_OUT 1
+#define ROW_2_HAS_TRI 0
+#define ROW_2_IRQ -1
+#define ROW_2_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_2_IRQ_TYPE "NONE"
+#define ROW_2_NAME "/dev/row_2"
+#define ROW_2_RESET_VALUE 0
+#define ROW_2_SPAN 16
+#define ROW_2_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_20 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_20 altera_avalon_pio
+#define ROW_20_BASE 0x2500140
+#define ROW_20_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_20_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_20_CAPTURE 0
+#define ROW_20_DATA_WIDTH 30
+#define ROW_20_DO_TEST_BENCH_WIRING 0
+#define ROW_20_DRIVEN_SIM_VALUE 0
+#define ROW_20_EDGE_TYPE "NONE"
+#define ROW_20_FREQ 50000000
+#define ROW_20_HAS_IN 0
+#define ROW_20_HAS_OUT 1
+#define ROW_20_HAS_TRI 0
+#define ROW_20_IRQ -1
+#define ROW_20_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_20_IRQ_TYPE "NONE"
+#define ROW_20_NAME "/dev/row_20"
+#define ROW_20_RESET_VALUE 0
+#define ROW_20_SPAN 16
+#define ROW_20_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_21 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_21 altera_avalon_pio
+#define ROW_21_BASE 0x2500150
+#define ROW_21_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_21_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_21_CAPTURE 0
+#define ROW_21_DATA_WIDTH 30
+#define ROW_21_DO_TEST_BENCH_WIRING 0
+#define ROW_21_DRIVEN_SIM_VALUE 0
+#define ROW_21_EDGE_TYPE "NONE"
+#define ROW_21_FREQ 50000000
+#define ROW_21_HAS_IN 0
+#define ROW_21_HAS_OUT 1
+#define ROW_21_HAS_TRI 0
+#define ROW_21_IRQ -1
+#define ROW_21_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_21_IRQ_TYPE "NONE"
+#define ROW_21_NAME "/dev/row_21"
+#define ROW_21_RESET_VALUE 0
+#define ROW_21_SPAN 16
+#define ROW_21_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_22 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_22 altera_avalon_pio
+#define ROW_22_BASE 0x2500160
+#define ROW_22_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_22_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_22_CAPTURE 0
+#define ROW_22_DATA_WIDTH 30
+#define ROW_22_DO_TEST_BENCH_WIRING 0
+#define ROW_22_DRIVEN_SIM_VALUE 0
+#define ROW_22_EDGE_TYPE "NONE"
+#define ROW_22_FREQ 50000000
+#define ROW_22_HAS_IN 0
+#define ROW_22_HAS_OUT 1
+#define ROW_22_HAS_TRI 0
+#define ROW_22_IRQ -1
+#define ROW_22_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_22_IRQ_TYPE "NONE"
+#define ROW_22_NAME "/dev/row_22"
+#define ROW_22_RESET_VALUE 0
+#define ROW_22_SPAN 16
+#define ROW_22_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_23 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_23 altera_avalon_pio
+#define ROW_23_BASE 0x2500170
+#define ROW_23_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_23_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_23_CAPTURE 0
+#define ROW_23_DATA_WIDTH 30
+#define ROW_23_DO_TEST_BENCH_WIRING 0
+#define ROW_23_DRIVEN_SIM_VALUE 0
+#define ROW_23_EDGE_TYPE "NONE"
+#define ROW_23_FREQ 50000000
+#define ROW_23_HAS_IN 0
+#define ROW_23_HAS_OUT 1
+#define ROW_23_HAS_TRI 0
+#define ROW_23_IRQ -1
+#define ROW_23_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_23_IRQ_TYPE "NONE"
+#define ROW_23_NAME "/dev/row_23"
+#define ROW_23_RESET_VALUE 0
+#define ROW_23_SPAN 16
+#define ROW_23_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_3 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_3 altera_avalon_pio
+#define ROW_3_BASE 0x2500030
+#define ROW_3_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_3_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_3_CAPTURE 0
+#define ROW_3_DATA_WIDTH 30
+#define ROW_3_DO_TEST_BENCH_WIRING 0
+#define ROW_3_DRIVEN_SIM_VALUE 0
+#define ROW_3_EDGE_TYPE "NONE"
+#define ROW_3_FREQ 50000000
+#define ROW_3_HAS_IN 0
+#define ROW_3_HAS_OUT 1
+#define ROW_3_HAS_TRI 0
+#define ROW_3_IRQ -1
+#define ROW_3_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_3_IRQ_TYPE "NONE"
+#define ROW_3_NAME "/dev/row_3"
+#define ROW_3_RESET_VALUE 0
+#define ROW_3_SPAN 16
+#define ROW_3_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_4 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_4 altera_avalon_pio
+#define ROW_4_BASE 0x2500040
+#define ROW_4_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_4_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_4_CAPTURE 0
+#define ROW_4_DATA_WIDTH 30
+#define ROW_4_DO_TEST_BENCH_WIRING 0
+#define ROW_4_DRIVEN_SIM_VALUE 0
+#define ROW_4_EDGE_TYPE "NONE"
+#define ROW_4_FREQ 50000000
+#define ROW_4_HAS_IN 0
+#define ROW_4_HAS_OUT 1
+#define ROW_4_HAS_TRI 0
+#define ROW_4_IRQ -1
+#define ROW_4_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_4_IRQ_TYPE "NONE"
+#define ROW_4_NAME "/dev/row_4"
+#define ROW_4_RESET_VALUE 0
+#define ROW_4_SPAN 16
+#define ROW_4_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_5 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_5 altera_avalon_pio
+#define ROW_5_BASE 0x2500050
+#define ROW_5_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_5_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_5_CAPTURE 0
+#define ROW_5_DATA_WIDTH 30
+#define ROW_5_DO_TEST_BENCH_WIRING 0
+#define ROW_5_DRIVEN_SIM_VALUE 0
+#define ROW_5_EDGE_TYPE "NONE"
+#define ROW_5_FREQ 50000000
+#define ROW_5_HAS_IN 0
+#define ROW_5_HAS_OUT 1
+#define ROW_5_HAS_TRI 0
+#define ROW_5_IRQ -1
+#define ROW_5_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_5_IRQ_TYPE "NONE"
+#define ROW_5_NAME "/dev/row_5"
+#define ROW_5_RESET_VALUE 0
+#define ROW_5_SPAN 16
+#define ROW_5_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_6 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_6 altera_avalon_pio
+#define ROW_6_BASE 0x2500060
+#define ROW_6_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_6_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_6_CAPTURE 0
+#define ROW_6_DATA_WIDTH 30
+#define ROW_6_DO_TEST_BENCH_WIRING 0
+#define ROW_6_DRIVEN_SIM_VALUE 0
+#define ROW_6_EDGE_TYPE "NONE"
+#define ROW_6_FREQ 50000000
+#define ROW_6_HAS_IN 0
+#define ROW_6_HAS_OUT 1
+#define ROW_6_HAS_TRI 0
+#define ROW_6_IRQ -1
+#define ROW_6_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_6_IRQ_TYPE "NONE"
+#define ROW_6_NAME "/dev/row_6"
+#define ROW_6_RESET_VALUE 0
+#define ROW_6_SPAN 16
+#define ROW_6_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_7 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_7 altera_avalon_pio
+#define ROW_7_BASE 0x2500070
+#define ROW_7_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_7_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_7_CAPTURE 0
+#define ROW_7_DATA_WIDTH 30
+#define ROW_7_DO_TEST_BENCH_WIRING 0
+#define ROW_7_DRIVEN_SIM_VALUE 0
+#define ROW_7_EDGE_TYPE "NONE"
+#define ROW_7_FREQ 50000000
+#define ROW_7_HAS_IN 0
+#define ROW_7_HAS_OUT 1
+#define ROW_7_HAS_TRI 0
+#define ROW_7_IRQ -1
+#define ROW_7_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_7_IRQ_TYPE "NONE"
+#define ROW_7_NAME "/dev/row_7"
+#define ROW_7_RESET_VALUE 0
+#define ROW_7_SPAN 16
+#define ROW_7_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_8 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_8 altera_avalon_pio
+#define ROW_8_BASE 0x2500080
+#define ROW_8_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_8_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_8_CAPTURE 0
+#define ROW_8_DATA_WIDTH 30
+#define ROW_8_DO_TEST_BENCH_WIRING 0
+#define ROW_8_DRIVEN_SIM_VALUE 0
+#define ROW_8_EDGE_TYPE "NONE"
+#define ROW_8_FREQ 50000000
+#define ROW_8_HAS_IN 0
+#define ROW_8_HAS_OUT 1
+#define ROW_8_HAS_TRI 0
+#define ROW_8_IRQ -1
+#define ROW_8_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_8_IRQ_TYPE "NONE"
+#define ROW_8_NAME "/dev/row_8"
+#define ROW_8_RESET_VALUE 0
+#define ROW_8_SPAN 16
+#define ROW_8_TYPE "altera_avalon_pio"
+
+
+/*
+ * row_9 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_row_9 altera_avalon_pio
+#define ROW_9_BASE 0x2500090
+#define ROW_9_BIT_CLEARING_EDGE_REGISTER 0
+#define ROW_9_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROW_9_CAPTURE 0
+#define ROW_9_DATA_WIDTH 30
+#define ROW_9_DO_TEST_BENCH_WIRING 0
+#define ROW_9_DRIVEN_SIM_VALUE 0
+#define ROW_9_EDGE_TYPE "NONE"
+#define ROW_9_FREQ 50000000
+#define ROW_9_HAS_IN 0
+#define ROW_9_HAS_OUT 1
+#define ROW_9_HAS_TRI 0
+#define ROW_9_IRQ -1
+#define ROW_9_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define ROW_9_IRQ_TYPE "NONE"
+#define ROW_9_NAME "/dev/row_9"
+#define ROW_9_RESET_VALUE 0
+#define ROW_9_SPAN 16
+#define ROW_9_TYPE "altera_avalon_pio"
 
 
 /*

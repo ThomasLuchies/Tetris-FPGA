@@ -82,32 +82,50 @@
 #include "system.h"
 #include "io.h"
 #include <unistd.h>
+#include "altera_avalon_pio_regs.h"
+
+int grid[24][10];
 
 int main()
 {
-	int i = 0;
-  alt_putstr("Hello from Nios II!\n");
-  //alt_putstr("sram before:" + IORD_ALTERA_AVALON_PIO_DATA(SRAM_BASE) + "\n");
-  IOWR_16DIRECT(SRAM_0_BASE, 0, 0x89);
-  volatile alt_u16 value = IORD_16DIRECT(SRAM_0_BASE, 0);
+  unsigned char rowAdresses[24] = {ROW_0_BASE, ROW_1_BASE, ROW_2_BASE, ROW_3_BASE, ROW_4_BASE, ROW_5_BASE, ROW_6_BASE, ROW_7_BASE, ROW_8_BASE, ROW_9_BASE, ROW_10_BASE, ROW_11_BASE, ROW_12_BASE, ROW_13_BASE, ROW_14_BASE, ROW_15_BASE, ROW_16_BASE, ROW_17_BASE, ROW_18_BASE, ROW_19_BASE, ROW_20_BASE, ROW_21_BASE, ROW_22_BASE, ROW_23_BASE};
+  unsigned char rowArray[30];
 
-
-  printf(" before (value: %d)\n\n", value);
-
-  //IOWR(SRAM_BASE, 0, 0x00);
-
-
-
-
+  clearGrid();
   /* Event loop never exits. */
   while (1)
   {
+	  grid[0][5] = 2;
+
+	/*  for(int y = 0; y < 23; y++)
+	  {
+		  for(int x = 0; x < 9; x++)
+		  {
+			  rowArray[3 * x] = grid[y][x] & 0x07;
+			  if(grid[y][x] != 0)
+			  {
+				  printf("x: %d, y: %d, rowAdress %\n", x, y, rowAdresses[y]);
+			  }
+		  }
+
+		  IOWR_ALTERA_AVALON_PIO_DATA(rowAdresses[y], rowArray);
+	  }*/
 	  //IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE));
-	  IOWR(SRAM_0_BASE, 0, 0x89);
-	  value = IORD(SRAM_0_BASE, 1010);
-	    printf("value: %d\n", value);
+	  IOWR_ALTERA_AVALON_PIO_DATA(ROW_0_BASE, 0b011010000000000000000000000000);
+	  IOWR_ALTERA_AVALON_PIO_DATA(ROW_1_BASE, 0b11000100110011101111110001110);
 	    usleep(1000000);
   }
 
   return 0;
+}
+
+int clearGrid()
+{
+	for(int y = 0; y < 23; y++)
+	{
+	  for(int x = 0; x < 9; x++)
+	  {
+		  grid[y][x] = 0;
+	  }
+	}
 }

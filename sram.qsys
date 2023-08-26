@@ -80,6 +80,390 @@
          type = "String";
       }
    }
+   element row_0
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element row_0.s1
+   {
+      datum baseAddress
+      {
+         value = "2424832";
+         type = "String";
+      }
+   }
+   element row_1
+   {
+      datum _sortIndex
+      {
+         value = "6";
+         type = "int";
+      }
+   }
+   element row_1.s1
+   {
+      datum baseAddress
+      {
+         value = "38797328";
+         type = "String";
+      }
+   }
+   element row_10
+   {
+      datum _sortIndex
+      {
+         value = "15";
+         type = "int";
+      }
+   }
+   element row_10.s1
+   {
+      datum baseAddress
+      {
+         value = "38797472";
+         type = "String";
+      }
+   }
+   element row_11
+   {
+      datum _sortIndex
+      {
+         value = "16";
+         type = "int";
+      }
+   }
+   element row_11.s1
+   {
+      datum baseAddress
+      {
+         value = "38797488";
+         type = "String";
+      }
+   }
+   element row_12
+   {
+      datum _sortIndex
+      {
+         value = "17";
+         type = "int";
+      }
+   }
+   element row_12.s1
+   {
+      datum baseAddress
+      {
+         value = "38797504";
+         type = "String";
+      }
+   }
+   element row_13
+   {
+      datum _sortIndex
+      {
+         value = "18";
+         type = "int";
+      }
+   }
+   element row_13.s1
+   {
+      datum baseAddress
+      {
+         value = "38797520";
+         type = "String";
+      }
+   }
+   element row_14
+   {
+      datum _sortIndex
+      {
+         value = "19";
+         type = "int";
+      }
+   }
+   element row_14.s1
+   {
+      datum baseAddress
+      {
+         value = "38797536";
+         type = "String";
+      }
+   }
+   element row_15
+   {
+      datum _sortIndex
+      {
+         value = "20";
+         type = "int";
+      }
+   }
+   element row_15.s1
+   {
+      datum baseAddress
+      {
+         value = "38797552";
+         type = "String";
+      }
+   }
+   element row_16
+   {
+      datum _sortIndex
+      {
+         value = "21";
+         type = "int";
+      }
+   }
+   element row_16.s1
+   {
+      datum baseAddress
+      {
+         value = "38797568";
+         type = "String";
+      }
+   }
+   element row_17
+   {
+      datum _sortIndex
+      {
+         value = "22";
+         type = "int";
+      }
+   }
+   element row_17.s1
+   {
+      datum baseAddress
+      {
+         value = "38797584";
+         type = "String";
+      }
+   }
+   element row_18
+   {
+      datum _sortIndex
+      {
+         value = "23";
+         type = "int";
+      }
+   }
+   element row_18.s1
+   {
+      datum baseAddress
+      {
+         value = "38797600";
+         type = "String";
+      }
+   }
+   element row_19
+   {
+      datum _sortIndex
+      {
+         value = "24";
+         type = "int";
+      }
+   }
+   element row_19.s1
+   {
+      datum baseAddress
+      {
+         value = "38797616";
+         type = "String";
+      }
+   }
+   element row_2
+   {
+      datum _sortIndex
+      {
+         value = "7";
+         type = "int";
+      }
+   }
+   element row_2.s1
+   {
+      datum baseAddress
+      {
+         value = "38797344";
+         type = "String";
+      }
+   }
+   element row_20
+   {
+      datum _sortIndex
+      {
+         value = "25";
+         type = "int";
+      }
+   }
+   element row_20.s1
+   {
+      datum baseAddress
+      {
+         value = "38797632";
+         type = "String";
+      }
+   }
+   element row_21
+   {
+      datum _sortIndex
+      {
+         value = "26";
+         type = "int";
+      }
+   }
+   element row_21.s1
+   {
+      datum baseAddress
+      {
+         value = "38797648";
+         type = "String";
+      }
+   }
+   element row_22
+   {
+      datum _sortIndex
+      {
+         value = "27";
+         type = "int";
+      }
+   }
+   element row_22.s1
+   {
+      datum baseAddress
+      {
+         value = "38797664";
+         type = "String";
+      }
+   }
+   element row_23
+   {
+      datum _sortIndex
+      {
+         value = "28";
+         type = "int";
+      }
+   }
+   element row_23.s1
+   {
+      datum baseAddress
+      {
+         value = "38797680";
+         type = "String";
+      }
+   }
+   element row_3
+   {
+      datum _sortIndex
+      {
+         value = "8";
+         type = "int";
+      }
+   }
+   element row_3.s1
+   {
+      datum baseAddress
+      {
+         value = "38797360";
+         type = "String";
+      }
+   }
+   element row_4
+   {
+      datum _sortIndex
+      {
+         value = "9";
+         type = "int";
+      }
+   }
+   element row_4.s1
+   {
+      datum baseAddress
+      {
+         value = "38797376";
+         type = "String";
+      }
+   }
+   element row_5
+   {
+      datum _sortIndex
+      {
+         value = "10";
+         type = "int";
+      }
+   }
+   element row_5.s1
+   {
+      datum baseAddress
+      {
+         value = "38797392";
+         type = "String";
+      }
+   }
+   element row_6
+   {
+      datum _sortIndex
+      {
+         value = "11";
+         type = "int";
+      }
+   }
+   element row_6.s1
+   {
+      datum baseAddress
+      {
+         value = "38797408";
+         type = "String";
+      }
+   }
+   element row_7
+   {
+      datum _sortIndex
+      {
+         value = "12";
+         type = "int";
+      }
+   }
+   element row_7.s1
+   {
+      datum baseAddress
+      {
+         value = "38797424";
+         type = "String";
+      }
+   }
+   element row_8
+   {
+      datum _sortIndex
+      {
+         value = "13";
+         type = "int";
+      }
+   }
+   element row_8.s1
+   {
+      datum baseAddress
+      {
+         value = "38797440";
+         type = "String";
+      }
+   }
+   element row_9
+   {
+      datum _sortIndex
+      {
+         value = "14";
+         type = "int";
+      }
+   }
+   element row_9.s1
+   {
+      datum baseAddress
+      {
+         value = "38797456";
+         type = "String";
+      }
+   }
    element sram_0
    {
       datum _sortIndex
@@ -124,6 +508,126 @@
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
+ <interface
+   name="row_0"
+   internal="row_0.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_1"
+   internal="row_1.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_10"
+   internal="row_10.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_11"
+   internal="row_11.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_12"
+   internal="row_12.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_13"
+   internal="row_13.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_14"
+   internal="row_14.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_15"
+   internal="row_15.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_16"
+   internal="row_16.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_17"
+   internal="row_17.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_18"
+   internal="row_18.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_19"
+   internal="row_19.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_2"
+   internal="row_2.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_20"
+   internal="row_20.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_21"
+   internal="row_21.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_22"
+   internal="row_22.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_23"
+   internal="row_23.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_3"
+   internal="row_3.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_4"
+   internal="row_4.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_5"
+   internal="row_5.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_6"
+   internal="row_6.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_7"
+   internal="row_7.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_8"
+   internal="row_8.external_connection"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="row_9"
+   internal="row_9.external_connection"
+   type="conduit"
+   dir="end" />
  <interface
    name="sram"
    internal="sram_0.external_interface"
@@ -175,10 +679,10 @@
   <parameter name="customInstSlavesSystemInfo_nios_a" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_b" value="&lt;info/&gt;" />
   <parameter name="customInstSlavesSystemInfo_nios_c" value="&lt;info/&gt;" />
-  <parameter name="dataAddrWidth" value="22" />
+  <parameter name="dataAddrWidth" value="26" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sram_0.avalon_sram_slave' start='0x0' end='0x200000' type='altera_up_avalon_sram.avalon_sram_slave' /><slave name='onchip_memory2_0.s1' start='0x200000' end='0x230DA0' type='altera_avalon_onchip_memory2.s1' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x240000' end='0x240008' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x240800' end='0x241000' type='altera_nios2_gen2.debug_mem_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sram_0.avalon_sram_slave' start='0x0' end='0x200000' type='altera_up_avalon_sram.avalon_sram_slave' /><slave name='onchip_memory2_0.s1' start='0x200000' end='0x230DA0' type='altera_avalon_onchip_memory2.s1' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x240000' end='0x240008' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x240800' end='0x241000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='row_0.s1' start='0x250000' end='0x250010' type='altera_avalon_pio.s1' /><slave name='row_1.s1' start='0x2500010' end='0x2500020' type='altera_avalon_pio.s1' /><slave name='row_2.s1' start='0x2500020' end='0x2500030' type='altera_avalon_pio.s1' /><slave name='row_3.s1' start='0x2500030' end='0x2500040' type='altera_avalon_pio.s1' /><slave name='row_4.s1' start='0x2500040' end='0x2500050' type='altera_avalon_pio.s1' /><slave name='row_5.s1' start='0x2500050' end='0x2500060' type='altera_avalon_pio.s1' /><slave name='row_6.s1' start='0x2500060' end='0x2500070' type='altera_avalon_pio.s1' /><slave name='row_7.s1' start='0x2500070' end='0x2500080' type='altera_avalon_pio.s1' /><slave name='row_8.s1' start='0x2500080' end='0x2500090' type='altera_avalon_pio.s1' /><slave name='row_9.s1' start='0x2500090' end='0x25000A0' type='altera_avalon_pio.s1' /><slave name='row_10.s1' start='0x25000A0' end='0x25000B0' type='altera_avalon_pio.s1' /><slave name='row_11.s1' start='0x25000B0' end='0x25000C0' type='altera_avalon_pio.s1' /><slave name='row_12.s1' start='0x25000C0' end='0x25000D0' type='altera_avalon_pio.s1' /><slave name='row_13.s1' start='0x25000D0' end='0x25000E0' type='altera_avalon_pio.s1' /><slave name='row_14.s1' start='0x25000E0' end='0x25000F0' type='altera_avalon_pio.s1' /><slave name='row_15.s1' start='0x25000F0' end='0x2500100' type='altera_avalon_pio.s1' /><slave name='row_16.s1' start='0x2500100' end='0x2500110' type='altera_avalon_pio.s1' /><slave name='row_17.s1' start='0x2500110' end='0x2500120' type='altera_avalon_pio.s1' /><slave name='row_18.s1' start='0x2500120' end='0x2500130' type='altera_avalon_pio.s1' /><slave name='row_19.s1' start='0x2500130' end='0x2500140' type='altera_avalon_pio.s1' /><slave name='row_20.s1' start='0x2500140' end='0x2500150' type='altera_avalon_pio.s1' /><slave name='row_21.s1' start='0x2500150' end='0x2500160' type='altera_avalon_pio.s1' /><slave name='row_22.s1' start='0x2500160' end='0x2500170' type='altera_avalon_pio.s1' /><slave name='row_23.s1' start='0x2500170' end='0x2500180' type='altera_avalon_pio.s1' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -368,6 +872,342 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
+ <module name="row_0" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_1" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_10" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_11" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_12" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_13" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_14" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_15" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_16" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_17" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_18" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_19" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_2" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_20" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_21" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_22" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_23" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_3" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_4" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_5" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_6" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_7" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_8" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
+ <module name="row_9" kind="altera_avalon_pio" version="18.1" enabled="1">
+  <parameter name="bitClearingEdgeCapReg" value="false" />
+  <parameter name="bitModifyingOutReg" value="false" />
+  <parameter name="captureEdge" value="false" />
+  <parameter name="clockRate" value="50000000" />
+  <parameter name="direction" value="Output" />
+  <parameter name="edgeType" value="RISING" />
+  <parameter name="generateIRQ" value="false" />
+  <parameter name="irqType" value="LEVEL" />
+  <parameter name="resetValue" value="0" />
+  <parameter name="simDoTestBenchWiring" value="false" />
+  <parameter name="simDrivenValue" value="0" />
+  <parameter name="width" value="30" />
+ </module>
  <module name="sram_0" kind="altera_up_avalon_sram" version="18.0" enabled="1">
   <parameter name="AUTO_CLK_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone IV E" />
@@ -413,6 +1253,222 @@
  <connection
    kind="avalon"
    version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_0.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00250000" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_1.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500010" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_2.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_3.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500030" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_4.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500040" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_5.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500050" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_6.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500060" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_7.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500070" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_8.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500080" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_9.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500090" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_11.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x025000b0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_12.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x025000c0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_13.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x025000d0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_14.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x025000e0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_15.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x025000f0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_16.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500100" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_17.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500110" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_18.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500120" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_19.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500130" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_20.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500140" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_21.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500150" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_22.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500160" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_23.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500170" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="row_10.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x025000a0" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
    start="nios2_gen2_0.instruction_master"
    end="sram_0.avalon_sram_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -440,6 +1496,30 @@
  <connection kind="clock" version="18.1" start="clk_0.clk" end="nios2_gen2_0.clk" />
  <connection kind="clock" version="18.1" start="clk_0.clk" end="jtag_uart_0.clk" />
  <connection kind="clock" version="18.1" start="clk_0.clk" end="sram_0.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_0.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_1.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_2.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_3.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_4.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_5.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_6.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_7.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_8.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_9.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_10.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_11.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_12.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_13.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_14.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_15.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_16.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_17.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_18.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_19.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_20.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_21.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_22.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="row_23.clk" />
  <connection
    kind="clock"
    version="18.1"
@@ -467,6 +1547,86 @@
    version="18.1"
    start="clk_0.clk_reset"
    end="sram_0.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_0.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_1.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_2.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_3.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_4.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_5.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_6.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_7.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_8.reset" />
+ <connection kind="reset" version="18.1" start="clk_0.clk_reset" end="row_9.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_10.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_11.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_12.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_13.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_14.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_15.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_16.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_17.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_18.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_19.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_20.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_21.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_22.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="row_23.reset" />
  <connection
    kind="reset"
    version="18.1"
@@ -487,6 +1647,126 @@
    version="18.1"
    start="nios2_gen2_0.debug_reset_request"
    end="sram_0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_0.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_1.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_2.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_3.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_4.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_5.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_6.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_7.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_8.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_9.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_10.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_11.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_12.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_13.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_14.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_15.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_16.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_17.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_18.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_19.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_20.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_21.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_22.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="row_23.reset" />
  <connection
    kind="reset"
    version="18.1"
