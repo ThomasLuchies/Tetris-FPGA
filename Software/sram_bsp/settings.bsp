@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>27-aug-2023 0:34:52</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1693089292668</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>27-aug-2023 15:31:11</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1693143071003</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\github\Tetris-FPGA\Software\sram_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\sram.sopcinfo</SopcDesignFile>
@@ -1061,8 +1061,26 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>buttons</slaveDescriptor>
+                <slaveDescriptor>move_left</slaveDescriptor>
                 <addressRange>0x02500180 - 0x0250018F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>move_right</slaveDescriptor>
+                <addressRange>0x02500190 - 0x0250019F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>rotate_left</slaveDescriptor>
+                <addressRange>0x02500200 - 0x0250020F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>rotate_right</slaveDescriptor>
+                <addressRange>0x02500210 - 0x0250021F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>

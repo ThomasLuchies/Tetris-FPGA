@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'sram'
  * SOPC Builder design path: ../../sram.sopcinfo
  *
- * Generated: Sun Aug 27 00:34:53 CEST 2023
+ * Generated: Sun Aug 27 15:31:11 CEST 2023
  */
 
 /*
@@ -177,33 +177,6 @@
 
 
 /*
- * buttons configuration
- *
- */
-
-#define ALT_MODULE_CLASS_buttons altera_avalon_pio
-#define BUTTONS_BASE 0x2500180
-#define BUTTONS_BIT_CLEARING_EDGE_REGISTER 0
-#define BUTTONS_BIT_MODIFYING_OUTPUT_REGISTER 0
-#define BUTTONS_CAPTURE 1
-#define BUTTONS_DATA_WIDTH 4
-#define BUTTONS_DO_TEST_BENCH_WIRING 0
-#define BUTTONS_DRIVEN_SIM_VALUE 0
-#define BUTTONS_EDGE_TYPE "RISING"
-#define BUTTONS_FREQ 50000000
-#define BUTTONS_HAS_IN 1
-#define BUTTONS_HAS_OUT 0
-#define BUTTONS_HAS_TRI 0
-#define BUTTONS_IRQ -1
-#define BUTTONS_IRQ_INTERRUPT_CONTROLLER_ID -1
-#define BUTTONS_IRQ_TYPE "EDGE"
-#define BUTTONS_NAME "/dev/buttons"
-#define BUTTONS_RESET_VALUE 0
-#define BUTTONS_SPAN 16
-#define BUTTONS_TYPE "altera_avalon_pio"
-
-
-/*
  * hal configuration
  *
  */
@@ -233,6 +206,60 @@
 
 
 /*
+ * move_left configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_move_left altera_avalon_pio
+#define MOVE_LEFT_BASE 0x2500180
+#define MOVE_LEFT_BIT_CLEARING_EDGE_REGISTER 0
+#define MOVE_LEFT_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define MOVE_LEFT_CAPTURE 1
+#define MOVE_LEFT_DATA_WIDTH 1
+#define MOVE_LEFT_DO_TEST_BENCH_WIRING 0
+#define MOVE_LEFT_DRIVEN_SIM_VALUE 0
+#define MOVE_LEFT_EDGE_TYPE "FALLING"
+#define MOVE_LEFT_FREQ 50000000
+#define MOVE_LEFT_HAS_IN 1
+#define MOVE_LEFT_HAS_OUT 0
+#define MOVE_LEFT_HAS_TRI 0
+#define MOVE_LEFT_IRQ 1
+#define MOVE_LEFT_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define MOVE_LEFT_IRQ_TYPE "EDGE"
+#define MOVE_LEFT_NAME "/dev/move_left"
+#define MOVE_LEFT_RESET_VALUE 0
+#define MOVE_LEFT_SPAN 16
+#define MOVE_LEFT_TYPE "altera_avalon_pio"
+
+
+/*
+ * move_right configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_move_right altera_avalon_pio
+#define MOVE_RIGHT_BASE 0x2500190
+#define MOVE_RIGHT_BIT_CLEARING_EDGE_REGISTER 0
+#define MOVE_RIGHT_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define MOVE_RIGHT_CAPTURE 1
+#define MOVE_RIGHT_DATA_WIDTH 1
+#define MOVE_RIGHT_DO_TEST_BENCH_WIRING 0
+#define MOVE_RIGHT_DRIVEN_SIM_VALUE 0
+#define MOVE_RIGHT_EDGE_TYPE "FALLING"
+#define MOVE_RIGHT_FREQ 50000000
+#define MOVE_RIGHT_HAS_IN 1
+#define MOVE_RIGHT_HAS_OUT 0
+#define MOVE_RIGHT_HAS_TRI 0
+#define MOVE_RIGHT_IRQ 2
+#define MOVE_RIGHT_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define MOVE_RIGHT_IRQ_TYPE "EDGE"
+#define MOVE_RIGHT_NAME "/dev/move_right"
+#define MOVE_RIGHT_RESET_VALUE 0
+#define MOVE_RIGHT_SPAN 16
+#define MOVE_RIGHT_TYPE "altera_avalon_pio"
+
+
+/*
  * onchip_memory2_0 configuration
  *
  */
@@ -259,6 +286,60 @@
 #define ONCHIP_MEMORY2_0_SPAN 200096
 #define ONCHIP_MEMORY2_0_TYPE "altera_avalon_onchip_memory2"
 #define ONCHIP_MEMORY2_0_WRITABLE 1
+
+
+/*
+ * rotate_left configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_rotate_left altera_avalon_pio
+#define ROTATE_LEFT_BASE 0x2500200
+#define ROTATE_LEFT_BIT_CLEARING_EDGE_REGISTER 0
+#define ROTATE_LEFT_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROTATE_LEFT_CAPTURE 1
+#define ROTATE_LEFT_DATA_WIDTH 1
+#define ROTATE_LEFT_DO_TEST_BENCH_WIRING 0
+#define ROTATE_LEFT_DRIVEN_SIM_VALUE 0
+#define ROTATE_LEFT_EDGE_TYPE "FALLING"
+#define ROTATE_LEFT_FREQ 50000000
+#define ROTATE_LEFT_HAS_IN 1
+#define ROTATE_LEFT_HAS_OUT 0
+#define ROTATE_LEFT_HAS_TRI 0
+#define ROTATE_LEFT_IRQ 3
+#define ROTATE_LEFT_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define ROTATE_LEFT_IRQ_TYPE "EDGE"
+#define ROTATE_LEFT_NAME "/dev/rotate_left"
+#define ROTATE_LEFT_RESET_VALUE 0
+#define ROTATE_LEFT_SPAN 16
+#define ROTATE_LEFT_TYPE "altera_avalon_pio"
+
+
+/*
+ * rotate_right configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_rotate_right altera_avalon_pio
+#define ROTATE_RIGHT_BASE 0x2500210
+#define ROTATE_RIGHT_BIT_CLEARING_EDGE_REGISTER 0
+#define ROTATE_RIGHT_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define ROTATE_RIGHT_CAPTURE 1
+#define ROTATE_RIGHT_DATA_WIDTH 1
+#define ROTATE_RIGHT_DO_TEST_BENCH_WIRING 0
+#define ROTATE_RIGHT_DRIVEN_SIM_VALUE 0
+#define ROTATE_RIGHT_EDGE_TYPE "FALLING"
+#define ROTATE_RIGHT_FREQ 50000000
+#define ROTATE_RIGHT_HAS_IN 1
+#define ROTATE_RIGHT_HAS_OUT 0
+#define ROTATE_RIGHT_HAS_TRI 0
+#define ROTATE_RIGHT_IRQ 4
+#define ROTATE_RIGHT_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define ROTATE_RIGHT_IRQ_TYPE "EDGE"
+#define ROTATE_RIGHT_NAME "/dev/rotate_right"
+#define ROTATE_RIGHT_RESET_VALUE 0
+#define ROTATE_RIGHT_SPAN 16
+#define ROTATE_RIGHT_TYPE "altera_avalon_pio"
 
 
 /*

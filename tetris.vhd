@@ -93,8 +93,11 @@ architecture tetris_arch of tetris is
 	COMPONENT sram
 		port (
 			clk_clk : in std_logic := '0';
-			reset_reset_n : in std_logic := '0';
-			buttons_export: in std_logic_vector(3 downto 0);
+			move_left_export    : in    std_logic                     := '0';             --    move_left.export
+			move_right_export   : in    std_logic                     := '0';             --   move_right.export
+			reset_reset_n       : in    std_logic                     := '0';             --        reset.reset_n
+			rotate_left_export  : in    std_logic                     := '0';             --  rotate_left.export
+			rotate_right_export : in    std_logic                     := '0';  
 			row_0_export  : out   std_logic_vector(29 downto 0);                    --  row_0.export
 			row_1_export  : out   std_logic_vector(29 downto 0);                    --  row_1.export
 			row_10_export : out   std_logic_vector(29 downto 0);                    -- row_10.export
@@ -130,13 +133,16 @@ architecture tetris_arch of tetris is
 	signal test_grid: std_logic_vector(719 downto 0);
 begin 
 	test_grid(719 downto 717) <= "001";
-	LEDR <= grid(719 downto 702);
+	LEDR <= grid(29 downto 12);
 	VGA_CLK <= pixel_clk;
 	
 	 NiosII : sram PORT MAP(
 		 clk_clk => CLOCK_50,
 		 reset_reset_n => '1',
-		 buttons_export => KEY,
+		 move_left_export => KEY(3),
+		 move_right_export => KEY(2),
+		 rotate_left_export => KEY(1),
+		 rotate_right_export => KEY(0),
 		 row_0_export => grid(719 downto 690),
 		 row_1_export => grid(689 downto 660), 
 		 row_2_export => grid(659 downto 630),

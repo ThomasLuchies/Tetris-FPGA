@@ -1,6 +1,7 @@
 
 module sram (
 	clk_clk,
+	move_left_export,
 	reset_reset_n,
 	row_0_export,
 	row_1_export,
@@ -33,9 +34,12 @@ module sram (
 	sram_CE_N,
 	sram_OE_N,
 	sram_WE_N,
-	buttons_export);	
+	rotate_right_export,
+	rotate_left_export,
+	move_right_export);	
 
 	input		clk_clk;
+	input		move_left_export;
 	input		reset_reset_n;
 	output	[29:0]	row_0_export;
 	output	[29:0]	row_1_export;
@@ -68,5 +72,7 @@ module sram (
 	output		sram_CE_N;
 	output		sram_OE_N;
 	output		sram_WE_N;
-	input	[3:0]	buttons_export;
+	input		rotate_right_export;
+	input		rotate_left_export;
+	input		move_right_export;
 endmodule
