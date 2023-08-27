@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'sram'
  * SOPC Builder design path: ../../sram.sopcinfo
  *
- * Generated: Sun Aug 27 15:31:11 CEST 2023
+ * Generated: Sun Aug 27 20:59:01 CEST 2023
  */
 
 /*
@@ -136,6 +136,7 @@
 #define __ALTERA_AVALON_JTAG_UART
 #define __ALTERA_AVALON_ONCHIP_MEMORY2
 #define __ALTERA_AVALON_PIO
+#define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
 #define __ALTERA_UP_AVALON_SRAM
 
@@ -174,6 +175,32 @@
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "sram"
+
+
+/*
+ * frame_timer configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_frame_timer altera_avalon_timer
+#define FRAME_TIMER_ALWAYS_RUN 0
+#define FRAME_TIMER_BASE 0x2500220
+#define FRAME_TIMER_COUNTER_SIZE 32
+#define FRAME_TIMER_FIXED_PERIOD 0
+#define FRAME_TIMER_FREQ 50000000
+#define FRAME_TIMER_IRQ 5
+#define FRAME_TIMER_IRQ_INTERRUPT_CONTROLLER_ID 0
+#define FRAME_TIMER_LOAD_VALUE 834999
+#define FRAME_TIMER_MULT 0.001
+#define FRAME_TIMER_NAME "/dev/frame_timer"
+#define FRAME_TIMER_PERIOD 16.7
+#define FRAME_TIMER_PERIOD_UNITS "ms"
+#define FRAME_TIMER_RESET_OUTPUT 0
+#define FRAME_TIMER_SNAPSHOT 1
+#define FRAME_TIMER_SPAN 32
+#define FRAME_TIMER_TICKS_PER_SEC 59
+#define FRAME_TIMER_TIMEOUT_PULSE_OUTPUT 0
+#define FRAME_TIMER_TYPE "altera_avalon_timer"
 
 
 /*

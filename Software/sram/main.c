@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "altera_avalon_pio_regs.h"
+#include <altera_avalon_timer_regs.h>
 #include <sys/alt_irq.h>
 #include <stdio.h>
 
@@ -15,43 +16,65 @@
 int grid[24][10];
 int rowAdresses[24] = {ROW_0_BASE, ROW_1_BASE, ROW_2_BASE, ROW_3_BASE, ROW_4_BASE, ROW_5_BASE, ROW_6_BASE, ROW_7_BASE, ROW_8_BASE, ROW_9_BASE, ROW_10_BASE, ROW_11_BASE, ROW_12_BASE, ROW_13_BASE, ROW_14_BASE, ROW_15_BASE, ROW_16_BASE, ROW_17_BASE, ROW_18_BASE, ROW_19_BASE, ROW_20_BASE, ROW_21_BASE, ROW_22_BASE, ROW_23_BASE};
 int currentBlock[4][4][3];
+int frame_counter = 0;
+int game_speed = 20;
 typedef enum {I, J, L, O, S, T, Z} blocks;
 typedef enum {MOVE_LEFT, MOVE_RIGHT, ROTATE_CLOCKWISE, ROTATE_COUNTERCLOKWISE} movements;
 blocks currentBlockType;
 
 void moveLeftInterrupt(void* context)
 {
+	// Reset interrupt
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_LEFT_BASE,0);
+
 	printf("move left\n");
 	move(MOVE_LEFT);
 	drawGrid();
-	// Reset interrupt
-	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_LEFT_BASE,0);
+
 }
 
 void moveRightInterrupt(void* context)
 {
+	// Reset interrupt
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_RIGHT_BASE,0);
+
 	printf("move right\n");
 	move(MOVE_RIGHT);
 	drawGrid();
-	// Reset interrupt
-	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_RIGHT_BASE,0);
 }
 
 void rotateLeftInterrupt(void* context)
 {
-	printf("rotate left\n");
-	rotate(ROTATE_COUNTERCLOKWISE);
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_LEFT_BASE,0);
+
+	printf("rotate left\n");
+	drawGrid();
+	rotate(ROTATE_COUNTERCLOKWISE);
 }
 
 void rotateRightInterrupt(void* context)
 {
-	printf("rotate right\n");
-	rotate(ROTATE_CLOCKWISE);
-
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_RIGHT_BASE,0);
+
+	printf("rotate right\n");
+	rotate(ROTATE_CLOCKWISE);
+	drawGrid();
+}
+
+void frameTimerInterrupt(void *context, alt_u32 id)
+{
+	// Reset interrupt
+	IOWR_ALTERA_AVALON_TIMER_STATUS(FRAME_TIMER_BASE, 0);
+
+	frame_counter = frame_counter + 1;
+	if(frame_counter == game_speed)
+	{
+		gravity();
+	    drawGrid();
+		frame_counter = 0;
+	}
 }
 
 int main()
@@ -67,19 +90,6 @@ int main()
   createBlock(randomBlock);
 
   initInterupts();
-  while (1)
-  {
-	  gravity();
-	  drawGrid();
-
-
-	  //IOWR_ALTERA_AVALON_PIO_DATA(LEDS_BASE, IORD_ALTERA_AVALON_PIO_DATA(SWITCHES_BASE));
-	  //IOWR_ALTERA_AVALON_PIO_DATA(rowAdresses[0], row);
-	  //IOWR_ALTERA_AVALON_PIO_DATA(rowAdresses[1], 0b010010000000000000000000000000);
-	  //IOWR_ALTERA_AVALON_PIO_DATA(ROW_23_BASE, 0b00011000000000001000000000000000);
-	  // 400 ms
-	    usleep(400000);
-  }
 
   return 0;
 }
@@ -105,6 +115,12 @@ void initInterupts()
 	IOWR_ALTERA_AVALON_PIO_IRQ_MASK(ROTATE_RIGHT_BASE,0x1);
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_RIGHT_BASE,0);
 	alt_ic_isr_register(ROTATE_RIGHT_IRQ_INTERRUPT_CONTROLLER_ID, ROTATE_RIGHT_IRQ, rotateRightInterrupt, NULL, 0x0);
+
+	// frame timer
+	alt_ic_isr_register(FRAME_TIMER_IRQ_INTERRUPT_CONTROLLER_ID, FRAME_TIMER_IRQ, (void *) frameTimerInterrupt, NULL, 0x0);
+	IOWR_ALTERA_AVALON_TIMER_CONTROL(FRAME_TIMER_BASE, ALTERA_AVALON_TIMER_CONTROL_CONT_MSK
+													| ALTERA_AVALON_TIMER_CONTROL_START_MSK
+													| ALTERA_AVALON_TIMER_CONTROL_ITO_MSK);
 }
 
 int canMoveDown(int newLocation[4][4][3])
@@ -348,7 +364,15 @@ void addBlockToGrid(int block[4][4][3])
 	{
 	  for(int x = 0; x < 4; x++)
 	  {
-		  grid[block[y][x][0]][block[y][x][1]] = block[y][x][2];
+		  if(block[y][x][2] != 0)
+		  {
+			  printf("not zero\n");
+			  grid[block[y][x][0]][block[y][x][1]] = block[y][x][2];
+		  }
+		  else
+		  {
+			  printf("zero\n");
+		  }
 	  }
 	}
 }

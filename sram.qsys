@@ -17,6 +17,22 @@
          type = "int";
       }
    }
+   element frame_timer
+   {
+      datum _sortIndex
+      {
+         value = "33";
+         type = "int";
+      }
+   }
+   element frame_timer.s1
+   {
+      datum baseAddress
+      {
+         value = "38797856";
+         type = "String";
+      }
+   }
    element jtag_uart_0
    {
       datum _sortIndex
@@ -724,6 +740,22 @@
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
  <module
+   name="frame_timer"
+   kind="altera_avalon_timer"
+   version="18.1"
+   enabled="1">
+  <parameter name="alwaysRun" value="false" />
+  <parameter name="counterSize" value="32" />
+  <parameter name="fixedPeriod" value="false" />
+  <parameter name="period" value="16.7" />
+  <parameter name="periodUnits" value="MSEC" />
+  <parameter name="resetOutput" value="false" />
+  <parameter name="snapshot" value="true" />
+  <parameter name="systemFrequency" value="50000000" />
+  <parameter name="timeoutPulseOutput" value="false" />
+  <parameter name="watchdogPulse" value="2" />
+ </module>
+ <module
    name="jtag_uart_0"
    kind="altera_avalon_jtag_uart"
    version="18.1"
@@ -794,7 +826,7 @@
   <parameter name="dataAddrWidth" value="26" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sram_0.avalon_sram_slave' start='0x0' end='0x200000' type='altera_up_avalon_sram.avalon_sram_slave' /><slave name='onchip_memory2_0.s1' start='0x200000' end='0x230DA0' type='altera_avalon_onchip_memory2.s1' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x240000' end='0x240008' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x240800' end='0x241000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='row_0.s1' start='0x250000' end='0x250010' type='altera_avalon_pio.s1' /><slave name='row_1.s1' start='0x2500010' end='0x2500020' type='altera_avalon_pio.s1' /><slave name='row_2.s1' start='0x2500020' end='0x2500030' type='altera_avalon_pio.s1' /><slave name='row_3.s1' start='0x2500030' end='0x2500040' type='altera_avalon_pio.s1' /><slave name='row_4.s1' start='0x2500040' end='0x2500050' type='altera_avalon_pio.s1' /><slave name='row_5.s1' start='0x2500050' end='0x2500060' type='altera_avalon_pio.s1' /><slave name='row_6.s1' start='0x2500060' end='0x2500070' type='altera_avalon_pio.s1' /><slave name='row_7.s1' start='0x2500070' end='0x2500080' type='altera_avalon_pio.s1' /><slave name='row_8.s1' start='0x2500080' end='0x2500090' type='altera_avalon_pio.s1' /><slave name='row_9.s1' start='0x2500090' end='0x25000A0' type='altera_avalon_pio.s1' /><slave name='row_10.s1' start='0x25000A0' end='0x25000B0' type='altera_avalon_pio.s1' /><slave name='row_11.s1' start='0x25000B0' end='0x25000C0' type='altera_avalon_pio.s1' /><slave name='row_12.s1' start='0x25000C0' end='0x25000D0' type='altera_avalon_pio.s1' /><slave name='row_13.s1' start='0x25000D0' end='0x25000E0' type='altera_avalon_pio.s1' /><slave name='row_14.s1' start='0x25000E0' end='0x25000F0' type='altera_avalon_pio.s1' /><slave name='row_15.s1' start='0x25000F0' end='0x2500100' type='altera_avalon_pio.s1' /><slave name='row_16.s1' start='0x2500100' end='0x2500110' type='altera_avalon_pio.s1' /><slave name='row_17.s1' start='0x2500110' end='0x2500120' type='altera_avalon_pio.s1' /><slave name='row_18.s1' start='0x2500120' end='0x2500130' type='altera_avalon_pio.s1' /><slave name='row_19.s1' start='0x2500130' end='0x2500140' type='altera_avalon_pio.s1' /><slave name='row_20.s1' start='0x2500140' end='0x2500150' type='altera_avalon_pio.s1' /><slave name='row_21.s1' start='0x2500150' end='0x2500160' type='altera_avalon_pio.s1' /><slave name='row_22.s1' start='0x2500160' end='0x2500170' type='altera_avalon_pio.s1' /><slave name='row_23.s1' start='0x2500170' end='0x2500180' type='altera_avalon_pio.s1' /><slave name='move_left.s1' start='0x2500180' end='0x2500190' type='altera_avalon_pio.s1' /><slave name='move_right.s1' start='0x2500190' end='0x25001A0' type='altera_avalon_pio.s1' /><slave name='rotate_left.s1' start='0x2500200' end='0x2500210' type='altera_avalon_pio.s1' /><slave name='rotate_right.s1' start='0x2500210' end='0x2500220' type='altera_avalon_pio.s1' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sram_0.avalon_sram_slave' start='0x0' end='0x200000' type='altera_up_avalon_sram.avalon_sram_slave' /><slave name='onchip_memory2_0.s1' start='0x200000' end='0x230DA0' type='altera_avalon_onchip_memory2.s1' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x240000' end='0x240008' type='altera_avalon_jtag_uart.avalon_jtag_slave' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x240800' end='0x241000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='row_0.s1' start='0x250000' end='0x250010' type='altera_avalon_pio.s1' /><slave name='row_1.s1' start='0x2500010' end='0x2500020' type='altera_avalon_pio.s1' /><slave name='row_2.s1' start='0x2500020' end='0x2500030' type='altera_avalon_pio.s1' /><slave name='row_3.s1' start='0x2500030' end='0x2500040' type='altera_avalon_pio.s1' /><slave name='row_4.s1' start='0x2500040' end='0x2500050' type='altera_avalon_pio.s1' /><slave name='row_5.s1' start='0x2500050' end='0x2500060' type='altera_avalon_pio.s1' /><slave name='row_6.s1' start='0x2500060' end='0x2500070' type='altera_avalon_pio.s1' /><slave name='row_7.s1' start='0x2500070' end='0x2500080' type='altera_avalon_pio.s1' /><slave name='row_8.s1' start='0x2500080' end='0x2500090' type='altera_avalon_pio.s1' /><slave name='row_9.s1' start='0x2500090' end='0x25000A0' type='altera_avalon_pio.s1' /><slave name='row_10.s1' start='0x25000A0' end='0x25000B0' type='altera_avalon_pio.s1' /><slave name='row_11.s1' start='0x25000B0' end='0x25000C0' type='altera_avalon_pio.s1' /><slave name='row_12.s1' start='0x25000C0' end='0x25000D0' type='altera_avalon_pio.s1' /><slave name='row_13.s1' start='0x25000D0' end='0x25000E0' type='altera_avalon_pio.s1' /><slave name='row_14.s1' start='0x25000E0' end='0x25000F0' type='altera_avalon_pio.s1' /><slave name='row_15.s1' start='0x25000F0' end='0x2500100' type='altera_avalon_pio.s1' /><slave name='row_16.s1' start='0x2500100' end='0x2500110' type='altera_avalon_pio.s1' /><slave name='row_17.s1' start='0x2500110' end='0x2500120' type='altera_avalon_pio.s1' /><slave name='row_18.s1' start='0x2500120' end='0x2500130' type='altera_avalon_pio.s1' /><slave name='row_19.s1' start='0x2500130' end='0x2500140' type='altera_avalon_pio.s1' /><slave name='row_20.s1' start='0x2500140' end='0x2500150' type='altera_avalon_pio.s1' /><slave name='row_21.s1' start='0x2500150' end='0x2500160' type='altera_avalon_pio.s1' /><slave name='row_22.s1' start='0x2500160' end='0x2500170' type='altera_avalon_pio.s1' /><slave name='row_23.s1' start='0x2500170' end='0x2500180' type='altera_avalon_pio.s1' /><slave name='move_left.s1' start='0x2500180' end='0x2500190' type='altera_avalon_pio.s1' /><slave name='move_right.s1' start='0x2500190' end='0x25001A0' type='altera_avalon_pio.s1' /><slave name='rotate_left.s1' start='0x2500200' end='0x2500210' type='altera_avalon_pio.s1' /><slave name='rotate_right.s1' start='0x2500210' end='0x2500220' type='altera_avalon_pio.s1' /><slave name='frame_timer.s1' start='0x2500220' end='0x2500240' type='altera_avalon_timer.s1' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -840,7 +872,7 @@
   <parameter name="instruction_master_high_performance_paddr_size" value="0" />
   <parameter name="instruction_master_paddr_base" value="0" />
   <parameter name="instruction_master_paddr_size" value="0" />
-  <parameter name="internalIrqMaskSystemInfo" value="31" />
+  <parameter name="internalIrqMaskSystemInfo" value="63" />
   <parameter name="io_regionbase" value="0" />
   <parameter name="io_regionsize" value="0" />
   <parameter name="master_addr_map" value="false" />
@@ -1653,6 +1685,15 @@
  <connection
    kind="avalon"
    version="18.1"
+   start="nios2_gen2_0.data_master"
+   end="frame_timer.s1">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x02500220" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="18.1"
    start="nios2_gen2_0.instruction_master"
    end="sram_0.avalon_sram_slave">
   <parameter name="arbitrationPriority" value="1" />
@@ -1708,6 +1749,7 @@
  <connection kind="clock" version="18.1" start="clk_0.clk" end="move_right.clk" />
  <connection kind="clock" version="18.1" start="clk_0.clk" end="rotate_left.clk" />
  <connection kind="clock" version="18.1" start="clk_0.clk" end="rotate_right.clk" />
+ <connection kind="clock" version="18.1" start="clk_0.clk" end="frame_timer.clk" />
  <connection
    kind="clock"
    version="18.1"
@@ -1747,6 +1789,13 @@
    start="nios2_gen2_0.irq"
    end="rotate_right.irq">
   <parameter name="irqNumber" value="4" />
+ </connection>
+ <connection
+   kind="interrupt"
+   version="18.1"
+   start="nios2_gen2_0.irq"
+   end="frame_timer.irq">
+  <parameter name="irqNumber" value="5" />
  </connection>
  <connection
    kind="reset"
@@ -1863,6 +1912,11 @@
    version="18.1"
    start="clk_0.clk_reset"
    end="rotate_right.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="clk_0.clk_reset"
+   end="frame_timer.reset" />
  <connection
    kind="reset"
    version="18.1"
@@ -2023,6 +2077,11 @@
    version="18.1"
    start="nios2_gen2_0.debug_reset_request"
    end="rotate_right.reset" />
+ <connection
+   kind="reset"
+   version="18.1"
+   start="nios2_gen2_0.debug_reset_request"
+   end="frame_timer.reset" />
  <connection
    kind="reset"
    version="18.1"
