@@ -7,6 +7,7 @@
 #include <stdint.h>
 #include "altera_avalon_pio_regs.h"
 #include <sys/alt_irq.h>
+#include <stdio.h>
 
 #define START_X 3
 #define START_Y 0
@@ -15,11 +16,12 @@ int grid[24][10];
 int rowAdresses[24] = {ROW_0_BASE, ROW_1_BASE, ROW_2_BASE, ROW_3_BASE, ROW_4_BASE, ROW_5_BASE, ROW_6_BASE, ROW_7_BASE, ROW_8_BASE, ROW_9_BASE, ROW_10_BASE, ROW_11_BASE, ROW_12_BASE, ROW_13_BASE, ROW_14_BASE, ROW_15_BASE, ROW_16_BASE, ROW_17_BASE, ROW_18_BASE, ROW_19_BASE, ROW_20_BASE, ROW_21_BASE, ROW_22_BASE, ROW_23_BASE};
 int currentBlock[4][4][3];
 typedef enum {I, J, L, O, S, T, Z} blocks;
-typedef enum {MOVE_LEFT, MOVE_RIGHT, ROTATE_LEFT, ROTATE_RIGHT} movements;
+typedef enum {MOVE_LEFT, MOVE_RIGHT, ROTATE_CLOCKWISE, ROTATE_COUNTERCLOKWISE} movements;
+blocks currentBlockType;
 
 void moveLeftInterrupt(void* context)
 {
-	printf("move left");
+	printf("move left\n");
 	move(MOVE_LEFT);
 	drawGrid();
 	// Reset interrupt
@@ -28,7 +30,7 @@ void moveLeftInterrupt(void* context)
 
 void moveRightInterrupt(void* context)
 {
-	printf("move right");
+	printf("move right\n");
 	move(MOVE_RIGHT);
 	drawGrid();
 	// Reset interrupt
@@ -37,15 +39,16 @@ void moveRightInterrupt(void* context)
 
 void rotateLeftInterrupt(void* context)
 {
-	printf("rotate left");
-
+	printf("rotate left\n");
+	rotate(ROTATE_COUNTERCLOKWISE);
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_LEFT_BASE,0);
 }
 
 void rotateRightInterrupt(void* context)
 {
-	printf("rotate right");
+	printf("rotate right\n");
+	rotate(ROTATE_CLOCKWISE);
 
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_RIGHT_BASE,0);
@@ -80,7 +83,7 @@ int main()
   	  start_x = START_X;
   	}
 
-
+  currentBlockType = I;
   /* Event loop never exits. */
   addBlockToGrid(currentBlock);
 
@@ -133,7 +136,6 @@ int canMoveDown(int newLocation[4][4][3])
 	{
 		if(newLocation[3][x][0] > 23)
 		{
-			printf("hit bottom");
 			return 0;
 		}
 	}
@@ -210,6 +212,78 @@ void move(movements movement)
 		addBlockToGrid(currentBlock);
 	}
 
+}
+
+void swap(int *x, int *y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
+
+void rotate(movements movement)
+{
+	int block_max_x;
+	int block_max_y;
+	switch(currentBlockType)
+	{
+		case I:
+		case L:
+		case J:
+			block_max_x = 4;
+			block_max_y = 4;
+			break;
+		case S:
+		case Z:
+		case T:
+			block_max_x = 3;
+			block_max_y = 3;
+			break;
+		default:
+			return;
+	}
+
+
+
+	int newLocation[4][4][3];
+	//memcpy(newLocation, currentBlock, sizeof(newLocation));
+
+	memset(newLocation, 0, sizeof(newLocation));
+	printf("before\n");
+	visualizeBlock(currentBlock);
+
+	int original_x;
+	for (int y = 0; y < 4; y++) {
+		for (int x = 0; x < 4; x++) {
+			printf("original coords x: %d, y: %d\n", currentBlock[y][x][1], currentBlock[y][x][0]);
+			visualizeBlock(newLocation);
+			if(movement == ROTATE_CLOCKWISE)
+			{
+				newLocation[x][3 - y][0] = currentBlock[y][x][0] - (y - x);
+				newLocation[x][3 - y][1] = currentBlock[y][x][1] - (x - (3 - y));
+				newLocation[x][3 - y][2] = currentBlock[y][x][2];
+			}
+			else if(movement == ROTATE_COUNTERCLOKWISE)
+			{
+				newLocation[3 - x][y][0] = currentBlock[y][x][0] - (y - (3 - x));
+				newLocation[3 - x][y][1] = currentBlock[y][x][1] - (x - y);
+				newLocation[3 - x][y][2] = currentBlock[y][x][2];
+			}
+		}
+	}
+
+
+
+	printf("after\n");
+	visualizeBlock(newLocation);
+
+	if(canMoveToSide(newLocation) == 1)
+	{
+		printf("rotate allowed\n");
+		removeBlockFromGrid(currentBlock);
+		memcpy(currentBlock, newLocation, sizeof(currentBlock));
+		addBlockToGrid(currentBlock);
+	}
 }
 
 /*int createBlock(blocks blockType, int out_block[4][4][3])
@@ -373,3 +447,26 @@ void printBinary(int num) {
         printf("%d", bit);
     }
 }
+
+void visualizeBlock(int block[4][4][3])
+{
+	char line[4];
+	for(int y = 0; y < 4; y++)
+	{
+		for(int x = 0; x < 4; x++)
+		{
+			if(block[y][x][2] == 0)
+			{
+				line[x] = '-';
+			}
+			else
+			{
+				line[x] = '*';
+			}
+		}
+
+		printf("%s\n", line);
+	}
+}
+
+
