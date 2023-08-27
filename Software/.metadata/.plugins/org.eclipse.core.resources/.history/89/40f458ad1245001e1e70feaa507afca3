@@ -156,7 +156,7 @@ int canMoveDown(int newLocation[4][4][3])
 		}
 
 		bottomCoords[x][0] = currentBottomCoord[0];
-		bottomCoords[x][1] = currentBottomCoord[1];
+		bottomCoords[x][1] = currentBottomCoord[1]
 	}
 
 	for(int i = 0; i < 4; i++)

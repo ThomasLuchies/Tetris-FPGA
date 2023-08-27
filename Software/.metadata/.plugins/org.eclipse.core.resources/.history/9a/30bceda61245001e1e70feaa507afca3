@@ -156,12 +156,12 @@ int canMoveDown(int newLocation[4][4][3])
 		}
 
 		bottomCoords[x][0] = currentBottomCoord[0];
-		bottomCoords[x][1] = currentBottomCoord[1];
+		bottomCoords[x][1] = currentBottomCoord[1]
 	}
 
 	for(int i = 0; i < 4; i++)
 	{
-		if(grid[bottomCoords[i][0]][bottomCoords[i][1]] != 0)
+		if(grid[bottomCoords[i][0]][bottomCoords[i][1]]  != 0)
 		{
 			printf("object hit\n");
 			return 0;
