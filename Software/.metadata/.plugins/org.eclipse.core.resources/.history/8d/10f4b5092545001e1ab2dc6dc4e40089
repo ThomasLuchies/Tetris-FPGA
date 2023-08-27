@@ -178,10 +178,8 @@ int canMoveDown(int newLocation[4][4][3])
 
 int canMoveToSide(int newLocation[4][4][3], movements movement)
 {
-	int sideCoords[4][3];
-	memset(sideCoords, 0, sizeof(sideCoords));
+/*	int sideCoords[4][3];
 	int currentsideCoord[3];
-	memset(currentsideCoord, 0, sizeof(currentsideCoord));
 
 	for(int y = 0; y < 4; y++)
 	{
@@ -225,9 +223,9 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 		sideCoords[y][0] = currentsideCoord[0];
 		sideCoords[y][1] = currentsideCoord[1];
 		sideCoords[y][2] = currentsideCoord[2];
-	}
+	}*/
 
-	for(int i = 0; i < 4; i++)
+/*	for(int i = 0; i < 4; i++)
 	{
 		if(sideCoords[i][2] != 0)
 		{
@@ -238,7 +236,7 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 			}
 		}
 
-	}
+	}*/
 
 	return 1;
 }

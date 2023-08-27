@@ -143,16 +143,13 @@ int canMoveDown(int newLocation[4][4][3])
 
 	// Get the bottom coords
 	int bottomCoords[4][3];
-	memset(bottomCoords, 0, sizeof(bottomCoords));
 	int currentBottomCoord[3];
-	memset(currentBottomCoord, 0, sizeof(currentBottomCoord));
 	for(int x = 0; x < 4; x++)
 	{
 		for(int y = 0; y < 4; y++)
 		{
 			if(newLocation[y][x][2] != 0)
 			{
-				printf("coords block x: %d, y: %d coords grid x: %d, y: %d", x, y, newLocation[y][x][1], newLocation[y][x][0]);
 				currentBottomCoord[0] = newLocation[y][x][0];
 				currentBottomCoord[1] = newLocation[y][x][1];
 				currentBottomCoord[2] = newLocation[y][x][2];
@@ -178,10 +175,8 @@ int canMoveDown(int newLocation[4][4][3])
 
 int canMoveToSide(int newLocation[4][4][3], movements movement)
 {
-	int sideCoords[4][3];
-	memset(sideCoords, 0, sizeof(sideCoords));
+/*	int sideCoords[4][3];
 	int currentsideCoord[3];
-	memset(currentsideCoord, 0, sizeof(currentsideCoord));
 
 	for(int y = 0; y < 4; y++)
 	{
@@ -225,9 +220,9 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 		sideCoords[y][0] = currentsideCoord[0];
 		sideCoords[y][1] = currentsideCoord[1];
 		sideCoords[y][2] = currentsideCoord[2];
-	}
+	}*/
 
-	for(int i = 0; i < 4; i++)
+/*	for(int i = 0; i < 4; i++)
 	{
 		if(sideCoords[i][2] != 0)
 		{
@@ -238,7 +233,7 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 			}
 		}
 
-	}
+	}*/
 
 	return 1;
 }
@@ -347,16 +342,13 @@ void rotate(movements movement)
 				newLocation[x][3 - y][0] = currentBlock[y][x][0] - (y - x);
 				newLocation[x][3 - y][1] = currentBlock[y][x][1] - (x - (3 - y));
 				newLocation[x][3 - y][2] = currentBlock[y][x][2];
-				printf("after coords x: %d, y: %d\n", currentBlock[y][x][1] - (x - (3 - y)), currentBlock[y][x][0] - (y - x));
 			}
 			else if(movement == ROTATE_COUNTERCLOKWISE)
 			{
 				newLocation[3 - x][y][0] = currentBlock[y][x][0] - (y - (3 - x));
 				newLocation[3 - x][y][1] = currentBlock[y][x][1] - (x - y);
 				newLocation[3 - x][y][2] = currentBlock[y][x][2];
-				printf("after coords x: %d, y: %d\n", currentBlock[y][x][1] - (x - y), currentBlock[y][x][0] - (y - (3 - x)));
 			}
-
 		}
 	}
 

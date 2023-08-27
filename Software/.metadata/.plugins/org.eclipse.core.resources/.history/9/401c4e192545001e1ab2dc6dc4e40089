@@ -179,9 +179,7 @@ int canMoveDown(int newLocation[4][4][3])
 int canMoveToSide(int newLocation[4][4][3], movements movement)
 {
 	int sideCoords[4][3];
-	memset(sideCoords, 0, sizeof(sideCoords));
 	int currentsideCoord[3];
-	memset(currentsideCoord, 0, sizeof(currentsideCoord));
 
 	for(int y = 0; y < 4; y++)
 	{

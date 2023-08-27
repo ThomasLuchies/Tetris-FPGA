@@ -27,7 +27,6 @@ void moveLeftInterrupt(void* context)
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_LEFT_BASE,0);
 
-	printf("move left\n");
 	move(MOVE_LEFT);
 	drawGrid();
 
@@ -38,7 +37,6 @@ void moveRightInterrupt(void* context)
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_RIGHT_BASE,0);
 
-	printf("move right\n");
 	move(MOVE_RIGHT);
 	drawGrid();
 }
@@ -48,7 +46,6 @@ void rotateLeftInterrupt(void* context)
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_LEFT_BASE,0);
 
-	printf("rotate left\n");
 	drawGrid();
 	rotate(ROTATE_COUNTERCLOKWISE);
 }
@@ -58,7 +55,6 @@ void rotateRightInterrupt(void* context)
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_RIGHT_BASE,0);
 
-	printf("rotate right\n");
 	rotate(ROTATE_CLOCKWISE);
 	drawGrid();
 }
@@ -142,33 +138,27 @@ int canMoveDown(int newLocation[4][4][3])
 	}
 
 	// Get the bottom coords
-	int bottomCoords[4][3];
-	memset(bottomCoords, 0, sizeof(bottomCoords));
-	int currentBottomCoord[3];
-	memset(currentBottomCoord, 0, sizeof(currentBottomCoord));
+	int bottomCoords[4][2];
+	int currentBottomCoord[2];
 	for(int x = 0; x < 4; x++)
 	{
 		for(int y = 0; y < 4; y++)
 		{
 			if(newLocation[y][x][2] != 0)
 			{
-				printf("coords block x: %d, y: %d coords grid x: %d, y: %d", x, y, newLocation[y][x][1], newLocation[y][x][0]);
 				currentBottomCoord[0] = newLocation[y][x][0];
 				currentBottomCoord[1] = newLocation[y][x][1];
-				currentBottomCoord[2] = newLocation[y][x][2];
 			}
 		}
 
 		bottomCoords[x][0] = currentBottomCoord[0];
 		bottomCoords[x][1] = currentBottomCoord[1];
-		bottomCoords[x][2] = currentBottomCoord[2];
 	}
 
 	for(int i = 0; i < 4; i++)
 	{
 		if(grid[bottomCoords[i][0]][bottomCoords[i][1]] != 0)
 		{
-			printf("object hit from gravity x: %d, y: %d\n", bottomCoords[i][1], bottomCoords[i][0]);
 			return 0;
 		}
 	}
@@ -178,66 +168,45 @@ int canMoveDown(int newLocation[4][4][3])
 
 int canMoveToSide(int newLocation[4][4][3], movements movement)
 {
-	int sideCoords[4][3];
-	memset(sideCoords, 0, sizeof(sideCoords));
-	int currentsideCoord[3];
-	memset(currentsideCoord, 0, sizeof(currentsideCoord));
+	int sideCoords[4][2];
+	int currentsideCoord[2];
+
+	int startX = 0;
+	int xMax = 0;
+
+	if(movement == MOVE_LEFT || movement == ROTATE_COUNTERCLOKWISE)
+	{
+		startX = 3;
+	}
+	else
+	{
+		xMax = 4;
+	}
 
 	for(int y = 0; y < 4; y++)
 	{
-		if(movement == MOVE_LEFT || movement == ROTATE_COUNTERCLOKWISE)
+		for(int x = startX; x < xMax; x++)
 		{
-			for(int x = 3; x >= 0; x--)
+			if(newLocation[y][x][2] != 0)
 			{
-				if(newLocation[y][x][2] != 0)
+				if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
 				{
-					if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
-					{
-						return 0;
-					}
-
-					currentsideCoord[0] = newLocation[y][x][0];
-					currentsideCoord[1] = newLocation[y][x][1];
-					currentsideCoord[2] = newLocation[y][x][2];
+					return 0;
 				}
 
+				currentsideCoord[0] = newLocation[y][x][0];
+				currentsideCoord[1] = newLocation[y][x][1];
 			}
+
 		}
-		else
-		{
-			for(int x = 0; x < 4; x++)
-			{
-				if(newLocation[y][x][2] != 0)
-				{
-					if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
-					{
-						return 0;
-					}
-
-					currentsideCoord[0] = newLocation[y][x][0];
-					currentsideCoord[1] = newLocation[y][x][1];
-					currentsideCoord[2] = newLocation[y][x][2];
-				}
-
-			}
-		}
-
-		sideCoords[y][0] = currentsideCoord[0];
-		sideCoords[y][1] = currentsideCoord[1];
-		sideCoords[y][2] = currentsideCoord[2];
 	}
 
 	for(int i = 0; i < 4; i++)
 	{
-		if(sideCoords[i][2] != 0)
+		if(grid[sideCoords[i][0]][sideCoords[i][1]] != 0)
 		{
-			if(grid[sideCoords[i][0]][sideCoords[i][1]] != 0)
-			{
-				printf("object hit\n");
-				return 0;
-			}
+			return 0;
 		}
-
 	}
 
 	return 1;
@@ -334,40 +303,33 @@ void rotate(movements movement)
 	//memcpy(newLocation, currentBlock, sizeof(newLocation));
 
 	memset(newLocation, 0, sizeof(newLocation));
-	printf("before\n");
 	visualizeBlock(currentBlock);
 
 	int original_x;
 	for (int y = 0; y < 4; y++) {
 		for (int x = 0; x < 4; x++) {
-			printf("original coords x: %d, y: %d\n", currentBlock[y][x][1], currentBlock[y][x][0]);
 			visualizeBlock(newLocation);
 			if(movement == ROTATE_CLOCKWISE)
 			{
 				newLocation[x][3 - y][0] = currentBlock[y][x][0] - (y - x);
 				newLocation[x][3 - y][1] = currentBlock[y][x][1] - (x - (3 - y));
 				newLocation[x][3 - y][2] = currentBlock[y][x][2];
-				printf("after coords x: %d, y: %d\n", currentBlock[y][x][1] - (x - (3 - y)), currentBlock[y][x][0] - (y - x));
 			}
 			else if(movement == ROTATE_COUNTERCLOKWISE)
 			{
 				newLocation[3 - x][y][0] = currentBlock[y][x][0] - (y - (3 - x));
 				newLocation[3 - x][y][1] = currentBlock[y][x][1] - (x - y);
 				newLocation[3 - x][y][2] = currentBlock[y][x][2];
-				printf("after coords x: %d, y: %d\n", currentBlock[y][x][1] - (x - y), currentBlock[y][x][0] - (y - (3 - x)));
 			}
-
 		}
 	}
 
 
 
-	printf("after\n");
 	visualizeBlock(newLocation);
 
 	if(canMoveToSide(newLocation, movement) == 1)
 	{
-		printf("rotate allowed\n");
 		removeBlockFromGrid(currentBlock);
 		memcpy(currentBlock, newLocation, sizeof(currentBlock));
 		addBlockToGrid(currentBlock);
@@ -566,7 +528,6 @@ int drawGrid()
 void printBinary(int num) {
     for (int i = sizeof(num) * 8 - 1; i >= 0; i--) {
         int bit = (num >> i) & 1;
-        printf("%d", bit);
     }
 }
 
@@ -586,8 +547,6 @@ void visualizeBlock(int block[4][4][3])
 				line[x] = '*';
 			}
 		}
-
-		printf("%s\n", line);
 	}
 }
 
