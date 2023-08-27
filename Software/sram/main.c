@@ -60,32 +60,11 @@ int main()
   char binString = "010000000000000000000000000000";
 
   clearGrid();
-  	int start_x = START_X;
-  	int start_y = START_Y;
-  	for(int y = 0; y < 4; y++)
-  	{
-  	  for(int x = 0; x < 4; x++)
-  	  {
-		currentBlock[y][x][0] = start_y;
-		currentBlock[y][x][1] = start_x;
-		if(x == 0)
-		{
-			currentBlock[y][x][2] = 6;
-		}
-		else
-		{
-			currentBlock[y][x][2] = 0;
-		}
 
-		start_x = start_x + 1;
-  	  }
-  	  start_y = start_y + 1;
-  	  start_x = START_X;
-  	}
-
-  currentBlockType = I;
   /* Event loop never exits. */
   addBlockToGrid(currentBlock);
+  blocks randomBlock = (rand() % 7);
+  createBlock(randomBlock);
 
   initInterupts();
   while (1)
@@ -132,11 +111,17 @@ int canMoveDown(int newLocation[4][4][3])
 {
 
 	// Check if the block has reached the bottom;
-	for(int x = 0; x < 4; x++)
+	for(int y = 0; y < 4; y++)
 	{
-		if(newLocation[3][x][0] > 23)
+		for(int x = 0; x < 4; x++)
 		{
-			return 0;
+			if(newLocation[y][x][2] != 0)
+			{
+				if(newLocation[y][x][0] > 23)
+				{
+					return 0;
+				}
+			}
 		}
 	}
 
@@ -181,6 +166,11 @@ void gravity()
 		removeBlockFromGrid(currentBlock);
 		memcpy(currentBlock, newLocation, sizeof(currentBlock));
 		addBlockToGrid(currentBlock);
+	}
+	else
+	{
+		blocks randomBlock = (rand() % 7);
+		createBlock(randomBlock);
 	}
 
 }
@@ -286,43 +276,71 @@ void rotate(movements movement)
 	}
 }
 
-/*int createBlock(blocks blockType, int out_block[4][4][3])
+int createBlock(blocks blockType)
 {
-	int block[4][4][3];
-	int start_x;
-	int start_y;
-	for(int y = 0; y < 4; y++)
-	{
-	  for(int x = 0; x < 4; x++)
-	  {
-		  block[y][x][0] = start_y;
-		  block[y][x][] = start_x;
-		  block[y][x][0] = 0;
-		  start_x = start_x + 1;
-	  }
-	  start_y = start_y + 1;
-	}
+	int start_x = START_X;
+	  	int start_y = START_Y;
+	  	for(int y = 0; y < 4; y++)
+	  	{
+	  	  for(int x = 0; x < 4; x++)
+	  	  {
+			currentBlock[y][x][0] = start_y;
+			currentBlock[y][x][1] = start_x;
+			currentBlock[y][x][2] = 0;
+			start_x = start_x + 1;
+	  	  }
+	  	  start_y = start_y + 1;
+	  	  start_x = START_X;
+	  	}
 
 	switch(blockType)
 	{
 		case I:
+			currentBlock[0][0][2] = 6;
+			currentBlock[1][0][2] = 6;
+			currentBlock[2][0][2] = 6;
+			currentBlock[3][0][2] = 6;
 			break;
 		case J:
+			currentBlock[0][1][2] = 5;
+			currentBlock[1][1][2] = 5;
+			currentBlock[2][1][2] = 5;
+			currentBlock[2][0][2] = 5;
 			break;
 		case L:
+			currentBlock[0][0][2] = 7;
+			currentBlock[1][0][2] = 7;
+			currentBlock[2][0][2] = 7;
+			currentBlock[2][1][2] = 7;
 			break;
 		case O:
+			currentBlock[0][0][2] = 1;
+			currentBlock[0][1][2] = 1;
+			currentBlock[1][0][2] = 1;
+			currentBlock[1][1][2] = 1;
 			break;
 		case S:
+			currentBlock[0][1][2] = 4;
+			currentBlock[0][2][2] = 4;
+			currentBlock[1][0][2] = 4;
+			currentBlock[1][1][2] = 4;
 			break;
 		case T:
+			currentBlock[0][0][2] = 2;
+			currentBlock[0][1][2] = 2;
+			currentBlock[0][2][2] = 2;
+			currentBlock[1][1][2] = 2;
 			break;
 		case Z:
+			currentBlock[0][0][2] = 3;
+			currentBlock[0][1][2] = 3;
+			currentBlock[1][1][2] = 3;
+			currentBlock[1][2][2] = 3;
 			break;
 	}
 
-	return block;
-}*/
+	currentBlockType = blockType;
+}
 
 void addBlockToGrid(int block[4][4][3])
 {
