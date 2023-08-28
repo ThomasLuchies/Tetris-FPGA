@@ -104,8 +104,63 @@ int main()
 
   clearGrid();
 
+  /* Event loop never exits. */
   blocks randomBlock = (rand() % 7);
   createBlock(randomBlock);
+
+  for(int x = 0; x < 9; x++)
+  {
+	  grid[23][x] = 1;
+  }
+
+  for(int x = 0; x < 9; x++)
+      {
+    	  grid[22][x] = 1;
+      }
+  for(int x = 0; x < 9; x++)
+    {
+  	  grid[21][x] = 1;
+    }
+  for(int x = 0; x < 9; x++)
+      {
+    	  grid[20][x] = 1;
+      }
+
+  for(int x = 0; x < 9; x++)
+    {
+  	  grid[19][x] = 1;
+    }
+
+    for(int x = 0; x < 9; x++)
+        {
+      	  grid[18][x] = 1;
+        }
+    for(int x = 0; x < 9; x++)
+      {
+    	  grid[17][x] = 1;
+      }
+    for(int x = 0; x < 9; x++)
+        {
+      	  grid[16][x] = 1;
+        }
+
+    for(int x = 0; x < 9; x++)
+      {
+    	  grid[15][x] = 1;
+      }
+
+      for(int x = 0; x < 9; x++)
+          {
+        	  grid[14][x] = 1;
+          }
+      for(int x = 0; x < 9; x++)
+        {
+      	  grid[21][x] = 1;
+        }
+      for(int x = 0; x < 9; x++)
+          {
+        	  grid[13][x] = 1;
+          }
 
   initInterupts();
   writeScore(score);
