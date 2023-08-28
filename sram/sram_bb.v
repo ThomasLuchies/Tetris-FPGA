@@ -2,7 +2,10 @@
 module sram (
 	clk_clk,
 	move_left_export,
+	move_right_export,
 	reset_reset_n,
+	rotate_left_export,
+	rotate_right_export,
 	row_0_export,
 	row_1_export,
 	row_10_export,
@@ -34,13 +37,21 @@ module sram (
 	sram_CE_N,
 	sram_OE_N,
 	sram_WE_N,
-	rotate_right_export,
-	rotate_left_export,
-	move_right_export);	
+	hex_0_export,
+	hex_1_export,
+	hex_2_export,
+	hex_3_export,
+	hex_4_export,
+	hex_5_export,
+	hex_6_export,
+	hex7_export);	
 
 	input		clk_clk;
 	input		move_left_export;
+	input		move_right_export;
 	input		reset_reset_n;
+	input		rotate_left_export;
+	input		rotate_right_export;
 	output	[29:0]	row_0_export;
 	output	[29:0]	row_1_export;
 	output	[29:0]	row_10_export;
@@ -72,7 +83,12 @@ module sram (
 	output		sram_CE_N;
 	output		sram_OE_N;
 	output		sram_WE_N;
-	input		rotate_right_export;
-	input		rotate_left_export;
-	input		move_right_export;
+	output	[6:0]	hex_0_export;
+	output	[6:0]	hex_1_export;
+	output	[6:0]	hex_2_export;
+	output	[6:0]	hex_3_export;
+	output	[6:0]	hex_4_export;
+	output	[6:0]	hex_5_export;
+	output	[6:0]	hex_6_export;
+	output	[6:0]	hex7_export;
 endmodule

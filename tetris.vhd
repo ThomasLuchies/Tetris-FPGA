@@ -26,7 +26,17 @@ entity tetris is
 		--sram
 		SRAM_DQ: inout std_logic_vector(15 downto 0);
 		SRAM_UB_N, SRAM_LB_N, SRAM_CE_N,	SRAM_OE_N, SRAM_WE_N: out std_logic;
-		SRAM_ADDR: out std_logic_vector(19 downto 0)
+		SRAM_ADDR: out std_logic_vector(19 downto 0);
+		
+		-- HEX displays
+		HEX0: out std_logic_vector(6 downto 0);
+		HEX1: out std_logic_vector(6 downto 0);
+		HEX2: out std_logic_vector(6 downto 0);
+		HEX3: out std_logic_vector(6 downto 0);
+		HEX4: out std_logic_vector(6 downto 0);
+		HEX5: out std_logic_vector(6 downto 0);
+		HEX6: out std_logic_vector(6 downto 0);
+		HEX7: out std_logic_vector(6 downto 0)
 	);
 end entity; 
 
@@ -98,6 +108,14 @@ architecture tetris_arch of tetris is
 			reset_reset_n       : in    std_logic                     := '0';             --        reset.reset_n
 			rotate_left_export  : in    std_logic                     := '0';             --  rotate_left.export
 			rotate_right_export : in    std_logic                     := '0';  
+			hex7_export         : out   std_logic_vector(6 downto 0);                     --         hex7.export
+			hex_0_export        : out   std_logic_vector(6 downto 0);                     --        hex_0.export
+			hex_1_export        : out   std_logic_vector(6 downto 0);                     --        hex_1.export
+			hex_2_export        : out   std_logic_vector(6 downto 0);                     --        hex_2.export
+			hex_3_export        : out   std_logic_vector(6 downto 0);                     --        hex_3.export
+			hex_4_export        : out   std_logic_vector(6 downto 0);                     --        hex_4.export
+			hex_5_export        : out   std_logic_vector(6 downto 0);                     --        hex_5.export
+			hex_6_export        : out   std_logic_vector(6 downto 0);                     
 			row_0_export  : out   std_logic_vector(29 downto 0);                    --  row_0.export
 			row_1_export  : out   std_logic_vector(29 downto 0);                    --  row_1.export
 			row_10_export : out   std_logic_vector(29 downto 0);                    -- row_10.export
@@ -166,7 +184,15 @@ begin
 		 row_20_export => grid(119 downto 90),
 		 row_21_export => grid(89 downto 60),
 		 row_22_export => grid(59 downto 30),
-		 row_23_export => grid(29 downto 0)
+		 row_23_export => grid(29 downto 0),
+		 hex7_export => HEX7,
+		 hex_0_export => HEX0,
+		 hex_1_export => HEX1, 
+		 hex_2_export => HEX2,
+		 hex_3_export => HEX3,
+		 hex_4_export => HEX4,
+		 hex_5_export => HEX5,
+		 hex_6_export => HEX6                  
 	 );
 	
 	pc0: pixel_clock 

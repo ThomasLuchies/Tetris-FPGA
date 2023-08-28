@@ -163,6 +163,8 @@ int main()
           }
 
   initInterupts();
+  writeScore(score);
+  writeLevel(level);
 
   return 0;
 }
@@ -194,6 +196,80 @@ void initInterupts()
 	IOWR_ALTERA_AVALON_TIMER_CONTROL(FRAME_TIMER_BASE, ALTERA_AVALON_TIMER_CONTROL_CONT_MSK
 													| ALTERA_AVALON_TIMER_CONTROL_START_MSK
 													| ALTERA_AVALON_TIMER_CONTROL_ITO_MSK);
+}
+
+void writeLevel(int level)
+{
+	int hexDisplays[6] = {0};
+	hexDisplays[0] = HEX_6_BASE;
+	hexDisplays[1] = HEX_7_BASE;
+
+	writeHex(level, hexDisplays);
+}
+
+void writeScore(int score)
+{
+	int hexDisplays[6] = { HEX_0_BASE, HEX_1_BASE, HEX_2_BASE, HEX_3_BASE, HEX_4_BASE, HEX_5_BASE};
+	writeHex(score, hexDisplays);
+
+	//IOWR_ALTERA_AVALON_PIO_DATA(hexDisplays[0], digitToHex(0));
+}
+
+void writeHex(int number, int hexDisplays[6])
+{
+	int digitsWriten = 0;
+
+	while(number != 0 && hexDisplays[6]){
+	        int digit = number % 10;
+	        number = number / 10;
+	        IOWR_ALTERA_AVALON_PIO_DATA(hexDisplays[digitsWriten], digitToHex(digit));
+	        digitsWriten = digitsWriten + 1;
+	    }
+
+	for(int i = digitsWriten; i < 6; i++)
+	{
+		IOWR_ALTERA_AVALON_PIO_DATA(hexDisplays[i], digitToHex(0));
+	}
+}
+
+int digitToHex(int digit)
+{
+	uint8_t convertedDigit = 0;
+	switch(digit)
+	{
+		case 0:
+			convertedDigit = 0b1000000;
+			break;
+		case 1:
+			convertedDigit = 0b1111001;
+			break;
+		case 2:
+			convertedDigit = 0b0100100;
+			break;
+		case 3:
+			convertedDigit = 0b0110000;
+			break;
+		case 4:
+			convertedDigit = 0b0011001;
+			break;
+		case 5:
+			convertedDigit = 0b0010010;
+			break;
+		case 6:
+			convertedDigit = 0b0000010;
+			break;
+		case 7:
+			convertedDigit = 0b1111000;
+			break;
+		case 8:
+			convertedDigit = 0b0000000;
+			break;
+		case 9:
+			convertedDigit = 0b0000100;
+			break;
+	}
+
+	return convertedDigit;
 }
 
 void removeCompletedLines()
@@ -273,6 +349,7 @@ void addScore(int completedLines)
 			break;
 	}
 
+	writeScore(score);
 	linesCleared = linesCleared + completedLines;
 	linesClearedThisLevel = linesClearedThisLevel + completedLines;
 	updateLevel();
@@ -280,13 +357,12 @@ void addScore(int completedLines)
 
 void updateLevel()
 {
-	printf("levelReq %d, current lines: %d",levelIncreaseRequirements[level], linesClearedThisLevel );
 	if(linesClearedThisLevel >=  levelIncreaseRequirements[level])
 	{
 		linesClearedThisLevel = linesClearedThisLevel - levelIncreaseRequirements[level];
 		level = level + 1;
 		gameSpeed = levelSpeeds[level];
-		printf("level %d", level);
+		writeLevel(level);
 	}
 }
 
@@ -398,7 +474,6 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 		{
 			if(grid[sideCoords[i][0]][sideCoords[i][1]] != 0)
 			{
-				printf("object hit\n");
 				return 0;
 			}
 		}
@@ -528,7 +603,6 @@ void rotate(movements movement)
 	//memcpy(newLocation, currentBlock, sizeof(newLocation));
 
 	memset(newLocation, 0, sizeof(newLocation));
-	visualizeBlock(currentBlock);
 
 	int original_x;
 	for (int y = 0; y < 4; y++)
@@ -640,7 +714,6 @@ int isGameOver(int newBlock[4][4][3])
 		  {
 			  if(grid[newBlock[y][x][0]][newBlock[y][x][1]] != 0)
 			  {
-				  printf("gameOver");
 				  gameOver = 1;
 				  return 1;
 			  }

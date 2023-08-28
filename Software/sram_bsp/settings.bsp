@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>27-aug-2023 20:59:00</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1693162740705</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>28-aug-2023 21:16:46</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1693250206304</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\github\Tetris-FPGA\Software\sram_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\sram.sopcinfo</SopcDesignFile>
@@ -1089,6 +1089,54 @@
                 <addressRange>0x02500220 - 0x0250023F</addressRange>
                 <addressSpan>32</addressSpan>
                 <attributes>timer</attributes>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>HEX_0</slaveDescriptor>
+                <addressRange>0x02500240 - 0x0250024F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>HEX_1</slaveDescriptor>
+                <addressRange>0x02500250 - 0x0250025F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>HEX_2</slaveDescriptor>
+                <addressRange>0x02500260 - 0x0250026F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>HEX_3</slaveDescriptor>
+                <addressRange>0x02500270 - 0x0250027F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>HEX_4</slaveDescriptor>
+                <addressRange>0x02500280 - 0x0250028F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>HEX_5</slaveDescriptor>
+                <addressRange>0x02500290 - 0x0250029F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>HEX_6</slaveDescriptor>
+                <addressRange>0x02500300 - 0x0250030F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>HEX_7</slaveDescriptor>
+                <addressRange>0x02500310 - 0x0250031F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
         </MemoryMap>
         <LinkerSection>
                 <sectionName>.text</sectionName>

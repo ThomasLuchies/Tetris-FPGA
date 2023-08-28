@@ -9,6 +9,14 @@ use IEEE.numeric_std.all;
 entity sram is
 	port (
 		clk_clk             : in    std_logic                     := '0';             --          clk.clk
+		hex7_export         : out   std_logic_vector(6 downto 0);                     --         hex7.export
+		hex_0_export        : out   std_logic_vector(6 downto 0);                     --        hex_0.export
+		hex_1_export        : out   std_logic_vector(6 downto 0);                     --        hex_1.export
+		hex_2_export        : out   std_logic_vector(6 downto 0);                     --        hex_2.export
+		hex_3_export        : out   std_logic_vector(6 downto 0);                     --        hex_3.export
+		hex_4_export        : out   std_logic_vector(6 downto 0);                     --        hex_4.export
+		hex_5_export        : out   std_logic_vector(6 downto 0);                     --        hex_5.export
+		hex_6_export        : out   std_logic_vector(6 downto 0);                     --        hex_6.export
 		move_left_export    : in    std_logic                     := '0';             --    move_left.export
 		move_right_export   : in    std_logic                     := '0';             --   move_right.export
 		reset_reset_n       : in    std_logic                     := '0';             --        reset.reset_n
@@ -49,6 +57,19 @@ entity sram is
 end entity sram;
 
 architecture rtl of sram is
+	component sram_HEX_0 is
+		port (
+			clk        : in  std_logic                     := 'X';             -- clk
+			reset_n    : in  std_logic                     := 'X';             -- reset_n
+			address    : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
+			write_n    : in  std_logic                     := 'X';             -- write_n
+			writedata  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+			chipselect : in  std_logic                     := 'X';             -- chipselect
+			readdata   : out std_logic_vector(31 downto 0);                    -- readdata
+			out_port   : out std_logic_vector(6 downto 0)                      -- export
+		);
+	end component sram_HEX_0;
+
 	component sram_frame_timer is
 		port (
 			clk        : in  std_logic                     := 'X';             -- clk
@@ -193,6 +214,46 @@ architecture rtl of sram is
 			frame_timer_s1_readdata                        : in  std_logic_vector(15 downto 0) := (others => 'X'); -- readdata
 			frame_timer_s1_writedata                       : out std_logic_vector(15 downto 0);                    -- writedata
 			frame_timer_s1_chipselect                      : out std_logic;                                        -- chipselect
+			HEX_0_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			HEX_0_s1_write                                 : out std_logic;                                        -- write
+			HEX_0_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			HEX_0_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			HEX_0_s1_chipselect                            : out std_logic;                                        -- chipselect
+			HEX_1_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			HEX_1_s1_write                                 : out std_logic;                                        -- write
+			HEX_1_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			HEX_1_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			HEX_1_s1_chipselect                            : out std_logic;                                        -- chipselect
+			HEX_2_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			HEX_2_s1_write                                 : out std_logic;                                        -- write
+			HEX_2_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			HEX_2_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			HEX_2_s1_chipselect                            : out std_logic;                                        -- chipselect
+			HEX_3_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			HEX_3_s1_write                                 : out std_logic;                                        -- write
+			HEX_3_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			HEX_3_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			HEX_3_s1_chipselect                            : out std_logic;                                        -- chipselect
+			HEX_4_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			HEX_4_s1_write                                 : out std_logic;                                        -- write
+			HEX_4_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			HEX_4_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			HEX_4_s1_chipselect                            : out std_logic;                                        -- chipselect
+			HEX_5_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			HEX_5_s1_write                                 : out std_logic;                                        -- write
+			HEX_5_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			HEX_5_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			HEX_5_s1_chipselect                            : out std_logic;                                        -- chipselect
+			HEX_6_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			HEX_6_s1_write                                 : out std_logic;                                        -- write
+			HEX_6_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			HEX_6_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			HEX_6_s1_chipselect                            : out std_logic;                                        -- chipselect
+			HEX_7_s1_address                               : out std_logic_vector(1 downto 0);                     -- address
+			HEX_7_s1_write                                 : out std_logic;                                        -- write
+			HEX_7_s1_readdata                              : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			HEX_7_s1_writedata                             : out std_logic_vector(31 downto 0);                    -- writedata
+			HEX_7_s1_chipselect                            : out std_logic;                                        -- chipselect
 			jtag_uart_0_avalon_jtag_slave_address          : out std_logic_vector(0 downto 0);                     -- address
 			jtag_uart_0_avalon_jtag_slave_write            : out std_logic;                                        -- write
 			jtag_uart_0_avalon_jtag_slave_read             : out std_logic;                                        -- read
@@ -631,6 +692,46 @@ architecture rtl of sram is
 	signal mm_interconnect_0_frame_timer_s1_address                        : std_logic_vector(2 downto 0);  -- mm_interconnect_0:frame_timer_s1_address -> frame_timer:address
 	signal mm_interconnect_0_frame_timer_s1_write                          : std_logic;                     -- mm_interconnect_0:frame_timer_s1_write -> mm_interconnect_0_frame_timer_s1_write:in
 	signal mm_interconnect_0_frame_timer_s1_writedata                      : std_logic_vector(15 downto 0); -- mm_interconnect_0:frame_timer_s1_writedata -> frame_timer:writedata
+	signal mm_interconnect_0_hex_0_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:HEX_0_s1_chipselect -> HEX_0:chipselect
+	signal mm_interconnect_0_hex_0_s1_readdata                             : std_logic_vector(31 downto 0); -- HEX_0:readdata -> mm_interconnect_0:HEX_0_s1_readdata
+	signal mm_interconnect_0_hex_0_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_0_s1_address -> HEX_0:address
+	signal mm_interconnect_0_hex_0_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_0_s1_write -> mm_interconnect_0_hex_0_s1_write:in
+	signal mm_interconnect_0_hex_0_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_0_s1_writedata -> HEX_0:writedata
+	signal mm_interconnect_0_hex_1_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:HEX_1_s1_chipselect -> HEX_1:chipselect
+	signal mm_interconnect_0_hex_1_s1_readdata                             : std_logic_vector(31 downto 0); -- HEX_1:readdata -> mm_interconnect_0:HEX_1_s1_readdata
+	signal mm_interconnect_0_hex_1_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_1_s1_address -> HEX_1:address
+	signal mm_interconnect_0_hex_1_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_1_s1_write -> mm_interconnect_0_hex_1_s1_write:in
+	signal mm_interconnect_0_hex_1_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_1_s1_writedata -> HEX_1:writedata
+	signal mm_interconnect_0_hex_2_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:HEX_2_s1_chipselect -> HEX_2:chipselect
+	signal mm_interconnect_0_hex_2_s1_readdata                             : std_logic_vector(31 downto 0); -- HEX_2:readdata -> mm_interconnect_0:HEX_2_s1_readdata
+	signal mm_interconnect_0_hex_2_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_2_s1_address -> HEX_2:address
+	signal mm_interconnect_0_hex_2_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_2_s1_write -> mm_interconnect_0_hex_2_s1_write:in
+	signal mm_interconnect_0_hex_2_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_2_s1_writedata -> HEX_2:writedata
+	signal mm_interconnect_0_hex_3_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:HEX_3_s1_chipselect -> HEX_3:chipselect
+	signal mm_interconnect_0_hex_3_s1_readdata                             : std_logic_vector(31 downto 0); -- HEX_3:readdata -> mm_interconnect_0:HEX_3_s1_readdata
+	signal mm_interconnect_0_hex_3_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_3_s1_address -> HEX_3:address
+	signal mm_interconnect_0_hex_3_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_3_s1_write -> mm_interconnect_0_hex_3_s1_write:in
+	signal mm_interconnect_0_hex_3_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_3_s1_writedata -> HEX_3:writedata
+	signal mm_interconnect_0_hex_4_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:HEX_4_s1_chipselect -> HEX_4:chipselect
+	signal mm_interconnect_0_hex_4_s1_readdata                             : std_logic_vector(31 downto 0); -- HEX_4:readdata -> mm_interconnect_0:HEX_4_s1_readdata
+	signal mm_interconnect_0_hex_4_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_4_s1_address -> HEX_4:address
+	signal mm_interconnect_0_hex_4_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_4_s1_write -> mm_interconnect_0_hex_4_s1_write:in
+	signal mm_interconnect_0_hex_4_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_4_s1_writedata -> HEX_4:writedata
+	signal mm_interconnect_0_hex_5_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:HEX_5_s1_chipselect -> HEX_5:chipselect
+	signal mm_interconnect_0_hex_5_s1_readdata                             : std_logic_vector(31 downto 0); -- HEX_5:readdata -> mm_interconnect_0:HEX_5_s1_readdata
+	signal mm_interconnect_0_hex_5_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_5_s1_address -> HEX_5:address
+	signal mm_interconnect_0_hex_5_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_5_s1_write -> mm_interconnect_0_hex_5_s1_write:in
+	signal mm_interconnect_0_hex_5_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_5_s1_writedata -> HEX_5:writedata
+	signal mm_interconnect_0_hex_6_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:HEX_6_s1_chipselect -> HEX_6:chipselect
+	signal mm_interconnect_0_hex_6_s1_readdata                             : std_logic_vector(31 downto 0); -- HEX_6:readdata -> mm_interconnect_0:HEX_6_s1_readdata
+	signal mm_interconnect_0_hex_6_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_6_s1_address -> HEX_6:address
+	signal mm_interconnect_0_hex_6_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_6_s1_write -> mm_interconnect_0_hex_6_s1_write:in
+	signal mm_interconnect_0_hex_6_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_6_s1_writedata -> HEX_6:writedata
+	signal mm_interconnect_0_hex_7_s1_chipselect                           : std_logic;                     -- mm_interconnect_0:HEX_7_s1_chipselect -> HEX_7:chipselect
+	signal mm_interconnect_0_hex_7_s1_readdata                             : std_logic_vector(31 downto 0); -- HEX_7:readdata -> mm_interconnect_0:HEX_7_s1_readdata
+	signal mm_interconnect_0_hex_7_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_7_s1_address -> HEX_7:address
+	signal mm_interconnect_0_hex_7_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_7_s1_write -> mm_interconnect_0_hex_7_s1_write:in
+	signal mm_interconnect_0_hex_7_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_7_s1_writedata -> HEX_7:writedata
 	signal irq_mapper_receiver0_irq                                        : std_logic;                     -- jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	signal irq_mapper_receiver1_irq                                        : std_logic;                     -- move_left:irq -> irq_mapper:receiver1_irq
 	signal irq_mapper_receiver2_irq                                        : std_logic;                     -- move_right:irq -> irq_mapper:receiver2_irq
@@ -673,9 +774,113 @@ architecture rtl of sram is
 	signal mm_interconnect_0_rotate_left_s1_write_ports_inv                : std_logic;                     -- mm_interconnect_0_rotate_left_s1_write:inv -> rotate_left:write_n
 	signal mm_interconnect_0_rotate_right_s1_write_ports_inv               : std_logic;                     -- mm_interconnect_0_rotate_right_s1_write:inv -> rotate_right:write_n
 	signal mm_interconnect_0_frame_timer_s1_write_ports_inv                : std_logic;                     -- mm_interconnect_0_frame_timer_s1_write:inv -> frame_timer:write_n
-	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [frame_timer:reset_n, jtag_uart_0:rst_n, move_left:reset_n, move_right:reset_n, nios2_gen2_0:reset_n, rotate_left:reset_n, rotate_right:reset_n, row_0:reset_n, row_10:reset_n, row_11:reset_n, row_12:reset_n, row_13:reset_n, row_14:reset_n, row_15:reset_n, row_16:reset_n, row_17:reset_n, row_18:reset_n, row_19:reset_n, row_1:reset_n, row_20:reset_n, row_21:reset_n, row_22:reset_n, row_23:reset_n, row_2:reset_n, row_3:reset_n, row_4:reset_n, row_5:reset_n, row_6:reset_n, row_7:reset_n, row_8:reset_n, row_9:reset_n]
+	signal mm_interconnect_0_hex_0_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_0_s1_write:inv -> HEX_0:write_n
+	signal mm_interconnect_0_hex_1_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_1_s1_write:inv -> HEX_1:write_n
+	signal mm_interconnect_0_hex_2_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_2_s1_write:inv -> HEX_2:write_n
+	signal mm_interconnect_0_hex_3_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_3_s1_write:inv -> HEX_3:write_n
+	signal mm_interconnect_0_hex_4_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_4_s1_write:inv -> HEX_4:write_n
+	signal mm_interconnect_0_hex_5_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_5_s1_write:inv -> HEX_5:write_n
+	signal mm_interconnect_0_hex_6_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_6_s1_write:inv -> HEX_6:write_n
+	signal mm_interconnect_0_hex_7_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_7_s1_write:inv -> HEX_7:write_n
+	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [HEX_0:reset_n, HEX_1:reset_n, HEX_2:reset_n, HEX_3:reset_n, HEX_4:reset_n, HEX_5:reset_n, HEX_6:reset_n, HEX_7:reset_n, frame_timer:reset_n, jtag_uart_0:rst_n, move_left:reset_n, move_right:reset_n, nios2_gen2_0:reset_n, rotate_left:reset_n, rotate_right:reset_n, row_0:reset_n, row_10:reset_n, row_11:reset_n, row_12:reset_n, row_13:reset_n, row_14:reset_n, row_15:reset_n, row_16:reset_n, row_17:reset_n, row_18:reset_n, row_19:reset_n, row_1:reset_n, row_20:reset_n, row_21:reset_n, row_22:reset_n, row_23:reset_n, row_2:reset_n, row_3:reset_n, row_4:reset_n, row_5:reset_n, row_6:reset_n, row_7:reset_n, row_8:reset_n, row_9:reset_n]
 
 begin
+
+	hex_0 : component sram_HEX_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_hex_0_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_hex_0_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_hex_0_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_hex_0_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_hex_0_s1_readdata,        --                    .readdata
+			out_port   => hex_0_export                                -- external_connection.export
+		);
+
+	hex_1 : component sram_HEX_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_hex_1_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_hex_1_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_hex_1_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_hex_1_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_hex_1_s1_readdata,        --                    .readdata
+			out_port   => hex_1_export                                -- external_connection.export
+		);
+
+	hex_2 : component sram_HEX_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_hex_2_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_hex_2_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_hex_2_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_hex_2_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_hex_2_s1_readdata,        --                    .readdata
+			out_port   => hex_2_export                                -- external_connection.export
+		);
+
+	hex_3 : component sram_HEX_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_hex_3_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_hex_3_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_hex_3_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_hex_3_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_hex_3_s1_readdata,        --                    .readdata
+			out_port   => hex_3_export                                -- external_connection.export
+		);
+
+	hex_4 : component sram_HEX_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_hex_4_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_hex_4_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_hex_4_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_hex_4_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_hex_4_s1_readdata,        --                    .readdata
+			out_port   => hex_4_export                                -- external_connection.export
+		);
+
+	hex_5 : component sram_HEX_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_hex_5_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_hex_5_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_hex_5_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_hex_5_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_hex_5_s1_readdata,        --                    .readdata
+			out_port   => hex_5_export                                -- external_connection.export
+		);
+
+	hex_6 : component sram_HEX_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_hex_6_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_hex_6_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_hex_6_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_hex_6_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_hex_6_s1_readdata,        --                    .readdata
+			out_port   => hex_6_export                                -- external_connection.export
+		);
+
+	hex_7 : component sram_HEX_0
+		port map (
+			clk        => clk_clk,                                    --                 clk.clk
+			reset_n    => rst_controller_reset_out_reset_ports_inv,   --               reset.reset_n
+			address    => mm_interconnect_0_hex_7_s1_address,         --                  s1.address
+			write_n    => mm_interconnect_0_hex_7_s1_write_ports_inv, --                    .write_n
+			writedata  => mm_interconnect_0_hex_7_s1_writedata,       --                    .writedata
+			chipselect => mm_interconnect_0_hex_7_s1_chipselect,      --                    .chipselect
+			readdata   => mm_interconnect_0_hex_7_s1_readdata,        --                    .readdata
+			out_port   => hex7_export                                 -- external_connection.export
+		);
 
 	frame_timer : component sram_frame_timer
 		port map (
@@ -1129,6 +1334,46 @@ begin
 			frame_timer_s1_readdata                        => mm_interconnect_0_frame_timer_s1_readdata,                   --                                         .readdata
 			frame_timer_s1_writedata                       => mm_interconnect_0_frame_timer_s1_writedata,                  --                                         .writedata
 			frame_timer_s1_chipselect                      => mm_interconnect_0_frame_timer_s1_chipselect,                 --                                         .chipselect
+			HEX_0_s1_address                               => mm_interconnect_0_hex_0_s1_address,                          --                                 HEX_0_s1.address
+			HEX_0_s1_write                                 => mm_interconnect_0_hex_0_s1_write,                            --                                         .write
+			HEX_0_s1_readdata                              => mm_interconnect_0_hex_0_s1_readdata,                         --                                         .readdata
+			HEX_0_s1_writedata                             => mm_interconnect_0_hex_0_s1_writedata,                        --                                         .writedata
+			HEX_0_s1_chipselect                            => mm_interconnect_0_hex_0_s1_chipselect,                       --                                         .chipselect
+			HEX_1_s1_address                               => mm_interconnect_0_hex_1_s1_address,                          --                                 HEX_1_s1.address
+			HEX_1_s1_write                                 => mm_interconnect_0_hex_1_s1_write,                            --                                         .write
+			HEX_1_s1_readdata                              => mm_interconnect_0_hex_1_s1_readdata,                         --                                         .readdata
+			HEX_1_s1_writedata                             => mm_interconnect_0_hex_1_s1_writedata,                        --                                         .writedata
+			HEX_1_s1_chipselect                            => mm_interconnect_0_hex_1_s1_chipselect,                       --                                         .chipselect
+			HEX_2_s1_address                               => mm_interconnect_0_hex_2_s1_address,                          --                                 HEX_2_s1.address
+			HEX_2_s1_write                                 => mm_interconnect_0_hex_2_s1_write,                            --                                         .write
+			HEX_2_s1_readdata                              => mm_interconnect_0_hex_2_s1_readdata,                         --                                         .readdata
+			HEX_2_s1_writedata                             => mm_interconnect_0_hex_2_s1_writedata,                        --                                         .writedata
+			HEX_2_s1_chipselect                            => mm_interconnect_0_hex_2_s1_chipselect,                       --                                         .chipselect
+			HEX_3_s1_address                               => mm_interconnect_0_hex_3_s1_address,                          --                                 HEX_3_s1.address
+			HEX_3_s1_write                                 => mm_interconnect_0_hex_3_s1_write,                            --                                         .write
+			HEX_3_s1_readdata                              => mm_interconnect_0_hex_3_s1_readdata,                         --                                         .readdata
+			HEX_3_s1_writedata                             => mm_interconnect_0_hex_3_s1_writedata,                        --                                         .writedata
+			HEX_3_s1_chipselect                            => mm_interconnect_0_hex_3_s1_chipselect,                       --                                         .chipselect
+			HEX_4_s1_address                               => mm_interconnect_0_hex_4_s1_address,                          --                                 HEX_4_s1.address
+			HEX_4_s1_write                                 => mm_interconnect_0_hex_4_s1_write,                            --                                         .write
+			HEX_4_s1_readdata                              => mm_interconnect_0_hex_4_s1_readdata,                         --                                         .readdata
+			HEX_4_s1_writedata                             => mm_interconnect_0_hex_4_s1_writedata,                        --                                         .writedata
+			HEX_4_s1_chipselect                            => mm_interconnect_0_hex_4_s1_chipselect,                       --                                         .chipselect
+			HEX_5_s1_address                               => mm_interconnect_0_hex_5_s1_address,                          --                                 HEX_5_s1.address
+			HEX_5_s1_write                                 => mm_interconnect_0_hex_5_s1_write,                            --                                         .write
+			HEX_5_s1_readdata                              => mm_interconnect_0_hex_5_s1_readdata,                         --                                         .readdata
+			HEX_5_s1_writedata                             => mm_interconnect_0_hex_5_s1_writedata,                        --                                         .writedata
+			HEX_5_s1_chipselect                            => mm_interconnect_0_hex_5_s1_chipselect,                       --                                         .chipselect
+			HEX_6_s1_address                               => mm_interconnect_0_hex_6_s1_address,                          --                                 HEX_6_s1.address
+			HEX_6_s1_write                                 => mm_interconnect_0_hex_6_s1_write,                            --                                         .write
+			HEX_6_s1_readdata                              => mm_interconnect_0_hex_6_s1_readdata,                         --                                         .readdata
+			HEX_6_s1_writedata                             => mm_interconnect_0_hex_6_s1_writedata,                        --                                         .writedata
+			HEX_6_s1_chipselect                            => mm_interconnect_0_hex_6_s1_chipselect,                       --                                         .chipselect
+			HEX_7_s1_address                               => mm_interconnect_0_hex_7_s1_address,                          --                                 HEX_7_s1.address
+			HEX_7_s1_write                                 => mm_interconnect_0_hex_7_s1_write,                            --                                         .write
+			HEX_7_s1_readdata                              => mm_interconnect_0_hex_7_s1_readdata,                         --                                         .readdata
+			HEX_7_s1_writedata                             => mm_interconnect_0_hex_7_s1_writedata,                        --                                         .writedata
+			HEX_7_s1_chipselect                            => mm_interconnect_0_hex_7_s1_chipselect,                       --                                         .chipselect
 			jtag_uart_0_avalon_jtag_slave_address          => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_address,     --            jtag_uart_0_avalon_jtag_slave.address
 			jtag_uart_0_avalon_jtag_slave_write            => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write,       --                                         .write
 			jtag_uart_0_avalon_jtag_slave_read             => mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read,        --                                         .read
@@ -1441,6 +1686,22 @@ begin
 	mm_interconnect_0_rotate_right_s1_write_ports_inv <= not mm_interconnect_0_rotate_right_s1_write;
 
 	mm_interconnect_0_frame_timer_s1_write_ports_inv <= not mm_interconnect_0_frame_timer_s1_write;
+
+	mm_interconnect_0_hex_0_s1_write_ports_inv <= not mm_interconnect_0_hex_0_s1_write;
+
+	mm_interconnect_0_hex_1_s1_write_ports_inv <= not mm_interconnect_0_hex_1_s1_write;
+
+	mm_interconnect_0_hex_2_s1_write_ports_inv <= not mm_interconnect_0_hex_2_s1_write;
+
+	mm_interconnect_0_hex_3_s1_write_ports_inv <= not mm_interconnect_0_hex_3_s1_write;
+
+	mm_interconnect_0_hex_4_s1_write_ports_inv <= not mm_interconnect_0_hex_4_s1_write;
+
+	mm_interconnect_0_hex_5_s1_write_ports_inv <= not mm_interconnect_0_hex_5_s1_write;
+
+	mm_interconnect_0_hex_6_s1_write_ports_inv <= not mm_interconnect_0_hex_6_s1_write;
+
+	mm_interconnect_0_hex_7_s1_write_ports_inv <= not mm_interconnect_0_hex_7_s1_write;
 
 	rst_controller_reset_out_reset_ports_inv <= not rst_controller_reset_out_reset;
 

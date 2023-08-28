@@ -1,7 +1,10 @@
 	sram u0 (
 		.clk_clk             (<connected-to-clk_clk>),             //          clk.clk
 		.move_left_export    (<connected-to-move_left_export>),    //    move_left.export
+		.move_right_export   (<connected-to-move_right_export>),   //   move_right.export
 		.reset_reset_n       (<connected-to-reset_reset_n>),       //        reset.reset_n
+		.rotate_left_export  (<connected-to-rotate_left_export>),  //  rotate_left.export
+		.rotate_right_export (<connected-to-rotate_right_export>), // rotate_right.export
 		.row_0_export        (<connected-to-row_0_export>),        //        row_0.export
 		.row_1_export        (<connected-to-row_1_export>),        //        row_1.export
 		.row_10_export       (<connected-to-row_10_export>),       //       row_10.export
@@ -33,8 +36,13 @@
 		.sram_CE_N           (<connected-to-sram_CE_N>),           //             .CE_N
 		.sram_OE_N           (<connected-to-sram_OE_N>),           //             .OE_N
 		.sram_WE_N           (<connected-to-sram_WE_N>),           //             .WE_N
-		.rotate_right_export (<connected-to-rotate_right_export>), // rotate_right.export
-		.rotate_left_export  (<connected-to-rotate_left_export>),  //  rotate_left.export
-		.move_right_export   (<connected-to-move_right_export>)    //   move_right.export
+		.hex_0_export        (<connected-to-hex_0_export>),        //        hex_0.export
+		.hex_1_export        (<connected-to-hex_1_export>),        //        hex_1.export
+		.hex_2_export        (<connected-to-hex_2_export>),        //        hex_2.export
+		.hex_3_export        (<connected-to-hex_3_export>),        //        hex_3.export
+		.hex_4_export        (<connected-to-hex_4_export>),        //        hex_4.export
+		.hex_5_export        (<connected-to-hex_5_export>),        //        hex_5.export
+		.hex_6_export        (<connected-to-hex_6_export>),        //        hex_6.export
+		.hex7_export         (<connected-to-hex7_export>)          //         hex7.export
 	);
 
