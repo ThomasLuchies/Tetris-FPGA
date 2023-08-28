@@ -17,11 +17,12 @@ int grid[24][10];
 int rowAdresses[24] = {ROW_0_BASE, ROW_1_BASE, ROW_2_BASE, ROW_3_BASE, ROW_4_BASE, ROW_5_BASE, ROW_6_BASE, ROW_7_BASE, ROW_8_BASE, ROW_9_BASE, ROW_10_BASE, ROW_11_BASE, ROW_12_BASE, ROW_13_BASE, ROW_14_BASE, ROW_15_BASE, ROW_16_BASE, ROW_17_BASE, ROW_18_BASE, ROW_19_BASE, ROW_20_BASE, ROW_21_BASE, ROW_22_BASE, ROW_23_BASE};
 int currentBlock[4][4][3];
 int frame_counter = 0;
-int game_speed = 60;
+int game_speed = 20;
 typedef enum {I, J, L, O, S, T, Z} blocks;
 typedef enum {MOVE_LEFT, MOVE_RIGHT, ROTATE_CLOCKWISE, ROTATE_COUNTERCLOKWISE} movements;
 blocks currentBlockType;
 int gameOver = 0;
+int score = 0;
 
 void moveLeftInterrupt(void* context)
 {
@@ -85,7 +86,6 @@ void frameTimerInterrupt(void *context, alt_u32 id)
 		if(frame_counter == game_speed)
 		{
 			gravity();
-			removeCompletedLines();
 			drawGrid();
 			frame_counter = 0;
 		}
@@ -101,21 +101,20 @@ int main()
 
   /* Event loop never exits. */
   blocks randomBlock = (rand() % 7);
-  createBlock(randomBlock);
+  createBlock(I);
 
-  for(int x = 0; x < 10; x++)
+  for(int x = 0; x < 9; x++)
   {
 	  grid[23][x] = 1;
   }
 
-  for(int x = 0; x < 10; x++)
+  for(int x = 0; x < 7; x++)
+      {
+    	  grid[22][x] = 1;
+      }
+  for(int x = 0; x < 9; x++)
     {
-  	  grid[22][x] = 1;
-    }
-
-  for(int x = 0; x < 10; x++)
-    {
-  	  grid[19][x] = 1;
+  	  grid[21][x] = 1;
     }
 
   initInterupts();
@@ -154,8 +153,9 @@ void initInterupts()
 
 void removeCompletedLines()
 {
-	int completedLines[24] = {0};
+	int completedLines = 0;
 	int lineCompleted = 1;
+	int start_y = 24;
 
 	for(int y = 23; y >= 0; y--)
 	{
@@ -163,36 +163,69 @@ void removeCompletedLines()
 		{
 			if(grid[y][x] == 0)
 			{
+				if(completedLines > 0)
+				{
+					for(int j = 0; j < completedLines; j++)
+					{
+						for(int x = 0; x < 10; x++)
+						{
+							grid[start_y - j][x] = 0;
+						}
+					}
+
+					printf("lines that have to be changed %d", 23 - completedLines);
+					for(int j = (start_y - completedLines); j >= 0; j--)
+					{
+						for(int x = 0; x < 10; x++)
+						{
+							grid[j + completedLines][x] = grid[j][x];
+						}
+					}
+
+					drawGrid();
+
+					addScore(completedLines);
+					removeCompletedLines();
+				}
+
 				lineCompleted = 0;
+				start_y = 24;
+				completedLines = 0;
 			}
 		}
 
 		if(lineCompleted == 1)
 		{
-			completedLines[y] = lineCompleted;
+			if(start_y == 24)
+			{
+				start_y = y;
+				completedLines = 1;
+			}
+			else
+			{
+				completedLines = completedLines + 1;
+			}
+
+			printf("start y: %d, length: %d", start_y, completedLines);
 		}
 
 		lineCompleted = 1;
 	}
-
-	for(int i = 0; i < 24; i++)
-	{
-		if(completedLines[i] == 1)
-		{
-			for(int x = 0; x < 10; x++)
-			{
-				grid[i][x] = 0;
-			}
-		}
-
-	}
-
-	addScore(completedLines);
 }
 
-void addScore(int completedLines[24])
+void addScore(int completedLines)
 {
-
+	switch(completedLines)
+	{
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+	}
 }
 
 int canMoveDown(int newLocation[4][4][3])
@@ -362,6 +395,7 @@ void gravity()
 	}
 	else
 	{
+		removeCompletedLines();
 		blocks randomBlock = (rand() % 7);
 		createBlock(randomBlock);
 	}
