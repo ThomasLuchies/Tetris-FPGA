@@ -283,7 +283,7 @@ void updateLevel()
 	printf("levelReq %d, current lines: %d",levelIncreaseRequirements[level], linesClearedThisLevel );
 	if(linesClearedThisLevel >=  levelIncreaseRequirements[level])
 	{
-		linesClearedThisLevel = linesClearedThisLevel - levelIncreaseRequirements[level];
+		linesClearedThisLevel = 0;
 		level = level + 1;
 		gameSpeed = levelSpeeds[level];
 		printf("level %d", level);

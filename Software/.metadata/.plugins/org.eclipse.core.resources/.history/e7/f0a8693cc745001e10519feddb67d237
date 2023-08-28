@@ -24,7 +24,7 @@ blocks currentBlockType;
 int gameOver = 0;
 int score = 0;
 int linesClearedThisLevel = 0;
-int linesCleared = 0;
+int totalLines = 0;
 int level = 0;
 int levelIncreaseRequirements[29] = { 10, 20, 30, 40, 50, 60, 70,80, 90, 100, 100, 100, 100, 100, 100, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 200, 200, 200};
 int levelSpeeds[29] = {48, 43, 38, 33, 28, 23, 18, 13, 8, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1};
@@ -274,16 +274,14 @@ void addScore(int completedLines)
 	}
 
 	linesCleared = linesCleared + completedLines;
-	linesClearedThisLevel = linesClearedThisLevel + completedLines;
 	updateLevel();
 }
 
 void updateLevel()
 {
-	printf("levelReq %d, current lines: %d",levelIncreaseRequirements[level], linesClearedThisLevel );
-	if(linesClearedThisLevel >=  levelIncreaseRequirements[level])
+	if(linesCleared == levelIncreaseRequirements[level])
 	{
-		linesClearedThisLevel = linesClearedThisLevel - levelIncreaseRequirements[level];
+		linesCleared = 0;
 		level = level + 1;
 		gameSpeed = levelSpeeds[level];
 		printf("level %d", level);

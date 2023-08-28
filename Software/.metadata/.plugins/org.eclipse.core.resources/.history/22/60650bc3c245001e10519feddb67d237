@@ -16,18 +16,14 @@
 int grid[24][10];
 int rowAdresses[24] = {ROW_0_BASE, ROW_1_BASE, ROW_2_BASE, ROW_3_BASE, ROW_4_BASE, ROW_5_BASE, ROW_6_BASE, ROW_7_BASE, ROW_8_BASE, ROW_9_BASE, ROW_10_BASE, ROW_11_BASE, ROW_12_BASE, ROW_13_BASE, ROW_14_BASE, ROW_15_BASE, ROW_16_BASE, ROW_17_BASE, ROW_18_BASE, ROW_19_BASE, ROW_20_BASE, ROW_21_BASE, ROW_22_BASE, ROW_23_BASE};
 int currentBlock[4][4][3];
-int frameCounter = 0;
-int gameSpeed = 48;
+int frame_counter = 0;
+int game_speed = 48;
 typedef enum {I, J, L, O, S, T, Z} blocks;
 typedef enum {MOVE_LEFT, MOVE_RIGHT, ROTATE_CLOCKWISE, ROTATE_COUNTERCLOKWISE} movements;
 blocks currentBlockType;
 int gameOver = 0;
 int score = 0;
-int linesClearedThisLevel = 0;
 int linesCleared = 0;
-int level = 0;
-int levelIncreaseRequirements[29] = { 10, 20, 30, 40, 50, 60, 70,80, 90, 100, 100, 100, 100, 100, 100, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 200, 200, 200};
-int levelSpeeds[29] = {48, 43, 38, 33, 28, 23, 18, 13, 8, 6, 5, 5, 5, 4, 4, 4, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1};
 
 void moveLeftInterrupt(void* context)
 {
@@ -87,12 +83,12 @@ void frameTimerInterrupt(void *context, alt_u32 id)
 		// Reset interrupt
 		IOWR_ALTERA_AVALON_TIMER_STATUS(FRAME_TIMER_BASE, 0);
 
-		frameCounter = frameCounter + 1;
-		if(frameCounter == gameSpeed)
+		frame_counter = frame_counter + 1;
+		if(frame_counter == game_speed)
 		{
 			gravity();
 			drawGrid();
-			frameCounter = 0;
+			frame_counter = 0;
 		}
 	}
 }
@@ -125,42 +121,6 @@ int main()
       {
     	  grid[20][x] = 1;
       }
-
-  for(int x = 0; x < 9; x++)
-    {
-  	  grid[19][x] = 1;
-    }
-
-    for(int x = 0; x < 9; x++)
-        {
-      	  grid[18][x] = 1;
-        }
-    for(int x = 0; x < 9; x++)
-      {
-    	  grid[17][x] = 1;
-      }
-    for(int x = 0; x < 9; x++)
-        {
-      	  grid[16][x] = 1;
-        }
-
-    for(int x = 0; x < 9; x++)
-      {
-    	  grid[15][x] = 1;
-      }
-
-      for(int x = 0; x < 9; x++)
-          {
-        	  grid[14][x] = 1;
-          }
-      for(int x = 0; x < 9; x++)
-        {
-      	  grid[21][x] = 1;
-        }
-      for(int x = 0; x < 9; x++)
-          {
-        	  grid[13][x] = 1;
-          }
 
   initInterupts();
 
@@ -273,21 +233,9 @@ void addScore(int completedLines)
 			break;
 	}
 
-	linesCleared = linesCleared + completedLines;
-	linesClearedThisLevel = linesClearedThisLevel + completedLines;
-	updateLevel();
-}
+	linesCleared = linesCleared + + completedLines;
 
-void updateLevel()
-{
-	printf("levelReq %d, current lines: %d",levelIncreaseRequirements[level], linesClearedThisLevel );
-	if(linesClearedThisLevel >=  levelIncreaseRequirements[level])
-	{
-		linesClearedThisLevel = linesClearedThisLevel - levelIncreaseRequirements[level];
-		level = level + 1;
-		gameSpeed = levelSpeeds[level];
-		printf("level %d", level);
-	}
+	printf("score: %d", score);
 }
 
 int canMoveDown(int newLocation[4][4][3])
@@ -459,7 +407,7 @@ void gravity()
 	{
 		removeCompletedLines();
 		blocks randomBlock = (rand() % 7);
-		createBlock(I);
+		createBlock(randomBlock);
 	}
 
 }

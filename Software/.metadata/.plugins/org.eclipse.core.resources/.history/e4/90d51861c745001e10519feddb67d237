@@ -274,16 +274,14 @@ void addScore(int completedLines)
 	}
 
 	linesCleared = linesCleared + completedLines;
-	linesClearedThisLevel = linesClearedThisLevel + completedLines;
 	updateLevel();
 }
 
 void updateLevel()
 {
-	printf("levelReq %d, current lines: %d",levelIncreaseRequirements[level], linesClearedThisLevel );
-	if(linesClearedThisLevel >=  levelIncreaseRequirements[level])
+	if(linesCleared == levelIncreaseRequirements[level])
 	{
-		linesClearedThisLevel = linesClearedThisLevel - levelIncreaseRequirements[level];
+		linesCleared = 0;
 		level = level + 1;
 		gameSpeed = levelSpeeds[level];
 		printf("level %d", level);

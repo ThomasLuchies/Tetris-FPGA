@@ -23,7 +23,6 @@ typedef enum {MOVE_LEFT, MOVE_RIGHT, ROTATE_CLOCKWISE, ROTATE_COUNTERCLOKWISE} m
 blocks currentBlockType;
 int gameOver = 0;
 int score = 0;
-int linesClearedThisLevel = 0;
 int linesCleared = 0;
 int level = 0;
 int levelIncreaseRequirements[29] = { 10, 20, 30, 40, 50, 60, 70,80, 90, 100, 100, 100, 100, 100, 100, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 200, 200, 200};
@@ -274,16 +273,14 @@ void addScore(int completedLines)
 	}
 
 	linesCleared = linesCleared + completedLines;
-	linesClearedThisLevel = linesClearedThisLevel + completedLines;
+	printf("score: %d", score);
 	updateLevel();
 }
 
 void updateLevel()
 {
-	printf("levelReq %d, current lines: %d",levelIncreaseRequirements[level], linesClearedThisLevel );
-	if(linesClearedThisLevel >=  levelIncreaseRequirements[level])
+	if(linesCleared == levelIncreaseRequirements[level])
 	{
-		linesClearedThisLevel = linesClearedThisLevel - levelIncreaseRequirements[level];
 		level = level + 1;
 		gameSpeed = levelSpeeds[level];
 		printf("level %d", level);
