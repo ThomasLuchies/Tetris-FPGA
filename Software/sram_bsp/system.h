@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'sram'
  * SOPC Builder design path: ../../sram.sopcinfo
  *
- * Generated: Mon Aug 28 21:16:47 CEST 2023
+ * Generated: Mon Aug 28 22:39:56 CEST 2023
  */
 
 /*
@@ -394,6 +394,33 @@
 
 
 /*
+ * fast_move configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_fast_move altera_avalon_pio
+#define FAST_MOVE_BASE 0x2500330
+#define FAST_MOVE_BIT_CLEARING_EDGE_REGISTER 0
+#define FAST_MOVE_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define FAST_MOVE_CAPTURE 0
+#define FAST_MOVE_DATA_WIDTH 1
+#define FAST_MOVE_DO_TEST_BENCH_WIRING 0
+#define FAST_MOVE_DRIVEN_SIM_VALUE 0
+#define FAST_MOVE_EDGE_TYPE "NONE"
+#define FAST_MOVE_FREQ 50000000
+#define FAST_MOVE_HAS_IN 1
+#define FAST_MOVE_HAS_OUT 0
+#define FAST_MOVE_HAS_TRI 0
+#define FAST_MOVE_IRQ -1
+#define FAST_MOVE_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define FAST_MOVE_IRQ_TYPE "NONE"
+#define FAST_MOVE_NAME "/dev/fast_move"
+#define FAST_MOVE_RESET_VALUE 0
+#define FAST_MOVE_SPAN 16
+#define FAST_MOVE_TYPE "altera_avalon_pio"
+
+
+/*
  * frame_timer configuration
  *
  */
@@ -529,6 +556,33 @@
 #define ONCHIP_MEMORY2_0_SPAN 200096
 #define ONCHIP_MEMORY2_0_TYPE "altera_avalon_onchip_memory2"
 #define ONCHIP_MEMORY2_0_WRITABLE 1
+
+
+/*
+ * reset_game configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_reset_game altera_avalon_pio
+#define RESET_GAME_BASE 0x2500320
+#define RESET_GAME_BIT_CLEARING_EDGE_REGISTER 0
+#define RESET_GAME_BIT_MODIFYING_OUTPUT_REGISTER 0
+#define RESET_GAME_CAPTURE 0
+#define RESET_GAME_DATA_WIDTH 1
+#define RESET_GAME_DO_TEST_BENCH_WIRING 0
+#define RESET_GAME_DRIVEN_SIM_VALUE 0
+#define RESET_GAME_EDGE_TYPE "NONE"
+#define RESET_GAME_FREQ 50000000
+#define RESET_GAME_HAS_IN 1
+#define RESET_GAME_HAS_OUT 0
+#define RESET_GAME_HAS_TRI 0
+#define RESET_GAME_IRQ -1
+#define RESET_GAME_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define RESET_GAME_IRQ_TYPE "NONE"
+#define RESET_GAME_NAME "/dev/reset_game"
+#define RESET_GAME_RESET_VALUE 0
+#define RESET_GAME_SPAN 16
+#define RESET_GAME_TYPE "altera_avalon_pio"
 
 
 /*

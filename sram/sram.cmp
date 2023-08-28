@@ -1,6 +1,7 @@
 	component sram is
 		port (
 			clk_clk             : in    std_logic                     := 'X';             -- clk
+			fast_move_export    : in    std_logic                     := 'X';             -- export
 			hex7_export         : out   std_logic_vector(6 downto 0);                     -- export
 			hex_0_export        : out   std_logic_vector(6 downto 0);                     -- export
 			hex_1_export        : out   std_logic_vector(6 downto 0);                     -- export
@@ -12,6 +13,7 @@
 			move_left_export    : in    std_logic                     := 'X';             -- export
 			move_right_export   : in    std_logic                     := 'X';             -- export
 			reset_reset_n       : in    std_logic                     := 'X';             -- reset_n
+			reset_game_export   : in    std_logic                     := 'X';             -- export
 			rotate_left_export  : in    std_logic                     := 'X';             -- export
 			rotate_right_export : in    std_logic                     := 'X';             -- export
 			row_0_export        : out   std_logic_vector(29 downto 0);                    -- export

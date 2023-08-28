@@ -1,6 +1,14 @@
 	component sram is
 		port (
 			clk_clk             : in    std_logic                     := 'X';             -- clk
+			hex7_export         : out   std_logic_vector(6 downto 0);                     -- export
+			hex_0_export        : out   std_logic_vector(6 downto 0);                     -- export
+			hex_1_export        : out   std_logic_vector(6 downto 0);                     -- export
+			hex_2_export        : out   std_logic_vector(6 downto 0);                     -- export
+			hex_3_export        : out   std_logic_vector(6 downto 0);                     -- export
+			hex_4_export        : out   std_logic_vector(6 downto 0);                     -- export
+			hex_5_export        : out   std_logic_vector(6 downto 0);                     -- export
+			hex_6_export        : out   std_logic_vector(6 downto 0);                     -- export
 			move_left_export    : in    std_logic                     := 'X';             -- export
 			move_right_export   : in    std_logic                     := 'X';             -- export
 			reset_reset_n       : in    std_logic                     := 'X';             -- reset_n
@@ -37,20 +45,22 @@
 			sram_CE_N           : out   std_logic;                                        -- CE_N
 			sram_OE_N           : out   std_logic;                                        -- OE_N
 			sram_WE_N           : out   std_logic;                                        -- WE_N
-			hex_0_export        : out   std_logic_vector(6 downto 0);                     -- export
-			hex_1_export        : out   std_logic_vector(6 downto 0);                     -- export
-			hex_2_export        : out   std_logic_vector(6 downto 0);                     -- export
-			hex_3_export        : out   std_logic_vector(6 downto 0);                     -- export
-			hex_4_export        : out   std_logic_vector(6 downto 0);                     -- export
-			hex_5_export        : out   std_logic_vector(6 downto 0);                     -- export
-			hex_6_export        : out   std_logic_vector(6 downto 0);                     -- export
-			hex7_export         : out   std_logic_vector(6 downto 0)                      -- export
+			reset_game_export   : in    std_logic                     := 'X';             -- export
+			fast_move_export    : in    std_logic                     := 'X'              -- export
 		);
 	end component sram;
 
 	u0 : component sram
 		port map (
 			clk_clk             => CONNECTED_TO_clk_clk,             --          clk.clk
+			hex7_export         => CONNECTED_TO_hex7_export,         --         hex7.export
+			hex_0_export        => CONNECTED_TO_hex_0_export,        --        hex_0.export
+			hex_1_export        => CONNECTED_TO_hex_1_export,        --        hex_1.export
+			hex_2_export        => CONNECTED_TO_hex_2_export,        --        hex_2.export
+			hex_3_export        => CONNECTED_TO_hex_3_export,        --        hex_3.export
+			hex_4_export        => CONNECTED_TO_hex_4_export,        --        hex_4.export
+			hex_5_export        => CONNECTED_TO_hex_5_export,        --        hex_5.export
+			hex_6_export        => CONNECTED_TO_hex_6_export,        --        hex_6.export
 			move_left_export    => CONNECTED_TO_move_left_export,    --    move_left.export
 			move_right_export   => CONNECTED_TO_move_right_export,   --   move_right.export
 			reset_reset_n       => CONNECTED_TO_reset_reset_n,       --        reset.reset_n
@@ -87,13 +97,7 @@
 			sram_CE_N           => CONNECTED_TO_sram_CE_N,           --             .CE_N
 			sram_OE_N           => CONNECTED_TO_sram_OE_N,           --             .OE_N
 			sram_WE_N           => CONNECTED_TO_sram_WE_N,           --             .WE_N
-			hex_0_export        => CONNECTED_TO_hex_0_export,        --        hex_0.export
-			hex_1_export        => CONNECTED_TO_hex_1_export,        --        hex_1.export
-			hex_2_export        => CONNECTED_TO_hex_2_export,        --        hex_2.export
-			hex_3_export        => CONNECTED_TO_hex_3_export,        --        hex_3.export
-			hex_4_export        => CONNECTED_TO_hex_4_export,        --        hex_4.export
-			hex_5_export        => CONNECTED_TO_hex_5_export,        --        hex_5.export
-			hex_6_export        => CONNECTED_TO_hex_6_export,        --        hex_6.export
-			hex7_export         => CONNECTED_TO_hex7_export          --         hex7.export
+			reset_game_export   => CONNECTED_TO_reset_game_export,   --   reset_game.export
+			fast_move_export    => CONNECTED_TO_fast_move_export     --    fast_move.export
 		);
 

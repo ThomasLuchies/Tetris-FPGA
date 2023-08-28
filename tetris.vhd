@@ -108,6 +108,8 @@ architecture tetris_arch of tetris is
 			reset_reset_n       : in    std_logic                     := '0';             --        reset.reset_n
 			rotate_left_export  : in    std_logic                     := '0';             --  rotate_left.export
 			rotate_right_export : in    std_logic                     := '0';  
+			reset_game_export   : in    std_logic; 
+			fast_move_export    : in    std_logic;
 			hex7_export         : out   std_logic_vector(6 downto 0);                     --         hex7.export
 			hex_0_export        : out   std_logic_vector(6 downto 0);                     --        hex_0.export
 			hex_1_export        : out   std_logic_vector(6 downto 0);                     --        hex_1.export
@@ -192,7 +194,9 @@ begin
 		 hex_3_export => HEX3,
 		 hex_4_export => HEX4,
 		 hex_5_export => HEX5,
-		 hex_6_export => HEX6                  
+		 hex_6_export => HEX6,
+		 fast_move_export => SW(0),
+		 reset_game_export => SW(17)
 	 );
 	
 	pc0: pixel_clock 

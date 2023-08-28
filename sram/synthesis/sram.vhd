@@ -9,6 +9,7 @@ use IEEE.numeric_std.all;
 entity sram is
 	port (
 		clk_clk             : in    std_logic                     := '0';             --          clk.clk
+		fast_move_export    : in    std_logic                     := '0';             --    fast_move.export
 		hex7_export         : out   std_logic_vector(6 downto 0);                     --         hex7.export
 		hex_0_export        : out   std_logic_vector(6 downto 0);                     --        hex_0.export
 		hex_1_export        : out   std_logic_vector(6 downto 0);                     --        hex_1.export
@@ -20,6 +21,7 @@ entity sram is
 		move_left_export    : in    std_logic                     := '0';             --    move_left.export
 		move_right_export   : in    std_logic                     := '0';             --   move_right.export
 		reset_reset_n       : in    std_logic                     := '0';             --        reset.reset_n
+		reset_game_export   : in    std_logic                     := '0';             --   reset_game.export
 		rotate_left_export  : in    std_logic                     := '0';             --  rotate_left.export
 		rotate_right_export : in    std_logic                     := '0';             -- rotate_right.export
 		row_0_export        : out   std_logic_vector(29 downto 0);                    --        row_0.export
@@ -69,6 +71,16 @@ architecture rtl of sram is
 			out_port   : out std_logic_vector(6 downto 0)                      -- export
 		);
 	end component sram_HEX_0;
+
+	component sram_fast_move is
+		port (
+			clk      : in  std_logic                     := 'X';             -- clk
+			reset_n  : in  std_logic                     := 'X';             -- reset_n
+			address  : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
+			readdata : out std_logic_vector(31 downto 0);                    -- readdata
+			in_port  : in  std_logic                     := 'X'              -- export
+		);
+	end component sram_fast_move;
 
 	component sram_frame_timer is
 		port (
@@ -209,6 +221,8 @@ architecture rtl of sram is
 			nios2_gen2_0_instruction_master_waitrequest    : out std_logic;                                        -- waitrequest
 			nios2_gen2_0_instruction_master_read           : in  std_logic                     := 'X';             -- read
 			nios2_gen2_0_instruction_master_readdata       : out std_logic_vector(31 downto 0);                    -- readdata
+			fast_move_s1_address                           : out std_logic_vector(1 downto 0);                     -- address
+			fast_move_s1_readdata                          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			frame_timer_s1_address                         : out std_logic_vector(2 downto 0);                     -- address
 			frame_timer_s1_write                           : out std_logic;                                        -- write
 			frame_timer_s1_readdata                        : in  std_logic_vector(15 downto 0) := (others => 'X'); -- readdata
@@ -286,6 +300,8 @@ architecture rtl of sram is
 			onchip_memory2_0_s1_byteenable                 : out std_logic_vector(1 downto 0);                     -- byteenable
 			onchip_memory2_0_s1_chipselect                 : out std_logic;                                        -- chipselect
 			onchip_memory2_0_s1_clken                      : out std_logic;                                        -- clken
+			reset_game_s1_address                          : out std_logic_vector(1 downto 0);                     -- address
+			reset_game_s1_readdata                         : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			rotate_left_s1_address                         : out std_logic_vector(1 downto 0);                     -- address
 			rotate_left_s1_write                           : out std_logic;                                        -- write
 			rotate_left_s1_readdata                        : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
@@ -732,6 +748,10 @@ architecture rtl of sram is
 	signal mm_interconnect_0_hex_7_s1_address                              : std_logic_vector(1 downto 0);  -- mm_interconnect_0:HEX_7_s1_address -> HEX_7:address
 	signal mm_interconnect_0_hex_7_s1_write                                : std_logic;                     -- mm_interconnect_0:HEX_7_s1_write -> mm_interconnect_0_hex_7_s1_write:in
 	signal mm_interconnect_0_hex_7_s1_writedata                            : std_logic_vector(31 downto 0); -- mm_interconnect_0:HEX_7_s1_writedata -> HEX_7:writedata
+	signal mm_interconnect_0_reset_game_s1_readdata                        : std_logic_vector(31 downto 0); -- reset_game:readdata -> mm_interconnect_0:reset_game_s1_readdata
+	signal mm_interconnect_0_reset_game_s1_address                         : std_logic_vector(1 downto 0);  -- mm_interconnect_0:reset_game_s1_address -> reset_game:address
+	signal mm_interconnect_0_fast_move_s1_readdata                         : std_logic_vector(31 downto 0); -- fast_move:readdata -> mm_interconnect_0:fast_move_s1_readdata
+	signal mm_interconnect_0_fast_move_s1_address                          : std_logic_vector(1 downto 0);  -- mm_interconnect_0:fast_move_s1_address -> fast_move:address
 	signal irq_mapper_receiver0_irq                                        : std_logic;                     -- jtag_uart_0:av_irq -> irq_mapper:receiver0_irq
 	signal irq_mapper_receiver1_irq                                        : std_logic;                     -- move_left:irq -> irq_mapper:receiver1_irq
 	signal irq_mapper_receiver2_irq                                        : std_logic;                     -- move_right:irq -> irq_mapper:receiver2_irq
@@ -782,7 +802,7 @@ architecture rtl of sram is
 	signal mm_interconnect_0_hex_5_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_5_s1_write:inv -> HEX_5:write_n
 	signal mm_interconnect_0_hex_6_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_6_s1_write:inv -> HEX_6:write_n
 	signal mm_interconnect_0_hex_7_s1_write_ports_inv                      : std_logic;                     -- mm_interconnect_0_hex_7_s1_write:inv -> HEX_7:write_n
-	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [HEX_0:reset_n, HEX_1:reset_n, HEX_2:reset_n, HEX_3:reset_n, HEX_4:reset_n, HEX_5:reset_n, HEX_6:reset_n, HEX_7:reset_n, frame_timer:reset_n, jtag_uart_0:rst_n, move_left:reset_n, move_right:reset_n, nios2_gen2_0:reset_n, rotate_left:reset_n, rotate_right:reset_n, row_0:reset_n, row_10:reset_n, row_11:reset_n, row_12:reset_n, row_13:reset_n, row_14:reset_n, row_15:reset_n, row_16:reset_n, row_17:reset_n, row_18:reset_n, row_19:reset_n, row_1:reset_n, row_20:reset_n, row_21:reset_n, row_22:reset_n, row_23:reset_n, row_2:reset_n, row_3:reset_n, row_4:reset_n, row_5:reset_n, row_6:reset_n, row_7:reset_n, row_8:reset_n, row_9:reset_n]
+	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [HEX_0:reset_n, HEX_1:reset_n, HEX_2:reset_n, HEX_3:reset_n, HEX_4:reset_n, HEX_5:reset_n, HEX_6:reset_n, HEX_7:reset_n, fast_move:reset_n, frame_timer:reset_n, jtag_uart_0:rst_n, move_left:reset_n, move_right:reset_n, nios2_gen2_0:reset_n, reset_game:reset_n, rotate_left:reset_n, rotate_right:reset_n, row_0:reset_n, row_10:reset_n, row_11:reset_n, row_12:reset_n, row_13:reset_n, row_14:reset_n, row_15:reset_n, row_16:reset_n, row_17:reset_n, row_18:reset_n, row_19:reset_n, row_1:reset_n, row_20:reset_n, row_21:reset_n, row_22:reset_n, row_23:reset_n, row_2:reset_n, row_3:reset_n, row_4:reset_n, row_5:reset_n, row_6:reset_n, row_7:reset_n, row_8:reset_n, row_9:reset_n]
 
 begin
 
@@ -882,6 +902,15 @@ begin
 			out_port   => hex7_export                                 -- external_connection.export
 		);
 
+	fast_move : component sram_fast_move
+		port map (
+			clk      => clk_clk,                                  --                 clk.clk
+			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
+			address  => mm_interconnect_0_fast_move_s1_address,   --                  s1.address
+			readdata => mm_interconnect_0_fast_move_s1_readdata,  --                    .readdata
+			in_port  => fast_move_export                          -- external_connection.export
+		);
+
 	frame_timer : component sram_frame_timer
 		port map (
 			clk        => clk_clk,                                          --   clk.clk
@@ -977,6 +1006,15 @@ begin
 			reset      => rst_controller_reset_out_reset,                   -- reset1.reset
 			reset_req  => rst_controller_reset_out_reset_req,               --       .reset_req
 			freeze     => '0'                                               -- (terminated)
+		);
+
+	reset_game : component sram_fast_move
+		port map (
+			clk      => clk_clk,                                  --                 clk.clk
+			reset_n  => rst_controller_reset_out_reset_ports_inv, --               reset.reset_n
+			address  => mm_interconnect_0_reset_game_s1_address,  --                  s1.address
+			readdata => mm_interconnect_0_reset_game_s1_readdata, --                    .readdata
+			in_port  => reset_game_export                         -- external_connection.export
 		);
 
 	rotate_left : component sram_move_left
@@ -1329,6 +1367,8 @@ begin
 			nios2_gen2_0_instruction_master_waitrequest    => nios2_gen2_0_instruction_master_waitrequest,                 --                                         .waitrequest
 			nios2_gen2_0_instruction_master_read           => nios2_gen2_0_instruction_master_read,                        --                                         .read
 			nios2_gen2_0_instruction_master_readdata       => nios2_gen2_0_instruction_master_readdata,                    --                                         .readdata
+			fast_move_s1_address                           => mm_interconnect_0_fast_move_s1_address,                      --                             fast_move_s1.address
+			fast_move_s1_readdata                          => mm_interconnect_0_fast_move_s1_readdata,                     --                                         .readdata
 			frame_timer_s1_address                         => mm_interconnect_0_frame_timer_s1_address,                    --                           frame_timer_s1.address
 			frame_timer_s1_write                           => mm_interconnect_0_frame_timer_s1_write,                      --                                         .write
 			frame_timer_s1_readdata                        => mm_interconnect_0_frame_timer_s1_readdata,                   --                                         .readdata
@@ -1406,6 +1446,8 @@ begin
 			onchip_memory2_0_s1_byteenable                 => mm_interconnect_0_onchip_memory2_0_s1_byteenable,            --                                         .byteenable
 			onchip_memory2_0_s1_chipselect                 => mm_interconnect_0_onchip_memory2_0_s1_chipselect,            --                                         .chipselect
 			onchip_memory2_0_s1_clken                      => mm_interconnect_0_onchip_memory2_0_s1_clken,                 --                                         .clken
+			reset_game_s1_address                          => mm_interconnect_0_reset_game_s1_address,                     --                            reset_game_s1.address
+			reset_game_s1_readdata                         => mm_interconnect_0_reset_game_s1_readdata,                    --                                         .readdata
 			rotate_left_s1_address                         => mm_interconnect_0_rotate_left_s1_address,                    --                           rotate_left_s1.address
 			rotate_left_s1_write                           => mm_interconnect_0_rotate_left_s1_write,                      --                                         .write
 			rotate_left_s1_readdata                        => mm_interconnect_0_rotate_left_s1_readdata,                   --                                         .readdata

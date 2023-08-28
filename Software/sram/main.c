@@ -31,28 +31,25 @@ int levelSpeeds[29] = {48, 43, 38, 33, 28, 23, 18, 13, 8, 6, 5, 5, 5, 4, 4, 4, 3
 
 void moveLeftInterrupt(void* context)
 {
+	// Reset interrupt
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_LEFT_BASE,0);
 	if(gameOver == 0)
 	{
-		// Reset interrupt
-		IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_LEFT_BASE,0);
 		move(MOVE_LEFT);
 		drawGrid();
 	}
 	else
 	{
-		clearGrid();
-		blocks randomBlock = (rand() % 7);
-	    createBlock(randomBlock);
-		gameOver = 0;
+		resetGame();
 	}
 }
 
 void moveRightInterrupt(void* context)
 {
+	// Reset interrupt
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_RIGHT_BASE,0);
 	if(gameOver == 0)
 	{
-		// Reset interrupt
-		IOWR_ALTERA_AVALON_PIO_EDGE_CAP(MOVE_RIGHT_BASE,0);
 		move(MOVE_RIGHT);
 		drawGrid();
 	}
@@ -60,10 +57,10 @@ void moveRightInterrupt(void* context)
 
 void rotateLeftInterrupt(void* context)
 {
+	// Reset interrupt
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_LEFT_BASE,0);
 	if(gameOver == 0)
 	{
-		// Reset interrupt
-		IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_LEFT_BASE,0);
 		drawGrid();
 		rotate(ROTATE_COUNTERCLOKWISE);
 	}
@@ -71,10 +68,10 @@ void rotateLeftInterrupt(void* context)
 
 void rotateRightInterrupt(void* context)
 {
+	// Reset interrupt
+	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_RIGHT_BASE,0);
 	if(gameOver == 0)
 	{
-		// Reset interrupt
-		IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_RIGHT_BASE,0);
 		rotate(ROTATE_CLOCKWISE);
 		drawGrid();
 	}
@@ -82,14 +79,36 @@ void rotateRightInterrupt(void* context)
 
 void frameTimerInterrupt(void *context, alt_u32 id)
 {
+	// Reset interrupt
+	IOWR_ALTERA_AVALON_TIMER_STATUS(FRAME_TIMER_BASE, 0);
 	if(gameOver == 0)
 	{
-		// Reset interrupt
-		IOWR_ALTERA_AVALON_TIMER_STATUS(FRAME_TIMER_BASE, 0);
+		if(IORD_ALTERA_AVALON_PIO_DATA(RESET_GAME_BASE) == 1)
+		{
+			resetGame();
+		}
+
+		int newSpeed = 0;
+		if(IORD_ALTERA_AVALON_PIO_DATA(FAST_MOVE_BASE) == 1)
+		{
+			newSpeed = 3;
+
+		}
+		else
+		{
+			newSpeed = levelSpeeds[level];
+		}
+
+		if(newSpeed != gameSpeed)
+		{
+			frameCounter = 0;
+			gameSpeed = newSpeed;
+		}
 
 		frameCounter = frameCounter + 1;
 		if(frameCounter == gameSpeed)
 		{
+			printf("matched");
 			gravity();
 			drawGrid();
 			frameCounter = 0;
@@ -141,6 +160,20 @@ void initInterupts()
 	IOWR_ALTERA_AVALON_TIMER_CONTROL(FRAME_TIMER_BASE, ALTERA_AVALON_TIMER_CONTROL_CONT_MSK
 													| ALTERA_AVALON_TIMER_CONTROL_START_MSK
 													| ALTERA_AVALON_TIMER_CONTROL_ITO_MSK);
+}
+
+void resetGame()
+{
+	clearGrid();
+	blocks randomBlock = (rand() % 7);
+	createBlock(randomBlock);
+	gameOver = 0;
+	score = 0;
+	level = 0;
+	linesClearedThisLevel = 0;
+	linesCleared = 0;
+	writeScore(score);
+	writeLevel(level);
 }
 
 void writeLevel(int level)
@@ -306,6 +339,7 @@ void updateLevel()
 	{
 		linesClearedThisLevel = linesClearedThisLevel - levelIncreaseRequirements[level];
 		level = level + 1;
+		frameCounter = 0;
 		gameSpeed = levelSpeeds[level];
 		writeLevel(level);
 	}

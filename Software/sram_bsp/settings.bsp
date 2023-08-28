@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>28-aug-2023 21:16:46</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1693250206304</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>28-aug-2023 22:39:56</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1693255196289</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\github\Tetris-FPGA\Software\sram_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\sram.sopcinfo</SopcDesignFile>
@@ -1135,6 +1135,18 @@
         <MemoryMap>
                 <slaveDescriptor>HEX_7</slaveDescriptor>
                 <addressRange>0x02500310 - 0x0250031F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>reset_game</slaveDescriptor>
+                <addressRange>0x02500320 - 0x0250032F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>fast_move</slaveDescriptor>
+                <addressRange>0x02500330 - 0x0250033F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>

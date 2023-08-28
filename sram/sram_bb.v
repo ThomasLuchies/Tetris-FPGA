@@ -1,6 +1,14 @@
 
 module sram (
 	clk_clk,
+	hex7_export,
+	hex_0_export,
+	hex_1_export,
+	hex_2_export,
+	hex_3_export,
+	hex_4_export,
+	hex_5_export,
+	hex_6_export,
 	move_left_export,
 	move_right_export,
 	reset_reset_n,
@@ -37,16 +45,18 @@ module sram (
 	sram_CE_N,
 	sram_OE_N,
 	sram_WE_N,
-	hex_0_export,
-	hex_1_export,
-	hex_2_export,
-	hex_3_export,
-	hex_4_export,
-	hex_5_export,
-	hex_6_export,
-	hex7_export);	
+	reset_game_export,
+	fast_move_export);	
 
 	input		clk_clk;
+	output	[6:0]	hex7_export;
+	output	[6:0]	hex_0_export;
+	output	[6:0]	hex_1_export;
+	output	[6:0]	hex_2_export;
+	output	[6:0]	hex_3_export;
+	output	[6:0]	hex_4_export;
+	output	[6:0]	hex_5_export;
+	output	[6:0]	hex_6_export;
 	input		move_left_export;
 	input		move_right_export;
 	input		reset_reset_n;
@@ -83,12 +93,6 @@ module sram (
 	output		sram_CE_N;
 	output		sram_OE_N;
 	output		sram_WE_N;
-	output	[6:0]	hex_0_export;
-	output	[6:0]	hex_1_export;
-	output	[6:0]	hex_2_export;
-	output	[6:0]	hex_3_export;
-	output	[6:0]	hex_4_export;
-	output	[6:0]	hex_5_export;
-	output	[6:0]	hex_6_export;
-	output	[6:0]	hex7_export;
+	input		reset_game_export;
+	input		fast_move_export;
 endmodule
