@@ -17,7 +17,7 @@ int grid[24][10];
 int rowAdresses[24] = {ROW_0_BASE, ROW_1_BASE, ROW_2_BASE, ROW_3_BASE, ROW_4_BASE, ROW_5_BASE, ROW_6_BASE, ROW_7_BASE, ROW_8_BASE, ROW_9_BASE, ROW_10_BASE, ROW_11_BASE, ROW_12_BASE, ROW_13_BASE, ROW_14_BASE, ROW_15_BASE, ROW_16_BASE, ROW_17_BASE, ROW_18_BASE, ROW_19_BASE, ROW_20_BASE, ROW_21_BASE, ROW_22_BASE, ROW_23_BASE};
 int currentBlock[4][4][3];
 int frame_counter = 0;
-int game_speed = 5;
+int game_speed = 20;
 typedef enum {I, J, L, O, S, T, Z} blocks;
 typedef enum {MOVE_LEFT, MOVE_RIGHT, ROTATE_CLOCKWISE, ROTATE_COUNTERCLOKWISE} movements;
 blocks currentBlockType;
@@ -33,13 +33,6 @@ void moveLeftInterrupt(void* context)
 		printf("move left\n");
 		move(MOVE_LEFT);
 		drawGrid();
-	}
-	else
-	{
-		clearGrid();
-		blocks randomBlock = (rand() % 7);
-	    createBlock(randomBlock);
-		gameOver = 0;
 	}
 }
 
@@ -107,8 +100,9 @@ int main()
   clearGrid();
 
   /* Event loop never exits. */
+  addBlockToGrid(currentBlock);
   blocks randomBlock = (rand() % 7);
-  createBlock(randomBlock);
+  createBlock(I);
 
   initInterupts();
 
@@ -547,9 +541,9 @@ void removeBlockFromGrid(int block[4][4][3])
 
 int clearGrid()
 {
-	for(int y = 0; y < 24; y++)
+	for(int y = 0; y < 23; y++)
 	{
-	  for(int x = 0; x < 10; x++)
+	  for(int x = 0; x < 9; x++)
 	  {
 		  grid[y][x] = 0;
 	  }

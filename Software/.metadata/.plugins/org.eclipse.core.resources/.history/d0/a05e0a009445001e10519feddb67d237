@@ -34,13 +34,6 @@ void moveLeftInterrupt(void* context)
 		move(MOVE_LEFT);
 		drawGrid();
 	}
-	else
-	{
-		clearGrid();
-		blocks randomBlock = (rand() % 7);
-	    createBlock(randomBlock);
-		gameOver = 0;
-	}
 }
 
 void moveRightInterrupt(void* context)
@@ -107,8 +100,9 @@ int main()
   clearGrid();
 
   /* Event loop never exits. */
+  addBlockToGrid(currentBlock);
   blocks randomBlock = (rand() % 7);
-  createBlock(randomBlock);
+  createBlock(I);
 
   initInterupts();
 
@@ -547,9 +541,9 @@ void removeBlockFromGrid(int block[4][4][3])
 
 int clearGrid()
 {
-	for(int y = 0; y < 24; y++)
+	for(int y = 0; y < 23; y++)
 	{
-	  for(int x = 0; x < 10; x++)
+	  for(int x = 0; x < 9; x++)
 	  {
 		  grid[y][x] = 0;
 	  }

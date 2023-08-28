@@ -36,10 +36,11 @@ void moveLeftInterrupt(void* context)
 	}
 	else
 	{
+		printf("reset");
 		clearGrid();
 		blocks randomBlock = (rand() % 7);
 	    createBlock(randomBlock);
-		gameOver = 0;
+		gameOver = 1;
 	}
 }
 
@@ -547,9 +548,9 @@ void removeBlockFromGrid(int block[4][4][3])
 
 int clearGrid()
 {
-	for(int y = 0; y < 24; y++)
+	for(int y = 0; y < 23; y++)
 	{
-	  for(int x = 0; x < 10; x++)
+	  for(int x = 0; x < 9; x++)
 	  {
 		  grid[y][x] = 0;
 	  }
