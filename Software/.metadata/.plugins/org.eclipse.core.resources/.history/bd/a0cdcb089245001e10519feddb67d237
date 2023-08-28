@@ -185,7 +185,7 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 
 	for(int y = 0; y < 4; y++)
 	{
-		if(movement == MOVE_LEFT || movement == ROTATE_CLOCKWISE)
+		if(movement == MOVE_LEFT || movement == ROTATE_COUNTERCLOKWISE)
 		{
 			for(int x = 3; x >= 0; x--)
 			{

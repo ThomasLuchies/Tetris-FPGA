@@ -185,7 +185,7 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 
 	for(int y = 0; y < 4; y++)
 	{
-		if(movement == MOVE_LEFT || movement == ROTATE_CLOCKWISE)
+		if(movement == MOVE_LEFT || movement == ROTATE_COUNTERCLOKWISE)
 		{
 			for(int x = 3; x >= 0; x--)
 			{
@@ -256,15 +256,8 @@ int canRotate(int newLocation[4][4][3], movements movement)
 				{
 					return 0;
 				}
-
-				for(int cur_y = 0; cur_y < 4; cur_y++)
-				{
-					for(int cur_x = 0; cur_x < 4; cur_x++)
-					{
-						//if(currentLocation[cur_y][cur[]])
-					}
-				}
 			}
+
 		}
 	}
 

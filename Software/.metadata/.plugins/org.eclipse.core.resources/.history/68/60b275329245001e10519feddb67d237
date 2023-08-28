@@ -393,7 +393,7 @@ void rotate(movements movement)
 	printf("after\n");
 	visualizeBlock(newLocation);
 
-	if(canRotate(newLocation, movement) == 1)
+	if(canMoveToSide(newLocation, movement) == 1)
 	{
 		printf("rotate allowed\n");
 		removeBlockFromGrid(currentBlock);

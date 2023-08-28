@@ -185,47 +185,67 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 
 	for(int y = 0; y < 4; y++)
 	{
-		if(movement == MOVE_LEFT || movement == ROTATE_CLOCKWISE)
+		for(int x = 3; x >= 0; x--)
 		{
-			for(int x = 3; x >= 0; x--)
+			if(newLocation[y][x][2] != 0)
 			{
-				if(newLocation[y][x][2] != 0)
+				if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
 				{
-					if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
-					{
-						return 0;
-					}
-
-					currentsideCoord[0] = newLocation[y][x][0];
-					currentsideCoord[1] = newLocation[y][x][1];
-					currentsideCoord[2] = newLocation[y][x][2];
+					return 0;
 				}
 
+				currentsideCoord[0] = newLocation[y][x][0];
+				currentsideCoord[1] = newLocation[y][x][1];
+				currentsideCoord[2] = newLocation[y][x][2];
 			}
-		}
-		else
-		{
-			for(int x = 0; x < 4; x++)
-			{
-				if(newLocation[y][x][2] != 0)
-				{
-					if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
-					{
-						return 0;
-					}
 
-					currentsideCoord[0] = newLocation[y][x][0];
-					currentsideCoord[1] = newLocation[y][x][1];
-					currentsideCoord[2] = newLocation[y][x][2];
-				}
-
-			}
 		}
 
 		sideCoords[y][0] = currentsideCoord[0];
 		sideCoords[y][1] = currentsideCoord[1];
 		sideCoords[y][2] = currentsideCoord[2];
 	}
+
+	for(int i = 0; i < 4; i++)
+	{
+		if(sideCoords[i][2] != 0)
+		{
+			if(grid[sideCoords[i][0]][sideCoords[i][1]] != 0)
+			{
+				printf("object hit\n");
+				return 0;
+			}
+		}
+
+	}
+
+	memset(sideCoords, 0, sizeof(sideCoords));
+	memset(currentsideCoord, 0, sizeof(currentsideCoord));
+	for(int y = 0; y < 4; y++)
+	{
+		for(int x = 0; x < 4; x++)
+		{
+			if(newLocation[y][x][2] != 0)
+			{
+				if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
+				{
+					return 0;
+				}
+
+				currentsideCoord[0] = newLocation[y][x][0];
+				currentsideCoord[1] = newLocation[y][x][1];
+				currentsideCoord[2] = newLocation[y][x][2];
+			}
+
+		}
+
+		sideCoords[y][0] = currentsideCoord[0];
+		sideCoords[y][1] = currentsideCoord[1];
+		sideCoords[y][2] = currentsideCoord[2];
+	}
+
+
+
 
 	for(int i = 0; i < 4; i++)
 	{
@@ -255,14 +275,6 @@ int canRotate(int newLocation[4][4][3], movements movement)
 				if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
 				{
 					return 0;
-				}
-
-				for(int cur_y = 0; cur_y < 4; cur_y++)
-				{
-					for(int cur_x = 0; cur_x < 4; cur_x++)
-					{
-						//if(currentLocation[cur_y][cur[]])
-					}
 				}
 			}
 		}

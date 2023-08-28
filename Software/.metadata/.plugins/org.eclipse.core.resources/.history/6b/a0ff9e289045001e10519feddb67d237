@@ -185,7 +185,7 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 
 	for(int y = 0; y < 4; y++)
 	{
-		if(movement == MOVE_LEFT || movement == ROTATE_CLOCKWISE)
+		if(movement == MOVE_LEFT)
 		{
 			for(int x = 3; x >= 0; x--)
 			{
@@ -227,49 +227,25 @@ int canMoveToSide(int newLocation[4][4][3], movements movement)
 		sideCoords[y][2] = currentsideCoord[2];
 	}
 
-	for(int i = 0; i < 4; i++)
+	int canRotate(int newLocation[4][4][3], movements movement)
 	{
-		if(sideCoords[i][2] != 0)
+		for(int y = 0; y < 4; y++)
 		{
-			if(grid[sideCoords[i][0]][sideCoords[i][1]] != 0)
+			for(int x = 0; x < 4; x++)
 			{
-				printf("object hit\n");
-				return 0;
-			}
-		}
-
-	}
-
-	return 1;
-}
-
-int canRotate(int newLocation[4][4][3], movements movement)
-{
-
-	for(int y = 0; y < 4; y++)
-	{
-		for(int x = 0; x < 4; x++)
-		{
-			if(newLocation[y][x][2] != 0)
-			{
-				if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
+				if(newLocation[y][x][2] != 0)
 				{
-					return 0;
-				}
-
-				for(int cur_y = 0; cur_y < 4; cur_y++)
-				{
-					for(int cur_x = 0; cur_x < 4; cur_x++)
+					if(newLocation[y][x][1] < 0 || newLocation[y][x][1] > 9)
 					{
-						//if(currentLocation[cur_y][cur[]])
+						return 0;
 					}
 				}
+
 			}
 		}
-	}
 
-	return 1;
-}
+		return 1;
+	}
 
 void gravity()
 {
