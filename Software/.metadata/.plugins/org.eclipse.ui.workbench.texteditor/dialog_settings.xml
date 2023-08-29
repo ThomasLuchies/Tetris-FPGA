@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="original coords" key="selection"/>
+		<item value="printf" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="original coords"/>
-			<item value="TIMER_IRQ"/>
-			<item value="INTERRUPT_CONTROLLER_ID"/>
-			<item value="INTERRUPT_ID"/>
-			<item value="INTERRUP_ID"/>
-			<item value="row"/>
-			<item value="ROW"/>
-			<item value="sram"/>
+			<item value="printf"/>
+			<item value="move"/>
+			<item value="reset_game"/>
+			<item value="createBlock(I)"/>
+			<item value="createBlock("/>
+			<item value="visualizeBlock"/>
+			<item value="printBinary"/>
+			<item value="hex"/>
 		</list>
 		<list key="replacehistory">
 		</list>

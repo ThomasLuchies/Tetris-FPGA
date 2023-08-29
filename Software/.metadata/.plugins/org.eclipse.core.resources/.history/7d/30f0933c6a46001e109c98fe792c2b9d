@@ -61,7 +61,6 @@ void rotateLeftInterrupt(void* context)
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_LEFT_BASE,0);
 	if(gameOver == 0)
 	{
-		rotate(ROTATE_COUNTERCLOKWISE);
 		drawGrid();
 	}
 }

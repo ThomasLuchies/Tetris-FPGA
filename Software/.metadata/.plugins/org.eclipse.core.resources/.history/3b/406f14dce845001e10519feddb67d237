@@ -61,8 +61,8 @@ void rotateLeftInterrupt(void* context)
 	IOWR_ALTERA_AVALON_PIO_EDGE_CAP(ROTATE_LEFT_BASE,0);
 	if(gameOver == 0)
 	{
-		rotate(ROTATE_COUNTERCLOKWISE);
 		drawGrid();
+		rotate(ROTATE_COUNTERCLOKWISE);
 	}
 }
 
@@ -108,6 +108,7 @@ void frameTimerInterrupt(void *context, alt_u32 id)
 		frameCounter = frameCounter + 1;
 		if(frameCounter == gameSpeed)
 		{
+			printf("matched");
 			gravity();
 			drawGrid();
 			frameCounter = 0;
