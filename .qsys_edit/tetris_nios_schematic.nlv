@@ -1,0 +1,97 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst tetris.row_11 -pg 1 -lvl 3 -y 2100
+preplace inst tetris.reset_game -pg 1 -lvl 3 -y 1700
+preplace inst tetris.frame_timer -pg 1 -lvl 3 -y 1320
+preplace inst tetris.row_12 -pg 1 -lvl 3 -y 2200
+preplace inst tetris.HEX_0 -pg 1 -lvl 3 -y 140
+preplace inst tetris.sram_0 -pg 1 -lvl 3 -y 4200
+preplace inst tetris.row_13 -pg 1 -lvl 3 -y 2300
+preplace inst tetris.row_0 -pg 1 -lvl 3 -y 1800
+preplace inst tetris.nios2_gen2_0 -pg 1 -lvl 2 -y 70
+preplace inst tetris.HEX_1 -pg 1 -lvl 3 -y 240
+preplace inst tetris.row_20 -pg 1 -lvl 3 -y 3100
+preplace inst tetris.row_14 -pg 1 -lvl 3 -y 2400
+preplace inst tetris.row_1 -pg 1 -lvl 3 -y 1900
+preplace inst tetris.HEX_2 -pg 1 -lvl 3 -y 340
+preplace inst tetris.row_21 -pg 1 -lvl 3 -y 3200
+preplace inst tetris.row_2 -pg 1 -lvl 3 -y 2600
+preplace inst tetris.row_15 -pg 1 -lvl 3 -y 2500
+preplace inst tetris.move_left -pg 1 -lvl 3 -y 840
+preplace inst tetris.jtag_uart_0 -pg 1 -lvl 3 -y 1420
+preplace inst tetris.fast_move -pg 1 -lvl 3 -y 4300
+preplace inst tetris.HEX_3 -pg 1 -lvl 3 -y 440
+preplace inst tetris.row_3 -pg 1 -lvl 3 -y 3300
+preplace inst tetris.row_22 -pg 1 -lvl 3 -y 3500
+preplace inst tetris.row_16 -pg 1 -lvl 3 -y 2700
+preplace inst tetris.onchip_memory2_0 -pg 1 -lvl 3 -y 1520
+preplace inst tetris.nios2_gen2_0.reset_bridge -pg 1
+preplace inst tetris.HEX_4 -pg 1 -lvl 3 -y 540
+preplace inst tetris.row_4 -pg 1 -lvl 3 -y 3400
+preplace inst tetris.row_23 -pg 1 -lvl 3 -y 3600
+preplace inst tetris.row_17 -pg 1 -lvl 3 -y 2800
+preplace inst tetris.HEX_5 -pg 1 -lvl 3 -y 640
+preplace inst tetris.row_5 -pg 1 -lvl 3 -y 3700
+preplace inst tetris.row_18 -pg 1 -lvl 3 -y 2900
+preplace inst tetris.clk_0 -pg 1 -lvl 1 -y 110
+preplace inst tetris.HEX_6 -pg 1 -lvl 3 -y 740
+preplace inst tetris.row_6 -pg 1 -lvl 3 -y 3800
+preplace inst tetris.row_19 -pg 1 -lvl 3 -y 3000
+preplace inst tetris.rotate_left -pg 1 -lvl 3 -y 1080
+preplace inst tetris.nios2_gen2_0.clock_bridge -pg 1
+preplace inst tetris.move_right -pg 1 -lvl 3 -y 960
+preplace inst tetris.HEX_7 -pg 1 -lvl 3 -y 1600
+preplace inst tetris -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst tetris.row_7 -pg 1 -lvl 3 -y 3900
+preplace inst tetris.row_8 -pg 1 -lvl 3 -y 4000
+preplace inst tetris.row_9 -pg 1 -lvl 3 -y 4100
+preplace inst tetris.row_10 -pg 1 -lvl 3 -y 2000
+preplace inst tetris.rotate_right -pg 1 -lvl 3 -y 1200
+preplace inst tetris.nios2_gen2_0.cpu -pg 1
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_9.external_connection,(SLAVE)tetris.row_9) 1 0 3 NJ 4130 NJ 4130 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_1.external_connection,(SLAVE)tetris.row_1) 1 0 3 NJ 1930 NJ 1930 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.move_left,(SLAVE)move_left.external_connection) 1 0 3 NJ 870 NJ 870 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_3,(SLAVE)row_3.external_connection) 1 0 3 NJ 3330 NJ 3330 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_17.external_connection,(SLAVE)tetris.row_17) 1 0 3 NJ 2830 NJ 2830 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.rotate_right,(SLAVE)rotate_right.external_connection) 1 0 3 NJ 1230 NJ 1230 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.hex_4,(SLAVE)HEX_4.external_connection) 1 0 3 NJ 570 NJ 570 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_13.external_connection,(SLAVE)tetris.row_13) 1 0 3 NJ 2330 NJ 2330 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_0.external_connection,(SLAVE)tetris.row_0) 1 0 3 NJ 1830 NJ 1830 NJ
+preplace netloc INTERCONNECT<net_container>tetris</net_container>(MASTER)nios2_gen2_0.data_master,(SLAVE)rotate_left.s1,(SLAVE)HEX_0.s1,(SLAVE)row_10.s1,(SLAVE)row_3.s1,(SLAVE)row_19.s1,(SLAVE)HEX_4.s1,(SLAVE)row_20.s1,(SLAVE)move_right.s1,(SLAVE)row_7.s1,(SLAVE)row_15.s1,(SLAVE)row_8.s1,(SLAVE)row_2.s1,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)row_12.s1,(SLAVE)row_23.s1,(SLAVE)HEX_1.s1,(SLAVE)fast_move.s1,(SLAVE)sram_0.avalon_sram_slave,(SLAVE)HEX_2.s1,(SLAVE)row_1.s1,(SLAVE)HEX_3.s1,(SLAVE)row_11.s1,(SLAVE)frame_timer.s1,(SLAVE)row_22.s1,(SLAVE)rotate_right.s1,(SLAVE)row_5.s1,(SLAVE)row_4.s1,(SLAVE)HEX_7.s1,(SLAVE)row_17.s1,(SLAVE)move_left.s1,(SLAVE)row_13.s1,(SLAVE)onchip_memory2_0.s1,(SLAVE)HEX_6.s1,(SLAVE)row_0.s1,(SLAVE)row_16.s1,(SLAVE)nios2_gen2_0.debug_mem_slave,(SLAVE)jtag_uart_0.avalon_jtag_slave,(SLAVE)row_6.s1,(SLAVE)row_9.s1,(SLAVE)row_21.s1,(SLAVE)reset_game.s1,(SLAVE)HEX_5.s1,(SLAVE)row_18.s1,(SLAVE)row_14.s1) 1 1 2 340 30 720
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_15,(SLAVE)row_15.external_connection) 1 0 3 NJ 2530 NJ 2530 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.rotate_left,(SLAVE)rotate_left.external_connection) 1 0 3 NJ 1110 NJ 1110 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)HEX_0.external_connection,(SLAVE)tetris.hex_0) 1 0 3 NJ 250 NJ 250 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)HEX_7.external_connection,(SLAVE)tetris.hex7) 1 0 3 NJ 1630 NJ 1630 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_19,(SLAVE)row_19.external_connection) 1 0 3 NJ 3030 NJ 3030 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_11.external_connection,(SLAVE)tetris.row_11) 1 0 3 NJ 2130 NJ 2130 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.hex_2,(SLAVE)HEX_2.external_connection) 1 0 3 NJ 370 NJ 370 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_10.external_connection,(SLAVE)tetris.row_10) 1 0 3 NJ 2030 NJ 2030 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.reset_game,(SLAVE)reset_game.external_connection) 1 0 3 NJ 1730 NJ 1730 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)HEX_5.external_connection,(SLAVE)tetris.hex_5) 1 0 3 NJ 670 NJ 670 NJ
+preplace netloc INTERCONNECT<net_container>tetris</net_container>(SLAVE)HEX_0.reset,(SLAVE)HEX_1.reset,(SLAVE)sram_0.reset,(SLAVE)HEX_7.reset,(MASTER)clk_0.clk_reset,(SLAVE)row_1.reset,(SLAVE)HEX_4.reset,(SLAVE)row_2.reset,(SLAVE)move_left.reset,(SLAVE)row_14.reset,(SLAVE)row_15.reset,(SLAVE)row_23.reset,(SLAVE)reset_game.reset,(SLAVE)HEX_2.reset,(SLAVE)row_8.reset,(SLAVE)row_11.reset,(SLAVE)row_19.reset,(SLAVE)row_20.reset,(SLAVE)row_21.reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)row_6.reset,(SLAVE)row_22.reset,(SLAVE)row_18.reset,(SLAVE)row_9.reset,(SLAVE)rotate_right.reset,(SLAVE)row_10.reset,(SLAVE)row_12.reset,(SLAVE)HEX_6.reset,(SLAVE)row_5.reset,(SLAVE)row_7.reset,(SLAVE)row_13.reset,(MASTER)nios2_gen2_0.debug_reset_request,(SLAVE)move_right.reset,(SLAVE)HEX_5.reset,(SLAVE)rotate_left.reset,(SLAVE)row_3.reset,(SLAVE)frame_timer.reset,(SLAVE)fast_move.reset,(SLAVE)row_16.reset,(SLAVE)row_0.reset,(SLAVE)HEX_3.reset,(SLAVE)jtag_uart_0.reset,(SLAVE)row_17.reset,(SLAVE)row_4.reset,(SLAVE)onchip_memory2_0.reset1) 1 1 2 300 210 700
+preplace netloc FAN_OUT<net_container>tetris</net_container>(SLAVE)HEX_3.clk,(SLAVE)row_13.clk,(SLAVE)row_23.clk,(SLAVE)rotate_left.clk,(SLAVE)HEX_1.clk,(SLAVE)reset_game.clk,(SLAVE)row_22.clk,(SLAVE)row_8.clk,(SLAVE)row_12.clk,(SLAVE)frame_timer.clk,(SLAVE)move_right.clk,(SLAVE)row_2.clk,(SLAVE)row_6.clk,(SLAVE)row_16.clk,(SLAVE)row_7.clk,(SLAVE)row_14.clk,(SLAVE)row_18.clk,(SLAVE)row_0.clk,(SLAVE)HEX_5.clk,(SLAVE)row_1.clk,(SLAVE)row_10.clk,(SLAVE)fast_move.clk,(SLAVE)move_left.clk,(SLAVE)HEX_2.clk,(SLAVE)rotate_right.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)row_4.clk,(SLAVE)row_3.clk,(SLAVE)HEX_6.clk,(SLAVE)sram_0.clk,(SLAVE)row_19.clk,(SLAVE)HEX_4.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)row_17.clk,(SLAVE)HEX_0.clk,(SLAVE)jtag_uart_0.clk,(SLAVE)row_9.clk,(SLAVE)row_20.clk,(SLAVE)row_11.clk,(MASTER)clk_0.clk,(SLAVE)row_15.clk,(SLAVE)row_21.clk,(SLAVE)row_5.clk,(SLAVE)HEX_7.clk) 1 1 2 320 230 780
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_5,(SLAVE)row_5.external_connection) 1 0 3 NJ 3730 NJ 3730 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_23.external_connection,(SLAVE)tetris.row_23) 1 0 3 NJ 3630 NJ 3630 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_2.external_connection,(SLAVE)tetris.row_2) 1 0 3 NJ 2630 NJ 2630 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.hex_6,(SLAVE)HEX_6.external_connection) 1 0 3 NJ 770 NJ 770 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)clk_0.clk_in,(SLAVE)tetris.clk) 1 0 1 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_4,(SLAVE)row_4.external_connection) 1 0 3 NJ 3430 NJ 3430 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_12,(SLAVE)row_12.external_connection) 1 0 3 NJ 2230 NJ 2230 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_20.external_connection,(SLAVE)tetris.row_20) 1 0 3 NJ 3130 NJ 3130 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_8,(SLAVE)row_8.external_connection) 1 0 3 NJ 4030 NJ 4030 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.hex_1,(SLAVE)HEX_1.external_connection) 1 0 3 NJ 270 NJ 270 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)sram_0.external_interface,(SLAVE)tetris.sram) 1 0 3 NJ 4250 NJ 4250 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_6,(SLAVE)row_6.external_connection) 1 0 3 NJ 3830 NJ 3830 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_22.external_connection,(SLAVE)tetris.row_22) 1 0 3 NJ 3530 NJ 3530 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_16.external_connection,(SLAVE)tetris.row_16) 1 0 3 NJ 2730 NJ 2730 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_14.external_connection,(SLAVE)tetris.row_14) 1 0 3 NJ 2430 NJ 2430 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)tetris.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)move_right.external_connection,(SLAVE)tetris.move_right) 1 0 3 NJ 990 NJ 990 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)fast_move.external_connection,(SLAVE)tetris.fast_move) 1 0 3 NJ 4330 NJ 4330 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_7.external_connection,(SLAVE)tetris.row_7) 1 0 3 NJ 3930 NJ 3930 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)row_21.external_connection,(SLAVE)tetris.row_21) 1 0 3 NJ 3230 NJ 3230 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.row_18,(SLAVE)row_18.external_connection) 1 0 3 NJ 2930 NJ 2930 NJ
+preplace netloc EXPORT<net_container>tetris</net_container>(SLAVE)tetris.hex_3,(SLAVE)HEX_3.external_connection) 1 0 3 NJ 470 NJ 470 NJ
+preplace netloc FAN_OUT<net_container>tetris</net_container>(SLAVE)rotate_right.irq,(SLAVE)move_right.irq,(SLAVE)frame_timer.irq,(SLAVE)rotate_left.irq,(SLAVE)jtag_uart_0.irq,(MASTER)nios2_gen2_0.irq,(SLAVE)move_left.irq) 1 2 1 740
+levelinfo -pg 1 0 90 990
+levelinfo -hier tetris 100 130 460 830 980

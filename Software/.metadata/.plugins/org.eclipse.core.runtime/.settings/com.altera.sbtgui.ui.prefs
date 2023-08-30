@@ -1,7 +1,4 @@
 eclipse.preferences.version=1
-newApplicationWizardPage.defaultLocation=C\:\\Github\\Tetris-FPGA\\Software\\sram
-newBspWizardPage.defaultLocation=C\:\\Github\\Tetris-FPGA\\software\\sram_bsp
-newBspWizardPage.sopcinfoFile=C\:\\Github\\Tetris-FPGA\\sram.sopcinfo
-newSoftwareExampleWizardPage.defaultLocation=C\:\\github\\Tetris-FPGA\\software\\niosII_test
-newSoftwareExampleWizardPage.sopcinfoFile=C\:\\github\\Tetris-FPGA\\nios2.sopcinfo
-newSoftwareExampleWizardPage2.newBspLocation=C\:\\github\\Tetris-FPGA\\software\\niosII_test_bsp
+newSoftwareExampleWizardPage.defaultLocation=C\:\\github\\Tetris-FPGA\\software\\Tetris
+newSoftwareExampleWizardPage.sopcinfoFile=C\:\\github\\Tetris-FPGA\\tetris_nios.sopcinfo
+newSoftwareExampleWizardPage2.newBspLocation=C\:\\github\\Tetris-FPGA\\software\\Tetris_bsp

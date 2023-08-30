@@ -1,10 +1,10 @@
 /*
  * linker.h - Linker script mapping information
  *
- * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'nios2'
- * SOPC Builder design path: ../../nios2.sopcinfo
+ * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'tetris_nios'
+ * SOPC Builder design path: ../../tetris_nios.sopcinfo
  *
- * Generated: Thu Aug 24 20:33:15 CEST 2023
+ * Generated: Wed Aug 30 23:54:51 CEST 2023
  */
 
 /*
@@ -66,7 +66,7 @@
  */
 
 #define ONCHIP_MEMORY2_0_REGION_BASE 0x200020
-#define ONCHIP_MEMORY2_0_REGION_SPAN 20448
+#define ONCHIP_MEMORY2_0_REGION_SPAN 200064
 #define RESET_REGION_BASE 0x200000
 #define RESET_REGION_SPAN 32
 

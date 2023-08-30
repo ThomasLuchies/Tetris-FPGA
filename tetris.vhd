@@ -100,7 +100,7 @@ architecture tetris_arch of tetris is
 		lb_n : out std_logic := '0'); -- always active
 	end component;
 	
-	COMPONENT sram
+	COMPONENT tetris_nios
 		port (
 			clk_clk : in std_logic := '0';
 			move_left_export    : in    std_logic                     := '0';             --    move_left.export
@@ -154,7 +154,7 @@ architecture tetris_arch of tetris is
 begin 
 	VGA_CLK <= pixel_clk;
 	
-	 NiosII : sram PORT MAP(
+	 NiosII : tetris_nios PORT MAP(
 		 clk_clk => CLOCK_50,
 		 reset_reset_n => '1',
 		 move_left_export => KEY(3),

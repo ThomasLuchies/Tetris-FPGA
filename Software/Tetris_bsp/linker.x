@@ -1,10 +1,10 @@
 /*
  * linker.x - Linker script
  *
- * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'nios2'
- * SOPC Builder design path: ../../nios2.sopcinfo
+ * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'tetris_nios'
+ * SOPC Builder design path: ../../tetris_nios.sopcinfo
  *
- * Generated: Thu Aug 24 20:33:15 CEST 2023
+ * Generated: Wed Aug 30 23:54:51 CEST 2023
  */
 
 /*
@@ -51,7 +51,7 @@
 MEMORY
 {
     reset : ORIGIN = 0x200000, LENGTH = 32
-    onchip_memory2_0 : ORIGIN = 0x200020, LENGTH = 20448
+    onchip_memory2_0 : ORIGIN = 0x200020, LENGTH = 200064
 }
 
 /* Define symbols for each memory base-address */
@@ -367,7 +367,7 @@ SECTIONS
 /*
  * Don't override this, override the __alt_stack_* symbols instead.
  */
-__alt_data_end = 0x205000;
+__alt_data_end = 0x230da0;
 
 /*
  * The next two symbols define the location of the default stack.  You can
@@ -383,4 +383,4 @@ PROVIDE( __alt_stack_limit   = __alt_stack_base );
  * Override this symbol to put the heap in a different memory.
  */
 PROVIDE( __alt_heap_start    = end );
-PROVIDE( __alt_heap_limit    = 0x205000 );
+PROVIDE( __alt_heap_limit    = 0x230da0 );

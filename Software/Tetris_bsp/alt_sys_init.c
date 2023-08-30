@@ -1,10 +1,10 @@
 /*
  * alt_sys_init.c - HAL initialization source
  *
- * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'nios2'
- * SOPC Builder design path: ../../nios2.sopcinfo
+ * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'tetris_nios'
+ * SOPC Builder design path: ../../tetris_nios.sopcinfo
  *
- * Generated: Thu Aug 24 20:33:15 CEST 2023
+ * Generated: Wed Aug 30 23:54:51 CEST 2023
  */
 
 /*
@@ -60,6 +60,7 @@
 
 #include "altera_nios2_gen2_irq.h"
 #include "altera_avalon_jtag_uart.h"
+#include "altera_avalon_timer.h"
 
 /*
  * Allocate the device storage
@@ -67,6 +68,7 @@
 
 ALTERA_NIOS2_GEN2_IRQ_INSTANCE ( NIOS2_GEN2_0, nios2_gen2_0);
 ALTERA_AVALON_JTAG_UART_INSTANCE ( JTAG_UART_0, jtag_uart_0);
+ALTERA_AVALON_TIMER_INSTANCE ( FRAME_TIMER, frame_timer);
 
 /*
  * Initialize the interrupt controller devices
@@ -89,5 +91,6 @@ void alt_irq_init ( const void* base )
 
 void alt_sys_init( void )
 {
+    ALTERA_AVALON_TIMER_INIT ( FRAME_TIMER, frame_timer);
     ALTERA_AVALON_JTAG_UART_INIT ( JTAG_UART_0, jtag_uart_0);
 }

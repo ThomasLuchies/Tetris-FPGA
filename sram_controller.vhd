@@ -30,7 +30,7 @@
 	end sram_controller;
 
 	architecture behavior of sram_controller is
-		COMPONENT sram
+		COMPONENT tetris_nios
 			port (
 				clk_clk       : in    std_logic                     := '0';             --   clk.clk
 				reset_reset_n : in    std_logic                     := '0';
@@ -154,7 +154,7 @@
 				
 		end process;
 		
-		 NiosII : sram PORT MAP(
+		 NiosII : tetris_nios PORT MAP(
 			 clk_clk => clk,
 			 reset_reset_n => '1',
 			 sram_DQ		=>	nios_data,

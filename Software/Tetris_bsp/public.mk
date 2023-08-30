@@ -86,7 +86,7 @@ ACDS_VERSION := 18.1
 
 # Qsys--generated SOPCINFO file. Required for resolving node instance ID's with 
 # design component names. 
-SOPCINFO_FILE := $(ABS_BSP_ROOT_DIR)/../../nios2.sopcinfo
+SOPCINFO_FILE := $(ABS_BSP_ROOT_DIR)/../../tetris_nios.sopcinfo
 
 # Big-Endian operation. 
 # setting BIG_ENDIAN is false
@@ -139,8 +139,8 @@ QSYS := 1
 ELF_PATCH_FLAG += --qsys true
 
 # Design Name 
-# setting SOPC_NAME is nios2
-SOPC_NAME := nios2
+# setting SOPC_NAME is tetris_nios
+SOPC_NAME := tetris_nios
 
 # SopcBuilder Simulation Enabled 
 # setting SOPC_SIMULATION_ENABLED is false
@@ -163,17 +163,20 @@ ELF_PATCH_FLAG  += --simulation_enabled false
 # multiple inheritance and exceptions are not supported. If false, adds 
 # -DALT_NO_C_PLUS_PLUS to ALT_CPPFLAGS in public.mk, and reduces code 
 # footprint. none 
-# setting hal.enable_c_plus_plus is true
+# setting hal.enable_c_plus_plus is false
+ALT_CPPFLAGS += -DALT_NO_C_PLUS_PLUS
 
 # When your application exits, close file descriptors, call C++ destructors, 
 # etc. Code footprint can be reduced by disabling clean exit. If disabled, adds 
 # -DALT_NO_CLEAN_EXIT to ALT_CPPFLAGS -D'exit(a)=_exit(a)' in public.mk. none 
-# setting hal.enable_clean_exit is true
+# setting hal.enable_clean_exit is false
+ALT_CPPFLAGS += -DALT_NO_CLEAN_EXIT -D'exit(a)=_exit(a)'
 
 # Add exit() support. This option increases code footprint if your "main()" 
 # routine does "return" or call "exit()". If false, adds -DALT_NO_EXIT to 
 # ALT_CPPFLAGS in public.mk, and reduces footprint none 
-# setting hal.enable_exit is true
+# setting hal.enable_exit is false
+ALT_CPPFLAGS += -DALT_NO_EXIT
 
 # Causes code to be compiled with gprof profiling enabled and the application 
 # ELF to be linked with the GPROF library. If true, adds -DALT_PROVIDE_GMON to 
@@ -188,7 +191,8 @@ ELF_PATCH_FLAG  += --simulation_enabled false
 # devices. If true, adds -DALT_USE_DIRECT_DRIVERS to ALT_CPPFLAGS in public.mk. 
 # The Altera Host and read-only ZIP file systems can't be used if 
 # hal.enable_lightweight_device_driver_api is true. 
-# setting hal.enable_lightweight_device_driver_api is false
+# setting hal.enable_lightweight_device_driver_api is true
+ALT_CPPFLAGS += -DALT_USE_DIRECT_DRIVERS
 
 # Adds code to emulate multiply and divide instructions in case they are 
 # executed but aren't present in the CPU. Normally this isn't required because 
@@ -207,7 +211,8 @@ ALT_CPPFLAGS += -DALT_NO_INSTRUCTION_EMULATION
 # access routines) to fail. You can define a symbol provided by each driver to 
 # prevent it from being removed. If true, adds -DALT_USE_SMALL_DRIVERS to 
 # ALT_CPPFLAGS in public.mk. none 
-# setting hal.enable_reduced_device_drivers is false
+# setting hal.enable_reduced_device_drivers is true
+ALT_CPPFLAGS += -DALT_USE_SMALL_DRIVERS
 
 # Turns on HAL runtime stack checking feature. Enabling this setting causes 
 # additional code to be placed into each subroutine call to generate an 
@@ -228,7 +233,9 @@ ALT_CPPFLAGS += -DALT_NO_INSTRUCTION_EMULATION
 # are removed such as floating-point support in printf(), stdin input routines, 
 # and buffered I/O. The small C library is not compatible with Micrium 
 # MicroC/OS-II. If true, adds -msmallc to ALT_LDFLAGS in public.mk. none 
-# setting hal.enable_small_c_library is false
+# setting hal.enable_small_c_library is true
+ALT_LDFLAGS += -msmallc
+ALT_CPPFLAGS += -DSMALL_C_LIB
 
 # Enable SOPC Builder System ID. If a System ID SOPC Builder component is 
 # connected to the CPU associated with this BSP, it will be enabled in the 

@@ -5,14 +5,10 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-			<item value="C:\Github\Tetris-FPGA\Software\Hand_detection"/>
-			<item value="C:\Github\Tetris-FPGA\Software\Tetris_game_logic_bsp"/>
-			<item value="C:\Github\Tetris-FPGA\Software\Tetris_game_logic"/>
+			<item value="C:\github\Tetris-FPGA\Software"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
-	</section>
-	<section name="NewWizardAction">
 	</section>
 </section>

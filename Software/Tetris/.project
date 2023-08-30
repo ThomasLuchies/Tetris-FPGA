@@ -3,6 +3,7 @@
 	<name>Tetris</name>
 	<comment></comment>
 	<projects>
+		<project>Tetris_bsp</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
