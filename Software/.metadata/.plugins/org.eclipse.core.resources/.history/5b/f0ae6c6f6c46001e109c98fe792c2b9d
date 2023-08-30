@@ -81,14 +81,13 @@ void frameTimerInterrupt(void *context, alt_u32 id)
 {
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_TIMER_STATUS(FRAME_TIMER_BASE, 0);
-
-	if(IORD_ALTERA_AVALON_PIO_DATA(RESET_GAME_BASE) == 1)
-	{
-		resetGame();
-	}
-
 	if(gameOver == 0)
 	{
+		if(IORD_ALTERA_AVALON_PIO_DATA(RESET_GAME_BASE) == 1)
+		{
+			resetGame();
+		}
+
 		int newSpeed = 0;
 		if(IORD_ALTERA_AVALON_PIO_DATA(FAST_MOVE_BASE) == 1)
 		{
@@ -487,10 +486,10 @@ int canRotate(int newLocation[4][4][3], movements movement)
 		}
 	}
 
-/*	if(canMoveToSide(newLocation, movement) == 0 && canMoveDown(newLocation) == 0)
+	if(canMoveToSide(newLocation, movement) == 0 && canMoveDown(newLocation) == 0)
 	{
 		return 0;
-	}*/
+	}
 
 	return 1;
 }
@@ -745,7 +744,6 @@ int clearGrid()
 	  for(int x = 0; x < 10; x++)
 	  {
 		  grid[y][x] = 0;
-		  IOWR_ALTERA_AVALON_PIO_DATA(rowAdresses[y], 0b00000000000000000000000000000000);
 	  }
 	}
 }

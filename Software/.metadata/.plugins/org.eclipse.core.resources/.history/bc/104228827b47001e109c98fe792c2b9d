@@ -81,12 +81,10 @@ void frameTimerInterrupt(void *context, alt_u32 id)
 {
 	// Reset interrupt
 	IOWR_ALTERA_AVALON_TIMER_STATUS(FRAME_TIMER_BASE, 0);
-
 	if(IORD_ALTERA_AVALON_PIO_DATA(RESET_GAME_BASE) == 1)
-	{
-		resetGame();
-	}
-
+			{
+				resetGame();
+			}
 	if(gameOver == 0)
 	{
 		int newSpeed = 0;

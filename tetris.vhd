@@ -149,11 +149,9 @@ architecture tetris_arch of tetris is
 	signal column: integer;
 	signal pixel_clk: std_logic;
 	signal disp_ena: std_logic;
-	signal grid: std_logic_vector(719 downto 0);
+	signal grid: std_logic_vector(719 downto 0) := (others => '0');
 	signal test_grid: std_logic_vector(719 downto 0);
 begin 
-	test_grid(719 downto 717) <= "001";
-	LEDR <= grid(29 downto 12);
 	VGA_CLK <= pixel_clk;
 	
 	 NiosII : sram PORT MAP(
